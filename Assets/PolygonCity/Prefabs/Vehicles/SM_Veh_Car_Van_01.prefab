@@ -206,6 +206,8 @@ GameObject:
   - component: {fileID: 3320634}
   - component: {fileID: 2369120}
   - component: {fileID: 64583076319660614}
+  - component: {fileID: 3171733340822665006}
+  - component: {fileID: 5220748467477962395}
   m_Layer: 0
   m_Name: SM_Veh_Car_Van_01
   m_TagString: Untagged
@@ -312,6 +314,41 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 97982d8a36ff16f4a88f291ef2443e49, type: 3}
+--- !u!195 &3171733340822665006
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130278}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.2
+  m_Speed: 8
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 1080
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.5
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &5220748467477962395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1394266f9c93a44948b4c1a89a3422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextPointDistanceTrigger: 2
 --- !u!1 &148594
 GameObject:
   m_ObjectHideFlags: 0
