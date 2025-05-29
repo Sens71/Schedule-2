@@ -9,7 +9,7 @@ public class CarNavigation : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        RoadWaypoint[] points = FindObjectsOfType<RoadWaypoint>();
+        RoadWaypoint[] points = FindObjectsByType<RoadWaypoint>(FindObjectsSortMode.None);
         float minDist = Mathf.Infinity;
 
         foreach (var p in points)
@@ -27,6 +27,8 @@ public class CarNavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(currentWaypoint == null) 
+            return;
         float distance = Vector3.Distance(transform.position, currentWaypoint.transform.position);
         if (distance < nextPointDistanceTrigger)
         {

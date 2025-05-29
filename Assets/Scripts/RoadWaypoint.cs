@@ -14,6 +14,8 @@ public class RoadWaypoint : MonoBehaviour
 
     public RoadWaypoint GetNextPoint()
     {
+        if(availablePoints.Length == 0) 
+            return null;
         random = Random.Range(0, availablePoints.Length);
         return availablePoints[random];
     }
