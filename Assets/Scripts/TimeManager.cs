@@ -4,13 +4,14 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     public float secondsPerHour = 30;
+    public float secondsPerDay;
     public float time;
     public TMP_Text timeText;
     private int hours;
     private int minutes;
-    void Start()
+    void Awake()
     {
-        
+        secondsPerDay = secondsPerHour * 24;
     }
 
     
@@ -22,7 +23,8 @@ public class TimeManager : MonoBehaviour
              time = 0;
         }
         hours = (int)(time / secondsPerHour);
-        minutes = (int)(time % secondsPerHour);
+        minutes = (int)(time % secondsPerHour) * (int)(60 / secondsPerHour);
+
         timeText.text = $"{hours} : {minutes}";
     }
 }
