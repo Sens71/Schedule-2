@@ -14,11 +14,8 @@ public class TimeManager : MonoBehaviour
     {
         secondsPerDay = secondsPerHour * 24;
     }
-
-    
     void Update()
     {
-
         time += Time.deltaTime;
         if(time > secondsPerHour * 24)
         {
