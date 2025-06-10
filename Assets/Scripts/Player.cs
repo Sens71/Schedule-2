@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public List<Quest> quests = new();
+    public QuestManager questManager;
     void Start()
     {
-        
+        questManager = FindAnyObjectByType<QuestManager>();
     }
 
     
@@ -18,8 +18,8 @@ public class Player : MonoBehaviour
 
     public void ReceiveQuest(Quest quest)
     {
-        if (!quests.Contains(quest))
-        quests.Add(quest);
+        if (!questManager.quests.Contains(quest))
+        questManager.quests.Add(quest);
             
     }
 }

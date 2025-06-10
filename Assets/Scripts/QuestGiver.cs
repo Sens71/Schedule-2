@@ -4,21 +4,26 @@ public class QuestGiver : MonoBehaviour
 {
     public Quest quest;
     private TimeManager timeManager;
-    void Start()
+    void Awake()
     {
         timeManager = FindAnyObjectByType<TimeManager>();
+        TimeCount();
     }
 
     // Update is called once per frame
-    void Update()
+    private async void TimeCount()
     {
-        if (timeManager.hours > 15 && timeManager.hours < 18) 
+        while (true)
         {
-            gameObject.SetActive(true);
-        }
-        else
-        {
-            gameObject.SetActive(false);
+            await Awaitable.NextFrameAsync();
+            if (timeManager.hours >= 1 && timeManager.hours < 3)
+            {
+                gameObject.SetActive(true);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
