@@ -6,7 +6,7 @@ public class SunManager : MonoBehaviour
     private float rotationPerSecond;
     void Start()
     {
-        rotationPerSecond = 360 / time.secondsPerDay;
+        rotationPerSecond = 360 / time.secondsPerHour * 24;
     }
 
     

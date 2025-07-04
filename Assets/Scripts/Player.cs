@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public QuestManager questManager;
+    private QuestManager questManager;
     void Start()
     {
         questManager = FindAnyObjectByType<QuestManager>();
