@@ -12,4 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea911a4805318f242b91f055e0c58ffe, type: 3}
   m_Name: Quest
   m_EditorClassIdentifier: 
-  currentQuestProgress: 0
+  _questData:
+    EditorDrawMode: 0
+    id:
+      Use: 1
+      Value: 0
+      CompareSign: 0
+      ChangeSign: 0
+    stage:
+      Use: 1
+      Value: 1
+      CompareSign: 0
+      ChangeSign: 0
+    name:
+      Use: 1
+      Value: Start of the Quest
+      CompareSign: 0
+      ChangeSign: 0
+    position:
+      Use: 1
+      Value: {fileID: 0}
+      CompareSign: 0
+      ChangeSign: 0
+    state:
+      Use: 1
+      Value: 1
+      CompareSign: 0
+      ChangeSign: 0

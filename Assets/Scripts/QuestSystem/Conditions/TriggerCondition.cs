@@ -1,26 +1,25 @@
-﻿using UnityEngine;
+﻿using System;
+using Unity.VisualScripting;
+using UnityEngine;
 
+[Serializable]
 public class TriggerCondition : ConditionBase
 {
-    private bool _withinZone;
+    [SerializeField] private Collider _trigger;
+    
     public override bool CheckCondition()
     {
-        return _withinZone;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out Player player))
+        var colliders = Physics.OverlapBox(_trigger.bounds.center, _trigger.bounds.extents, _trigger.transform.rotation);
+        foreach (var collider in colliders)
         {
-            _withinZone = true;
+            if (collider.TryGetComponent(out Player player))
+            {
+                return true;
+            }
         }
+        return false;
     }
+    
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent(out Player player))
-        {
-            _withinZone = false;
-        }
-    }
+
 }

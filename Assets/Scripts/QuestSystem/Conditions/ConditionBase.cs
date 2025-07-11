@@ -1,7 +1,12 @@
 using System;
 using UnityEngine;
-
-public abstract class ConditionBase : MonoBehaviour
+[Serializable]
+public abstract class ConditionBase
 {
     public abstract bool CheckCondition();
+
+    public virtual void OnRemove()
+    {
+        
+    }
 }

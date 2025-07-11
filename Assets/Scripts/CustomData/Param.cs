@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 [Serializable]
-public struct Param<T> : IParam
+public struct Param<T>
 {
     public bool Use;
     public T Value;
@@ -21,7 +21,6 @@ public enum QuestParamCompareSign
     GreaterOrEqual,
     LessOrEqual,
 }
-
 public enum QuestParamChangeSign
 {
     None,
@@ -30,10 +29,6 @@ public enum QuestParamChangeSign
     Set
 }
 
-public interface IParam
-{
-    public Type Type { get; }
-}
 [CustomPropertyDrawer(typeof(Param<>))]
 public class OptionalDrawer : PropertyDrawer
 {

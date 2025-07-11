@@ -7,15 +7,25 @@ using UnityEngine.PlayerLoop;
 public class Quest : ScriptableObject
 {
     [SerializeField] private QuestData _questData;
+    public QuestData QuestData => _questData;
+    public event Action OnDataUpdate;
 
     public void ChangeData(QuestData questData)
     {
-        _questData.ApplyChangeFrom(questData);
+        _questData.ApplyChangesFrom(questData);
+        OnDataUpdate?.Invoke();
     }
 
     public bool CompareData(QuestData questData)
     {
         return _questData.CompareTo(questData);
     }
+}
+
+public enum QuestState
+{
+    Ready,
+    InProgress,
+    Finished,
 }
 

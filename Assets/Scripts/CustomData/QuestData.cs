@@ -9,10 +9,12 @@ public class QuestData
 {
     public QuestDataDrawMode EditorDrawMode;
     public Param<int> id;
+    public Param<int> stage;
     public Param<string> name;
     public Param<Transform> position;
+    public Param<QuestState> state;
 
-    public void ApplyChangeFrom(QuestData other)
+    public void ApplyChangesFrom(QuestData other)
     {
         if (other.id.Use)
         {
@@ -26,6 +28,21 @@ public class QuestData
                     break;
                 case QuestParamChangeSign.Set:
                     id.Value = other.id.Value;
+                    break;
+            }
+        }
+        if (other.stage.Use)
+        {
+            switch (other.stage.ChangeSign)
+            {
+                case QuestParamChangeSign.Add:
+                    stage.Value += other.stage.Value;
+                    break;
+                case QuestParamChangeSign.Subtract:
+                    stage.Value -= other.stage.Value;
+                    break;
+                case QuestParamChangeSign.Set:
+                    stage.Value = other.stage.Value;
                     break;
             }
         }
@@ -47,6 +64,15 @@ public class QuestData
             {
                 case QuestParamChangeSign.Set:
                     position.Value = other.position.Value;
+                    break;
+            }
+        }
+        if (other.state.Use)
+        {
+            switch (other.state.ChangeSign)
+            {
+                case QuestParamChangeSign.Set:
+                    state.Value = other.state.Value;
                     break;
             }
         }
@@ -77,9 +103,33 @@ public class QuestData
                     break;
             }
         }
-        if (name.Use)
+        if (other.stage.Use)
         {
-            switch (name.CompareSign)
+            switch (other.stage.CompareSign)
+            {
+                case QuestParamCompareSign.Equal:
+                    if (stage.Value != other.stage.Value) return false;
+                    break;
+                case QuestParamCompareSign.NotEqual:
+                    if (stage.Value == other.stage.Value) return false;
+                    break;
+                case QuestParamCompareSign.GreaterThan:
+                    if (stage.Value <= other.stage.Value) return false;
+                    break;
+                case QuestParamCompareSign.LessThan:
+                    if (stage.Value >= other.stage.Value) return false;
+                    break;
+                case QuestParamCompareSign.GreaterOrEqual:
+                    if (stage.Value < other.stage.Value) return false;
+                    break;
+                case QuestParamCompareSign.LessOrEqual:
+                    if (stage.Value > other.stage.Value) return false;
+                    break;
+            }
+        }
+        if (other.name.Use)
+        {
+            switch (other.name.CompareSign)
             {
                 case QuestParamCompareSign.Equal:
                     if (name.Value != other.name.Value) return false;
@@ -89,10 +139,9 @@ public class QuestData
                     break;
             }
         }
-
-        if (position.Use)
+        if (other.position.Use)
         {
-            switch (position.CompareSign)
+            switch (other.position.CompareSign)
             {
                 case QuestParamCompareSign.Equal:
                     if (position.Value != other.position.Value) return false;
@@ -102,10 +151,20 @@ public class QuestData
                     break;
             }
         }
-
+        if (other.state.Use)
+        {
+            switch (other.state.CompareSign)
+            {
+                case QuestParamCompareSign.Equal:
+                    if (state.Value != other.state.Value) return false;
+                    break;
+                case QuestParamCompareSign.NotEqual:
+                    if (state.Value == other.state.Value) return false;
+                    break;
+            }
+        }
         return true;
     }
-
     public override string ToString()
     {
         return
@@ -192,8 +251,6 @@ public class QuestDataDrawer : PropertyDrawer
         return (count + 1) * (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing);
     }
 }
-
-
 public enum QuestDataDrawMode
 {
     Default,

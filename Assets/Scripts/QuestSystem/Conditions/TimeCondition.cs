@@ -9,12 +9,11 @@ public class TimeCondition : ConditionBase
     [SerializeField] private ClockTime _clockTimeEnd;
     
     private TimeManager _timeManager;
-    private void Awake()
-    {
-        _timeManager = FindAnyObjectByType<TimeManager>();
-    }
+    
     public override bool CheckCondition()
     {
+        if(_timeManager == null)
+            _timeManager = GameObject.FindAnyObjectByType<TimeManager>();
         return _timeManager.WithinPeriod(_clockTimeStart, _clockTimeEnd);
     }
 }
