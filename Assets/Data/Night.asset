@@ -9,44 +9,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93087ace172f4834799250a407fce072, type: 3}
+  m_Script: {fileID: 11500000, guid: b8bc43b25afd30c46b2521d5200772a2, type: 3}
   m_Name: Night
   m_EditorClassIdentifier: 
   periodStart: 23
   periodEnd: 6
   currentProgress: 0
-  soundEffect: {fileID: 8300000, guid: c28465c33c9429c45a8e4d7a7f9ecb13, type: 3}
+  skyboxMaterial: {fileID: 0}
+  soundEffect: {fileID: 0}
   curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.058332443
-      value: -0.000015258789
-      inSlope: 1.3585237
-      outSlope: 1.3585237
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.42777812
-      value: 0.6603775
-      inSlope: 0.837344
-      outSlope: 0.837344
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.044441
-      value: 0.85534424
-      inSlope: 0.31616423
-      outSlope: 0.31616423
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  loop: 1
+  loop: 0

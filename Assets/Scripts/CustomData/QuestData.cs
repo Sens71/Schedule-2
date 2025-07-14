@@ -13,6 +13,7 @@ public class QuestData
     public Param<string> name;
     public Param<Transform> position;
     public Param<QuestState> state;
+    public Param<string> description;
 
     public void ApplyChangesFrom(QuestData other)
     {
@@ -73,6 +74,18 @@ public class QuestData
             {
                 case QuestParamChangeSign.Set:
                     state.Value = other.state.Value;
+                    break;
+            }
+        }
+        if (other.description.Use)
+        {
+            switch (other.description.ChangeSign)
+            {
+                case QuestParamChangeSign.Add:
+                    description.Value += other.description.Value;
+                    break;
+                case QuestParamChangeSign.Set:
+                    description.Value = other.description.Value;
                     break;
             }
         }
@@ -163,6 +176,19 @@ public class QuestData
                     break;
             }
         }
+        if (other.description.Use)
+        {
+            switch (other.description.CompareSign)
+            {
+                case QuestParamCompareSign.Equal:
+                    if (description.Value != other.description.Value) return false;
+                    break;
+                case QuestParamCompareSign.NotEqual:
+                    if (description.Value == other.description.Value) return false;
+                    break;
+            }
+        }
+
         return true;
     }
     public override string ToString()

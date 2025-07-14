@@ -61,7 +61,13 @@ public class TimeManager : MonoBehaviour
         }
         return currentlyInPeriod;
     }
+    public float GetRealTime(ClockTime time)
+    {
+        float realTime = time.hours * secondsPerHour + time.minutes * secondsPerHour / 60;
+        return realTime;
+    }
 }
+
 [Serializable]
 public struct ClockTime
 {

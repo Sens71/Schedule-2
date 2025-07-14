@@ -21,7 +21,7 @@ MonoBehaviour:
       ChangeSign: 0
     stage:
       Use: 1
-      Value: 1
+      Value: 2
       CompareSign: 0
       ChangeSign: 0
     name:
@@ -37,5 +37,10 @@ MonoBehaviour:
     state:
       Use: 1
       Value: 1
+      CompareSign: 0
+      ChangeSign: 0
+    description:
+      Use: 0
+      Value: 
       CompareSign: 0
       ChangeSign: 0
