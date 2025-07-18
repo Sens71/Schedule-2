@@ -28,7 +28,7 @@ namespace ECM2.Examples.FirstPerson
 
         private void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            
         }
 
         private void Update()
