@@ -9,6 +9,7 @@ public class Plant : MonoBehaviour
     void Start()
     {
         size = 0.1f;
+        transform.localScale = Vector3.one * size;
         timeManager = FindAnyObjectByType<TimeManager>();
     }
 

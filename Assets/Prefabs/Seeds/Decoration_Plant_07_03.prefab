@@ -106,5 +106,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growTime:
-    hours: 0
+    hours: 24
     minutes: 0
