@@ -9,10 +9,6 @@ public class Inventory : MonoBehaviour
     public GameObject plantPanel;
     public GameObject toolPanel;
 
-    void Start()
-    {
-        
-    }
 
     public void BuildObject(Ghost building)
     {   
@@ -40,7 +36,9 @@ public class Inventory : MonoBehaviour
     {
         tool.gameObject.SetActive(true);
         toolPanel.SetActive(false);
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
     }
     void Update()
     {
