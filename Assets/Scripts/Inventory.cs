@@ -8,6 +8,7 @@ public class Inventory : MonoBehaviour
     public GameObject buildPanel;
     public GameObject plantPanel;
     public GameObject toolPanel;
+    public GameObject controlPanel;
 
 
     public void BuildObject(Ghost building)
@@ -29,7 +30,7 @@ public class Inventory : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         plantPanel.SetActive(false);
-
+        
     }
 
     public void UseTool(Tool tool)
@@ -45,23 +46,38 @@ public class Inventory : MonoBehaviour
         Building();
         Planting();
         Harvesting();
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+
+            if (controlPanel.activeSelf)
+            {
+                controlPanel.SetActive(false);
+                toolPanel.SetActive(false);
+                buildPanel.SetActive(false);
+                plantPanel.SetActive(false);    
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else
+            {
+                controlPanel.SetActive(true);
+                toolPanel.SetActive(false);
+                buildPanel.SetActive(false);
+                plantPanel.SetActive(false);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                if(ghost != null)
+                {
+                    Destroy(ghost.gameObject);
+                    ghost = null;
+                }
+                plant = null;
+            }
+        }
     }
     private void Planting()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            if (ghost != null)
-            {
-                Destroy(ghost.gameObject);
-                ghost = null;
-            }
-
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            plantPanel.SetActive(true);
-            buildPanel.SetActive(false);
-            toolPanel.SetActive(false);
-        }
+        
         if (plant != null)
         {
             RaycastHit hit;
@@ -82,15 +98,7 @@ public class Inventory : MonoBehaviour
     }
     private void Building()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            plant = null;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            buildPanel.SetActive(true);
-            plantPanel.SetActive(false);
-            toolPanel.SetActive(false);
-        }
+        
         if (ghost != null)
         {
             if (Input.GetKeyDown(KeyCode.F))
@@ -108,19 +116,6 @@ public class Inventory : MonoBehaviour
     }
     private void Harvesting()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            if (ghost != null)
-            {
-                Destroy(ghost.gameObject);
-                ghost = null;
-            }
-            plant = null;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            plantPanel.SetActive(false);
-            buildPanel.SetActive(false);
-            toolPanel.SetActive(true);
-        }
+        
     }
 }

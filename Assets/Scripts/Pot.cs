@@ -11,7 +11,7 @@ public class Pot : MonoBehaviour
     {
         meshRenderer = GetComponent<MeshRenderer>();
     }
-    public async Task Select()
+    public void Select()
     {
         isSelected = true;
        

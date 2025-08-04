@@ -5,7 +5,18 @@ public class Plant : MonoBehaviour
     public ClockTime growTime;
     private float size;
     private TimeManager timeManager;
-    
+    public GameObject particle;
+    private bool isSelected;
+    public void Select()
+    {
+        isSelected = true;
+
+    }
+    private void LateUpdate()
+    {
+        isSelected = false;
+    }
+
     void Start()
     {
         size = 0.1f;
@@ -21,7 +32,16 @@ public class Plant : MonoBehaviour
             size = size + Time.deltaTime / timeManager.GetRealTime(growTime);
             transform.localScale = Vector3.one * size;
         }
-        
-        
+
+        if (isSelected)
+        {
+            particle.SetActive(true);
+        }
+        else
+        {
+            particle.SetActive(false);
+        }
+
+
     }
 }
