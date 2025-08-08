@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "My Data", menuName = "Scriptable Objects/TimePeriod")]
+[CreateAssetMenu(fileName = "My Data", menuName = "MyData/TimePeriod")]
 public class TimePeriod : ScriptableObject
 {
     [Range(0, 24)] public int periodStart;
