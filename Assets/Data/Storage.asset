@@ -12,8 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f638a8205445d084f9c3f20f8739cb89, type: 3}
   m_Name: Storage
   m_EditorClassIdentifier: 
-  money: 0
-  canSeed: 0
-  kSeed: 0
-  decSeed: 0
-  metSeed: 0
+  money:
+    name: Money
+    icon: {fileID: 21300000, guid: ae75013ab55575b4db276cdc71222bed, type: 3}
+    amount: 8
+    bgColor: {r: 0.4230013, g: 1, b: 0, a: 1}
+  canSeed:
+    name: Can Seed
+    icon: {fileID: 21300000, guid: 209d2dbe40cede042891c0256e8e94d5, type: 3}
+    amount: 6
+    bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  kSeed:
+    name: Koke Seed
+    icon: {fileID: 21300000, guid: aef47f16609a9c449a5838732234eab2, type: 3}
+    amount: 5
+    bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  decSeed:
+    name: Dec Seed
+    icon: {fileID: 21300000, guid: a7e84a8d5f8ce444fbc6550570f281a1, type: 3}
+    amount: 3
+    bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  metSeed:
+    name: Met Seed
+    icon: {fileID: 21300000, guid: 95a8ba984cb428a44bc233097f4f8dd3, type: 3}
+    amount: 2
+    bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  medPack:
+    name: Medpack
+    icon: {fileID: 21300000, guid: ea876ff8fb38eb343ac1e736a39ae965, type: 3}
+    amount: 1
+    bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
