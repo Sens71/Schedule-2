@@ -14,13 +14,26 @@ public class Inventory : MonoBehaviour
     private TMP_Text text4;
     void Start()
     {
-        CreateSlot(storage.money, items[0]);
-        CreateSlot(storage.decSeed, items[1]);
-        CreateSlot (storage.canSeed, items[2]);
-        CreateSlot(storage.kSeed, items[3]);
-        CreateSlot(storage.metSeed, items[4]);
-        CreateSlot(storage.medPack, items[5]);
-
+        UpdateUI();
+        
+    }
+    private void OnEnable()
+    {
+        storage.money.OnChange += UpdateUI;
+        storage.decSeed.OnChange += UpdateUI;
+        storage.canSeed.OnChange += UpdateUI;
+        storage.metSeed.OnChange += UpdateUI;
+        storage.medPack.OnChange += UpdateUI;
+        storage.kSeed.OnChange += UpdateUI;
+    }
+    private void OnDisable()
+    {
+        storage.money.OnChange -= UpdateUI;
+        storage.decSeed.OnChange -= UpdateUI;
+        storage.canSeed.OnChange -= UpdateUI;
+        storage.metSeed.OnChange -= UpdateUI;
+        storage.medPack.OnChange -= UpdateUI;
+        storage.kSeed.OnChange -= UpdateUI;
     }
     private void CreateSlot(ItemData itemData, GameObject slot)
     {
@@ -35,8 +48,13 @@ public class Inventory : MonoBehaviour
     }
     private void UpdateUI()
     {
-        
-        
+        CreateSlot(storage.money, items[0]);
+        CreateSlot(storage.decSeed, items[1]);
+        CreateSlot(storage.canSeed, items[2]);
+        CreateSlot(storage.kSeed, items[3]);
+        CreateSlot(storage.metSeed, items[4]);
+        CreateSlot(storage.medPack, items[5]);
+
     }
     void Update()
     {

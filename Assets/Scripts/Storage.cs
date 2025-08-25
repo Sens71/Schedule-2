@@ -10,6 +10,8 @@ public class Storage : ScriptableObject
     public ItemData decSeed;
     public ItemData metSeed;
     public ItemData medPack;
+
+    
 }
 [Serializable]
 public class ItemData
@@ -18,4 +20,12 @@ public class ItemData
     public Sprite icon;
     public int amount;
     public Color bgColor = Color.yellow;
+
+    public event Action OnChange;
+
+    public void ChangeAmount()
+    {
+        this.amount += amount;
+        OnChange?.Invoke();
+    }
 }

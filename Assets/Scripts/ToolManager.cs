@@ -9,6 +9,8 @@ public class ToolManager : MonoBehaviour
     public GameObject plantPanel;
     public GameObject toolPanel;
     public GameObject controlPanel;
+    public GameObject inventoryPanel;
+    public Storage storage;
 
 
     public void BuildObject(Ghost building)
@@ -55,6 +57,7 @@ public class ToolManager : MonoBehaviour
                 toolPanel.SetActive(false);
                 buildPanel.SetActive(false);
                 plantPanel.SetActive(false);    
+                inventoryPanel.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
@@ -64,6 +67,7 @@ public class ToolManager : MonoBehaviour
                 toolPanel.SetActive(false);
                 buildPanel.SetActive(false);
                 plantPanel.SetActive(false);
+                inventoryPanel.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 if(ghost != null)
@@ -89,6 +93,7 @@ public class ToolManager : MonoBehaviour
                     pot.Select();
                     if (Input.GetKeyDown(KeyCode.F))
                     {
+
                         pot.PlantSeed(plant);
                         plant = null;
                     }
