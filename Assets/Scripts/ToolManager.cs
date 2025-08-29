@@ -93,9 +93,13 @@ public class ToolManager : MonoBehaviour
                     pot.Select();
                     if (Input.GetKeyDown(KeyCode.F))
                     {
-
-                        pot.PlantSeed(plant);
-                        plant = null;
+                        if(plant.seedType.amount > 0)
+                        {
+                            pot.PlantSeed(plant);
+                            plant.seedType.ChangeAmount(-1);
+                            plant = null;
+                        }
+                        
                     }
                 }
             }

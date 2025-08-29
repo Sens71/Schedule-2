@@ -184,3 +184,4 @@ MonoBehaviour:
     hours: 24
     minutes: 0
   particle: {fileID: 7689721752192202122}
+  seedType: {fileID: 11400000, guid: ff017d271540fa5469b21396bacb2734, type: 2}

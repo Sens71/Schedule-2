@@ -7,6 +7,7 @@ public class Plant : MonoBehaviour
     private TimeManager timeManager;
     public GameObject particle;
     private bool isSelected;
+    public ItemData seedType;
     public void Select()
     {
         isSelected = true;
