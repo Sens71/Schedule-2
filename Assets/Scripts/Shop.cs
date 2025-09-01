@@ -1,19 +1,35 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
     public List<ExchangeToken> tokens = new();
+    public GameObject itemSlot;
+    private List<GameObject> itemSlots = new List<GameObject>();
     void Start()
     {
-        
+        foreach (var token in tokens)
+        {
+            var slot = Instantiate(itemSlot, itemSlot.transform.parent);
+            CreateSlot(token.itemRecieved, slot);
+            itemSlots.Add(slot);
+        }
+        itemSlots.Remove(itemSlot);
+        Destroy(itemSlot);
     }
-
-    
-    void Update()
+    private void CreateSlot(ItemData itemData, GameObject slot)
     {
-        
+        var textAmount = slot.transform.Find("Amount").GetComponent<TMP_Text>();
+        var textName = slot.transform.Find("Name").GetComponent<TMP_Text>();
+        var icon = slot.transform.Find("Button").GetComponent<Image>();
+        var bg = slot.transform.Find("Bg").GetComponent<Image>();
+        textAmount.text = itemData.amount.ToString();
+        textName.text = itemData.name;
+        icon.sprite = itemData.icon;
+        bg.color = itemData.bgColor;
     }
 }
 [Serializable]
