@@ -1,19 +1,33 @@
  using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Trader : MonoBehaviour
 {
     private PlayerInputActions _actions;
-    public GameObject shopPanel;
+    private bool playerClose;
+    private Player player;
+    public GameObject shop;
     void Start()
     {
-        _actions = FindAnyObjectByType<Player>().inputActions;
+        player = FindAnyObjectByType<Player>();
+        _actions = player.inputActions;
+        _actions.PlayerControl.Interact.performed += ActivateShop;
     }
 
-    private void OpenShop()
+    
+    private void Update()
     {
-        _actions.PlayerControl.Disable();
-        _actions.UI.Enable();
-        shopPanel.SetActive(true);
-    }
+        playerClose = Vector3.Distance(transform.position, player.transform.position) < 2;
 
+    }
+    private void ActivateShop(InputAction.CallbackContext ctx)
+    {
+        if (playerClose)
+        {
+            shop.SetActive(true);
+            _actions.UI.Enable();
+            _actions.PlayerControl.Disable();
+        }
+
+    }
 }

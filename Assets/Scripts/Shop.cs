@@ -9,6 +9,7 @@ public class Shop : MonoBehaviour
     public List<ExchangeToken> tokens = new();
     public GameObject itemSlot;
     private List<GameObject> itemSlots = new List<GameObject>();
+    public Storage storage;
     void Start()
     {
         foreach (var token in tokens)
@@ -30,6 +31,17 @@ public class Shop : MonoBehaviour
         textName.text = itemData.name;
         icon.sprite = itemData.icon;
         bg.color = itemData.bgColor;
+    }
+    public void Exchange(GameObject slot)
+    {
+        var index = itemSlots.IndexOf(slot);
+        var amountGiven = tokens[index].amountGiven;
+        var itemGiven = tokens[index].itemGiven;
+        var amountRecieved = tokens[index].amountRecieved;
+        var itemReceived = tokens[index].itemRecieved;
+        itemGiven.ChangeAmount(-amountGiven);
+        itemReceived.ChangeAmount(amountRecieved);
+        CreateSlot(itemReceived, slot);
     }
 }
 [Serializable]
