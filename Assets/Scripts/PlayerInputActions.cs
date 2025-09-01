@@ -102,9 +102,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Switch"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
-                    ""id"": ""74d343f9-9357-4091-ab2a-805474457fee"",
+                    ""id"": ""d179a421-70dd-4a6a-8300-036e4a1441b8"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -213,12 +213,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0df01f29-9336-4c3a-bd72-e5b2bd3ef5cf"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""id"": ""89546ffe-12ca-479a-a192-36e27cc39296"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Switch"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -289,7 +289,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // PlayerControl
         m_PlayerControl = asset.FindActionMap("PlayerControl", throwIfNotFound: true);
         m_PlayerControl_Move = m_PlayerControl.FindAction("Move", throwIfNotFound: true);
-        m_PlayerControl_Switch = m_PlayerControl.FindAction("Switch", throwIfNotFound: true);
+        m_PlayerControl_Interact = m_PlayerControl.FindAction("Interact", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Jump = m_UI.FindAction("Jump", throwIfNotFound: true);
@@ -376,7 +376,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerControl;
     private List<IPlayerControlActions> m_PlayerControlActionsCallbackInterfaces = new List<IPlayerControlActions>();
     private readonly InputAction m_PlayerControl_Move;
-    private readonly InputAction m_PlayerControl_Switch;
+    private readonly InputAction m_PlayerControl_Interact;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlayerControl".
     /// </summary>
@@ -393,9 +393,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Move => m_Wrapper.m_PlayerControl_Move;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerControl/Switch".
+        /// Provides access to the underlying input action "PlayerControl/Interact".
         /// </summary>
-        public InputAction @Switch => m_Wrapper.m_PlayerControl_Switch;
+        public InputAction @Interact => m_Wrapper.m_PlayerControl_Interact;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -425,9 +425,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Switch.started += instance.OnSwitch;
-            @Switch.performed += instance.OnSwitch;
-            @Switch.canceled += instance.OnSwitch;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         /// <summary>
@@ -442,9 +442,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Switch.started -= instance.OnSwitch;
-            @Switch.performed -= instance.OnSwitch;
-            @Switch.canceled -= instance.OnSwitch;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         /// <summary>
@@ -600,12 +600,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Switch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSwitch(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

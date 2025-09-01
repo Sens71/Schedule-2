@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    void Start()
+    public PlayerInputActions inputActions;
+    void Awake()
     {
-        
+        inputActions = new PlayerInputActions();
+        inputActions.Enable();
+        inputActions.PlayerControl.Enable();
+        inputActions.UI.Disable();
     }
 }

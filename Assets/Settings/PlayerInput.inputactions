@@ -16,9 +16,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Switch",
+                    "name": "Interact",
                     "type": "Button",
-                    "id": "74d343f9-9357-4091-ab2a-805474457fee",
+                    "id": "d179a421-70dd-4a6a-8300-036e4a1441b8",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -127,12 +127,12 @@
                 },
                 {
                     "name": "",
-                    "id": "0df01f29-9336-4c3a-bd72-e5b2bd3ef5cf",
-                    "path": "<Keyboard>/tab",
+                    "id": "89546ffe-12ca-479a-a192-36e27cc39296",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Switch",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
