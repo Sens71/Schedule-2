@@ -8,6 +8,7 @@ public class Plant : MonoBehaviour
     public GameObject particle;
     private bool isSelected;
     public ItemData seedType;
+    public ItemData productType;
     public void Select()
     {
         isSelected = true;

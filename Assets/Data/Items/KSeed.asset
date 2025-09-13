@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: KSeed
   m_EditorClassIdentifier: 
   name: K Seed
-  icon: {fileID: 21300000, guid: aef47f16609a9c449a5838732234eab2, type: 3}
-  amount: 1
+  icon: {fileID: 21300000, guid: 95eaa62797166a54a9e9b820480c061e, type: 3}
+  amount: 24
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

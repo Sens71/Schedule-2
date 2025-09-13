@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CanSeed
   m_EditorClassIdentifier: 
   name: Can Seed
-  icon: {fileID: 21300000, guid: 209d2dbe40cede042891c0256e8e94d5, type: 3}
-  amount: 1
+  icon: {fileID: 21300000, guid: 71fde21419192ed458aae684c04d6aff, type: 3}
+  amount: 34
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

@@ -118,6 +118,7 @@ MonoBehaviour:
     minutes: 0
   particle: {fileID: 2067717681259590200}
   seedType: {fileID: 11400000, guid: 71a3a8aa64dbee641bb4ab07ea361d22, type: 2}
+  productType: {fileID: 11400000, guid: cd6eebb8f12bd4441b39a0f11de3e659, type: 2}
 --- !u!1001 &5051506082280192537
 PrefabInstance:
   m_ObjectHideFlags: 0

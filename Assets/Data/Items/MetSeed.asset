@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MetSeed
   m_EditorClassIdentifier: 
   name: Met Seed
-  icon: {fileID: 21300000, guid: 95a8ba984cb428a44bc233097f4f8dd3, type: 3}
-  amount: 10
+  icon: {fileID: 21300000, guid: d8d7df99ae7da364eabc7d638cec0d4f, type: 3}
+  amount: 50
   bgColor: {r: 1, g: 0.834098, b: 0, a: 1}

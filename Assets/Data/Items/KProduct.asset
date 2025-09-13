@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e822fc13524ea44195b5c65a5bbceb9, type: 3}
-  m_Name: CanSeedProduct
+  m_Name: KProduct
   m_EditorClassIdentifier: 
-  name: Can Product
-  icon: {fileID: 21300000, guid: 209d2dbe40cede042891c0256e8e94d5, type: 3}
+  name: K Product
+  icon: {fileID: 21300000, guid: aef47f16609a9c449a5838732234eab2, type: 3}
   amount: 1
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

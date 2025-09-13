@@ -11,7 +11,7 @@ public class Shop : MonoBehaviour
     public GameObject itemSlot;
     private List<GameObject> buySlots = new List<GameObject>();
     private List<GameObject> sellSlots = new List<GameObject>();
-    private bool isSelling;
+    private bool isSelling = true;
     public GameObject panel;
     void Start()
     {
@@ -30,19 +30,25 @@ public class Shop : MonoBehaviour
     }
     public void Buy()
     {
-        if(isSelling == false)
-            return;
-        isSelling = false;
-        EraseSlots(sellSlots);
-        GenerateSlots(buySlots, buyTokens);
+
+        if(isSelling == true)
+        {
+
+            isSelling = false;
+            EraseSlots(sellSlots);
+            GenerateSlots(buySlots, buyTokens);
+        }
+        
     }
     public void Sell()
     {
-        if (isSelling == true)
-            return;
-        isSelling = true;
-        EraseSlots(buySlots);
-        GenerateSlots(sellSlots, sellTokens);
+        if (isSelling == false)
+        {
+            isSelling = true;
+            EraseSlots(buySlots);
+            GenerateSlots(sellSlots, sellTokens);
+        }
+        
     }
     private void GenerateSlots(List<GameObject> items, List<ExchangeToken> tokens)
     {

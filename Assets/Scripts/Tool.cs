@@ -20,6 +20,7 @@ public class Tool : MonoBehaviour
                     plant.Select();
                     if (Input.GetMouseButtonDown(0))
                     {
+                        plant.productType.ChangeAmount(1);
                         Destroy(plant.gameObject);
                     }
                     

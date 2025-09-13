@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DecorSeed
   m_EditorClassIdentifier: 
   name: Decoration Seed
-  icon: {fileID: 21300000, guid: a7e84a8d5f8ce444fbc6550570f281a1, type: 3}
-  amount: 10
+  icon: {fileID: 21300000, guid: f9ce119e8d27f134cae0dedc49db4421, type: 3}
+  amount: 30
   bgColor: {r: 1, g: 0.834098, b: 0, a: 1}
