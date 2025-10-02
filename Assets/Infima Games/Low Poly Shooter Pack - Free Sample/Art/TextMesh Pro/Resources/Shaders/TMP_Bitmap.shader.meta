@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: cab9fd8873db23f45a80b2c608ae600e
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144839
+  packageName: Low Poly Shooter Pack - Free Sample
+  packageVersion: 2.0.0
+  assetPath: Assets/Infima Games/Low Poly Shooter Pack - Free Sample/Art/TextMesh
+    Pro/Resources/Shaders/TMP_Bitmap.shader
+  uploadId: 469425

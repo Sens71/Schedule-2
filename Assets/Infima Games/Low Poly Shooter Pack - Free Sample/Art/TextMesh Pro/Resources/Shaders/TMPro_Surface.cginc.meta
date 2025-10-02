@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 91be65b68c025c14d8d45513b9d7c235
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144839
+  packageName: Low Poly Shooter Pack - Free Sample
+  packageVersion: 2.0.0
+  assetPath: Assets/Infima Games/Low Poly Shooter Pack - Free Sample/Art/TextMesh
+    Pro/Resources/Shaders/TMPro_Surface.cginc
+  uploadId: 469425
