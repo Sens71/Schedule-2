@@ -1,14 +1,31 @@
+using System;
 using UnityEngine;
 
 public class StatsHandler : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float maxHealth;
+    public float currentHealth;
+    public event Action OnDeath;
+    public event Action<float> OnHealthChanged;
     void Start()
     {
-        
+        currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
+    public void ChangeHealth(float change)
+    {
+        currentHealth += change;
+        if (currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        if(currentHealth <= 0)
+        {
+            currentHealth = 0;
+            OnDeath?.Invoke();
+        }
+        OnHealthChanged?.Invoke(currentHealth);
+    }
     void Update()
     {
         
