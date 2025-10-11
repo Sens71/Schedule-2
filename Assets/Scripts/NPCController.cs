@@ -3,8 +3,12 @@ using UnityEngine;
 public class NPCController : MonoBehaviour
 {
     private StatsHandler statsHandler;
+    private Weapon weapon;
+    private float timer;
     void Awake()
     {
+        weapon = GetComponentInChildren<Weapon>();
+        weapon.playerWeapon = false;
         statsHandler = GetComponent<StatsHandler>();
     }
     private void OnEnable()
@@ -18,7 +22,12 @@ public class NPCController : MonoBehaviour
 
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if (timer > 1)
+        {
+            timer = 0;
+            weapon.RemoteFire();
+        }
     }
     public void Death()
     {

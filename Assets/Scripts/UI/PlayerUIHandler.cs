@@ -10,6 +10,7 @@ public class PlayerUIHandler : MonoBehaviour
     {
         player = FindAnyObjectByType<Player>();
         statsHandler = player.GetComponent<StatsHandler>();
+        UpdateHealth(statsHandler.maxHealth);
     }
     private void OnEnable()
     {
