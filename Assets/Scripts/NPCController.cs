@@ -23,6 +23,7 @@ public class NPCController : MonoBehaviour
         statsHandler = GetComponent<StatsHandler>();
         player = FindAnyObjectByType<Player>();
         agent = GetComponent<NavMeshAgent>();
+        SetRagDoll(false);
     }
     private void OnEnable()
     {
@@ -45,12 +46,12 @@ public class NPCController : MonoBehaviour
     }
     public void Death()
     {
-        Destroy(gameObject);
+        SetRagDoll(true);
     }
     private void Navigation()
     {
         var distance = Vector3.Distance(transform.position, player.transform.position);
-        var colliders = Physics.OverlapCapsule(transform.position, player.transform.position + Vector3.up, radius, mask);
+        var colliders = Physics.OverlapCapsule(transform.position + Vector3.up, player.transform.position + Vector3.up, radius, mask);
         var canSee = colliders.Length == 0;
         
         if (distance > _distance || !canSee)
@@ -74,4 +75,14 @@ public class NPCController : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
+
+    private void SetRagDoll(bool activeState)
+    {
+        var rbs = GetComponentsInChildren<Rigidbody>();
+        foreach (var rb in rbs)
+        {
+            rb.isKinematic = !activeState;
+        }
+    }
+
 }
