@@ -11,6 +11,11 @@ public class NPCController : MonoBehaviour
     private Player player;
     private NavMeshAgent agent;
     public LayerMask mask;
+    public float rotationSpeed;
+    private bool canShoot;
+
+    public float radius;
+
     void Awake()
     {
         weapon = GetComponentInChildren<Weapon>();
@@ -32,7 +37,7 @@ public class NPCController : MonoBehaviour
     {
         Navigation();
         timer += Time.deltaTime;
-        if (timer > 1)
+        if (timer > 1 && canShoot)
         {
             timer = 0;
             weapon.RemoteFire();
@@ -45,15 +50,28 @@ public class NPCController : MonoBehaviour
     private void Navigation()
     {
         var distance = Vector3.Distance(transform.position, player.transform.position);
-        var canSee = !Physics.Linecast(transform.position, player.transform.position, mask);
-        if (distance > _distance && !canSee)
+        var colliders = Physics.OverlapCapsule(transform.position, player.transform.position + Vector3.up, radius, mask);
+        var canSee = colliders.Length == 0;
+        
+        if (distance > _distance || !canSee)
         {
             agent.SetDestination(player.transform.position);
+            canShoot = false;
         }
         else
         {
             agent.SetDestination(transform.position);
+            RotateToPlayer();
+            canShoot = true;
         }
 
+    }
+    private void RotateToPlayer()
+    {
+        Vector3 direction = player.transform.position - transform.position;
+        direction.y = 0;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 }
