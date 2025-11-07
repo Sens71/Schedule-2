@@ -5,7 +5,6 @@ public class NPCController : MonoBehaviour
 {
     private StatsHandler statsHandler;
     private Weapon weapon;
-    private float timer;
     public float _distance;
     public float viewAngle;
     private Player player;
@@ -13,11 +12,13 @@ public class NPCController : MonoBehaviour
     public LayerMask mask;
     public float rotationSpeed;
     private bool canShoot;
-
+    private bool isMoving;
+    private Animator animator;
     public float radius;
 
     void Awake()
     {
+        animator = GetComponent<Animator>();
         weapon = GetComponentInChildren<Weapon>();
         weapon.playerWeapon = false;
         statsHandler = GetComponent<StatsHandler>();
@@ -37,12 +38,13 @@ public class NPCController : MonoBehaviour
     void Update()
     {
         Navigation();
-        timer += Time.deltaTime;
-        if (timer > 1 && canShoot)
-        {
-            timer = 0;
-            weapon.RemoteFire();
-        }
+        animator.SetBool("isShooting", canShoot);
+        animator.SetBool("isWalking", isMoving);
+        
+    }
+    public void Shoot()
+    {
+        weapon.RemoteFire();
     }
     public void Death()
     {
@@ -50,6 +52,7 @@ public class NPCController : MonoBehaviour
     }
     private void Navigation()
     {
+        isMoving = true;
         var distance = Vector3.Distance(transform.position, player.transform.position);
         var colliders = Physics.OverlapCapsule(transform.position + Vector3.up, player.transform.position + Vector3.up, radius, mask);
         var canSee = colliders.Length == 0;
