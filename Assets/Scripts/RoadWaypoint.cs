@@ -6,6 +6,7 @@ public class RoadWaypoint : MonoBehaviour
 {
     public RoadWaypoint[] availablePoints;
     private int random;
+    public WaypointType waypointType = WaypointType.Car;
 
     private void Start()
     {
@@ -41,4 +42,8 @@ public class RoadWaypoint : MonoBehaviour
             Gizmos.DrawLine(point.transform.position, point.transform.position + left * 0.2f * 10);
         }
     }
+}
+public enum WaypointType
+{
+    Car,Pedestrians
 }

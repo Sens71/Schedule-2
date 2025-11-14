@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,7 @@ public class CarNavigation : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         RoadWaypoint[] points = FindObjectsByType<RoadWaypoint>(FindObjectsSortMode.None);
+        points = points.Where(type => type.waypointType == WaypointType.Car).ToArray();
         float minDist = Mathf.Infinity;
 
         foreach (var p in points)

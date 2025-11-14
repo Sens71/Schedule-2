@@ -618,6 +618,7 @@ GameObject:
   - component: {fileID: 64087793075500760}
   - component: {fileID: 282746045305546318}
   - component: {fileID: -1480650419882498051}
+  - component: {fileID: -5686598653934346940}
   m_Layer: 0
   m_Name: SM_Veh_Car_Ambo_01
   m_TagString: Untagged
@@ -732,7 +733,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164098}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 1.2
   m_Speed: 8
   m_Acceleration: 8
@@ -759,6 +760,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextPointDistanceTrigger: 2
+--- !u!114 &-5686598653934346940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &174714
 GameObject:
   m_ObjectHideFlags: 0

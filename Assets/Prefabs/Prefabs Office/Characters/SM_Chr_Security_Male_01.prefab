@@ -2879,6 +2879,10 @@ MonoBehaviour:
     m_Bits: 55
   rotationSpeed: 120
   radius: 0.5
+  deathTime: 5
+  patrolPoints: []
+  isAggresive: 0
+  nextPointDistanceTrigger: 2
 --- !u!195 &3321092187416385512
 NavMeshAgent:
   m_ObjectHideFlags: 0
