@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -24,6 +25,8 @@ public class NPCController : MonoBehaviour
 
     public float nextPointDistanceTrigger = 2f;
     private RoadWaypoint currentWaypoint;
+    public float alertRadius;
+    
 
     void Awake()
     {
@@ -53,15 +56,16 @@ public class NPCController : MonoBehaviour
     private void OnEnable()
     {
         statsHandler.OnDeath += Death;
+        statsHandler.OnHealthChanged += OnDamageTaken;
     }
     private void OnDisable()
     {
         statsHandler.OnDeath -= Death;
+        statsHandler.OnHealthChanged -= OnDamageTaken;
     }
 
     void Update()
     {
-        
         Navigation();
         animator.SetBool("isShooting", canShoot);
         animator.SetBool("isWalking", isMoving);
@@ -79,6 +83,9 @@ public class NPCController : MonoBehaviour
         Destroy(gameObject, deathTime);
 
     }
+
+    
+
     private void Navigation()
     {
         isMoving = true;
@@ -131,4 +138,18 @@ public class NPCController : MonoBehaviour
         }
     }
 
+    private void OnDamageTaken(float damage)
+    {
+        var colliders = Physics.OverlapSphere(transform.position, alertRadius);
+        foreach (var collider in colliders)
+        {
+            var controller = collider.GetComponentInParent<NPCController>();
+            if (collider != null)
+            {
+                controller.isAggresive = true;
+            }
+        }
+    }
+
+   
 }

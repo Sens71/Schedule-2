@@ -2851,7 +2851,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: ce70664c39920ad4e9f40ce597066a47, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -2883,6 +2883,7 @@ MonoBehaviour:
   patrolPoints: []
   isAggresive: 0
   nextPointDistanceTrigger: 2
+  alertRadius: 10
 --- !u!195 &3321092187416385512
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2918,7 +2919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
 --- !u!1 &1644345104489320
 GameObject:
   m_ObjectHideFlags: 0

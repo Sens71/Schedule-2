@@ -26,8 +26,5 @@ public class StatsHandler : MonoBehaviour
         }
         OnHealthChanged?.Invoke(currentHealth);
     }
-    void Update()
-    {
-        
-    }
+
 }
