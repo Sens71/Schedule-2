@@ -5,7 +5,7 @@ public class StatsHandler : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
-    public event Action OnDeath;
+    public event Action<GameObject> OnDeath;
     public event Action<float> OnHealthChanged;
     void Start()
     {
@@ -19,12 +19,13 @@ public class StatsHandler : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        OnHealthChanged?.Invoke(currentHealth);
         if(currentHealth <= 0)
         {
-            currentHealth = 0;
-            OnDeath?.Invoke();
+            OnDeath?.Invoke(gameObject);
         }
-        OnHealthChanged?.Invoke(currentHealth);
+        
     }
 
 }

@@ -26,6 +26,7 @@ public class NPCController : MonoBehaviour
     public float nextPointDistanceTrigger = 2f;
     private RoadWaypoint currentWaypoint;
     public float alertRadius;
+    public bool ragdollState;
     
 
     void Awake()
@@ -55,7 +56,9 @@ public class NPCController : MonoBehaviour
     }
     private void OnEnable()
     {
+        SetRagDoll(false);
         statsHandler.OnDeath += Death;
+        agent.speed = 3.5f;
         statsHandler.OnHealthChanged += OnDamageTaken;
     }
     private void OnDisable()
@@ -75,21 +78,27 @@ public class NPCController : MonoBehaviour
     {
         weapon.RemoteFire();
     }
-    public void Death()
+    public async void Death(GameObject go)
     {
         SetRagDoll(true);
-        agent.speed = 0;
+        agent.enabled = false;  
         isAggresive = false;
-        Destroy(gameObject, deathTime);
-
+        canShoot = false;
+        await Awaitable.WaitForSecondsAsync(60);
+        if (!gameObject.activeSelf)
+        {
+            Destroy(go);
+        }
     }
 
     
 
     private void Navigation()
     {
+        if(agent.enabled == false)
+            return; 
         isMoving = true;
-        if (isAggresive)
+        if (isAggresive )
         {
             var distance = Vector3.Distance(transform.position, player.transform.position);
             var colliders = Physics.OverlapCapsule(transform.position + Vector3.up, player.transform.position + Vector3.up, radius, mask);
@@ -130,6 +139,7 @@ public class NPCController : MonoBehaviour
 
     private void SetRagDoll(bool activeState)
     {
+        ragdollState = activeState;
         animator.enabled = !activeState;
         var rbs = GetComponentsInChildren<Rigidbody>();
         foreach (var rb in rbs)
@@ -144,8 +154,10 @@ public class NPCController : MonoBehaviour
         foreach (var collider in colliders)
         {
             var controller = collider.GetComponentInParent<NPCController>();
-            if (collider != null)
+            if (controller != null)
             {
+                if (ragdollState == true)
+                    return;
                 controller.isAggresive = true;
             }
         }
