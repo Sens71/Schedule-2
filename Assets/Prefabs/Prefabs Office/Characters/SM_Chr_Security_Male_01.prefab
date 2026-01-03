@@ -2872,18 +2872,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ccd22a2bf995e45b8c896a865982ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _distance: 20
-  viewAngle: 0
+  patrolPoints: []
   mask:
     serializedVersion: 2
     m_Bits: 55
+  _distance: 20
+  viewAngle: 0
   rotationSpeed: 120
   radius: 0.5
   deathTime: 5
-  patrolPoints: []
   isAggresive: 0
   nextPointDistanceTrigger: 2
   alertRadius: 10
+  ragdollState: 0
+  aggresiveSpeed: 3.5
+  nonAggresiveSpeed: 2
 --- !u!195 &3321092187416385512
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2894,7 +2897,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

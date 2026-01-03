@@ -6,27 +6,26 @@ using UnityEngine.AI;
 
 public class NPCController : MonoBehaviour
 {
-    private StatsHandler statsHandler;
-    private Weapon weapon;
-    public float _distance;
-    public float viewAngle;
-    private Player player;
-    private NavMeshAgent agent;
     public LayerMask mask;
+    public float _distance;
     public float rotationSpeed;
-    private bool canShoot;
-    private bool isMoving;
-    private Animator animator;
     public float radius;
-    public float deathTime;
-    private float timer;
-    public Transform[] patrolPoints;
     public bool isAggresive;
-
     public float nextPointDistanceTrigger = 2f;
-    private RoadWaypoint currentWaypoint;
     public float alertRadius;
     public bool ragdollState;
+    public float aggresiveSpeed;
+    public float nonAggresiveSpeed;
+    
+    private StatsHandler statsHandler;
+    private Weapon weapon;
+    private Animator animator;
+    private Player player;
+    private NavMeshAgent agent;
+    private RoadWaypoint currentWaypoint;
+    private float timer;
+    private bool canShoot;
+    private bool isMoving;
     
 
     void Awake()
@@ -82,7 +81,6 @@ public class NPCController : MonoBehaviour
     {
         SetRagDoll(true);
         agent.enabled = false;  
-        isAggresive = false;
         canShoot = false;
         await Awaitable.WaitForSecondsAsync(60);
         if (!gameObject.activeSelf)
@@ -100,6 +98,7 @@ public class NPCController : MonoBehaviour
         isMoving = true;
         if (isAggresive )
         {
+            agent.speed = aggresiveSpeed;
             var distance = Vector3.Distance(transform.position, player.transform.position);
             var colliders = Physics.OverlapCapsule(transform.position + Vector3.up, player.transform.position + Vector3.up, radius, mask);
             var canSee = colliders.Length == 0;
@@ -118,6 +117,7 @@ public class NPCController : MonoBehaviour
         }
         else
         {
+            agent.speed = nonAggresiveSpeed;
             if (currentWaypoint == null)
                 return;
             float distance = Vector3.Distance(transform.position, currentWaypoint.transform.position);

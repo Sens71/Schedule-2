@@ -36,7 +36,10 @@ public class Respawner : MonoBehaviour
         npc.gameObject.SetActive(true);
         var stats = npc.GetComponent<StatsHandler>();
         stats.currentHealth = stats.maxHealth;
+        npc.isAggresive = false;
+        
         npc.GetComponent<NavMeshAgent>().enabled = true;
+        npc.GetComponent<NavMeshAgent>().Warp(npc.transform.position);
     }
     void Update()
     {
