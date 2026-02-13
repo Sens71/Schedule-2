@@ -269,6 +269,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02fe8cde6a63a21469c5df09abc27c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clockTimeA:
+    days: 3
+    hours: 15
+    minutes: 2
+  clockTimeB:
+    days: 3
+    hours: 17
+    minutes: 55
 --- !u!1 &330364868
 GameObject:
   m_ObjectHideFlags: 0

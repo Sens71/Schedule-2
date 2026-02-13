@@ -12,6 +12,8 @@ public class TimeManager : MonoBehaviour
     private float time;
     private int hours;
     private int minutes;
+
+    public int days;
     
 
 
@@ -32,16 +34,26 @@ public class TimeManager : MonoBehaviour
         if (time >= secondsPerHour * 24)
         {
             time = 0;
+            days++;
         }
         hours = (int)(time / secondsPerHour);
         minutes = (int)((time % secondsPerHour) / (secondsPerHour / 60));
-        timeText.text = $"{hours}:{minutes}";
+        timeText.text = $"{days}:{hours}:{minutes}";
         foreach (TimePeriod timePeriod in timePeriods)
         {
             timePeriod.ProgressTime(time);
         }
     }
 
+    public ClockTime GetCurrentTime()
+    {
+        ClockTime clockTime = new ClockTime();
+        clockTime.days = days;
+        clockTime.hours = hours;
+        clockTime.minutes = minutes;
+        timeText.text = $"{days}:{hours}:{minutes}";
+        return clockTime;
+    }
     public bool WithinPeriod(ClockTime start, ClockTime end)
     {
         float startTime = start.hours * secondsPerHour + start.minutes * secondsPerHour / 60;
@@ -71,8 +83,65 @@ public class TimeManager : MonoBehaviour
 [Serializable]
 public struct ClockTime
 {
+    public int days;
     public int hours;
     public int minutes;
+
+    public static ClockTime operator +(ClockTime a, ClockTime b)
+    {
+        ClockTime clockTime = new ClockTime();
+        int x = a.minutes + b.minutes;
+        clockTime.minutes = x % 60;
+        int y = a.hours + b.hours + (int)x/60;
+        clockTime.hours = y % 24;
+        int z = a.days + b.days + (int)y/24;
+        clockTime.days = z;
+        return clockTime;
+        
+    }
+    public static bool operator >(ClockTime a, ClockTime b)
+    {
+        if (a.days != b.days)
+            return a.days > b.days;
+        if (a.hours != b.hours)
+            return a.hours > b.hours;
+        return a.minutes > b.minutes;
+         
+        
+    }
+    public static bool operator <(ClockTime a, ClockTime b)
+    {
+        if (a.days != b.days)
+            return a.days < b.days;
+        if (a.hours != b.hours)
+            return a.hours < b.hours;
+        return a.minutes < b.minutes;
+         
+        
+    }
+    public static bool operator ==(ClockTime a, ClockTime b)
+    {
+        if (a.days != b.days|| a.hours != b.hours || a.minutes != b.minutes)
+            return false;
+        return true;
+         
+        
+    }
+    public static bool operator !=(ClockTime a, ClockTime b)
+    {
+        if (a.days != b.days|| a.hours != b.hours || a.minutes != b.minutes)
+            return true;
+        return false;
+         
+        
+    }
+    
+    
+
+    public override string ToString()
+    {
+        return $"{days}:{hours}:{minutes}";
+    }
 }
 [CustomPropertyDrawer(typeof(ClockTime))]
 public class ClockTimeDrawer : PropertyDrawer
@@ -81,20 +150,28 @@ public class ClockTimeDrawer : PropertyDrawer
     {
         var hoursProp = property.FindPropertyRelative("hours");
         var minutesProp = property.FindPropertyRelative("minutes");
+        var daysProp =  property.FindPropertyRelative("days");
 
         EditorGUI.LabelField(position, GUIContent.none);
 
-        float labelWidth = 50f;
-        float fieldWidth = (position.width - labelWidth * 2) / 2;
+        float labelWidth = 40f;
+        float fieldWidth = (position.width - labelWidth * 3) / 3;
+        
+        Rect daysLabelRect    = new Rect(position.x,                    position.y, labelWidth, position.height);
+        Rect daysFieldRect    = new Rect(daysLabelRect.xMax,            position.y, fieldWidth, position.height);
 
-        Rect hoursLabelRect = new Rect(position.x, position.y, labelWidth, position.height);
-        Rect hoursFieldRect = new Rect(hoursLabelRect.xMax, position.y, fieldWidth, position.height);
-        Rect minutesLabelRect = new Rect(hoursFieldRect.xMax, position.y, labelWidth, position.height);
-        Rect minutesFieldRect = new Rect(minutesLabelRect.xMax, position.y, fieldWidth, position.height);
+        Rect hoursLabelRect   = new Rect(daysFieldRect.xMax,            position.y, labelWidth, position.height);
+        Rect hoursFieldRect   = new Rect(hoursLabelRect.xMax,           position.y, fieldWidth, position.height);
 
-        EditorGUI.LabelField(hoursLabelRect, "Hours");
-        hoursProp.intValue = EditorGUI.IntField(hoursFieldRect, GUIContent.none, hoursProp.intValue);
+        Rect minutesLabelRect = new Rect(hoursFieldRect.xMax,           position.y, labelWidth, position.height);
+        Rect minutesFieldRect = new Rect(minutesLabelRect.xMax,         position.y, fieldWidth, position.height);
 
+        EditorGUI.LabelField(daysLabelRect,    "Days");
+        daysProp.intValue    = EditorGUI.IntField(daysFieldRect,    GUIContent.none, daysProp.intValue);
+
+        EditorGUI.LabelField(hoursLabelRect,   "Hours");
+        hoursProp.intValue   = EditorGUI.IntField(hoursFieldRect,   GUIContent.none, hoursProp.intValue);
+        
         EditorGUI.LabelField(minutesLabelRect, "Minutes");
         minutesProp.intValue = EditorGUI.IntField(minutesFieldRect, GUIContent.none, minutesProp.intValue);
     }
