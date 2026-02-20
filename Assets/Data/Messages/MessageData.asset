@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079b88322ef30e44688176a35eb4e791, type: 3}
+  m_Name: MessageData
+  m_EditorClassIdentifier: 
+  preview: It's me again. Need the usual {item} for the weekend...
+  introduction: Hey man, it's me again. The last batch was fire. I'm throwing another
+    party this weekend, so I need the usual. Let's say {amount} of {item} for {price}?
+    When can you swing by?
+  acceptTask: Cool. Same spot as last time? Just put it there and send the coordinates.
+    I'll grab it later.
+  rejectTask: Wait, what? Come on man, it's me. You sure? ...Alright, hit me up if
+    you change your mind.
+  bargainPositive: For you? Alright, {price}. But next time give me better price,
+    yeah? We're cool. Send it.
+  bargainNegative: Come on man, that's not cool. I thought we had a deal. Can't do
+    {price}. Maybe another time.
+  dealOverPositive: All good, brother. Came through as always. I'll hit you up next
+    week.
+  dealOverNegative: Bro... I waited. What happened? Thought we were good. This is
+    disappointing. I'll find someone else for now.

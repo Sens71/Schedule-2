@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079b88322ef30e44688176a35eb4e791, type: 3}
+  m_Name: MessageData 2
+  m_EditorClassIdentifier: 
+  preview: Looking for quality {item}, not that street garbage...
+  introduction: Yo, I need something special for tonight's party. Not that cheap
+    stuff. I want {amount} of your best {item}. I'm ready to pay {price}, but only
+    if it's top-shelf. Deal?
+  acceptTask: Fine. Pack it properly, don't crush the bag. Send the pin when it's
+    hidden.
+  rejectTask: Tsk. Wasted my time. I hope whatever you're doing is worth more than
+    a loyal customer.
+  bargainPositive: '{price}? Bit steep but alright. This better be top shelf then.
+    Not gonna overpay for garbage.'
+  bargainNegative: '{price} for that? Lol no. I know people who sell better for less.
+    Pass.'
+  dealOverPositive: 'Picked it up. Quality checks out this time.
+
+'
+  dealOverNegative: Unbelievable. I paid for quality service, not empty promises.
+    You're off my list.

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079b88322ef30e44688176a35eb4e791, type: 3}
+  m_Name: MessageData 1
+  m_EditorClassIdentifier: 
+  preview: Yo, need {item}. Don't wanna go out...
+  introduction: Sup. Running low on supplies. Need {amount} of {item} delivered to
+    my place. I've got {price} waiting for you. What's your ETA?
+  acceptTask: Drop it somewhere near the corner store on 5th. Send pic when done.
+  rejectTask: Eh, your loss. Too lazy to find someone else now. Great.
+  bargainPositive: Eh, {price} works. Don't wanna argue. Just do it quick.
+  bargainNegative: 'Nah, too much effort for that price. I''ll pass.
+
+'
+  dealOverPositive: Got it. Money's there. Whatever.
+  dealOverNegative: Yo, it's been hours. I don't see shit. Had to go out myself now
+    because of you. Thanks for nothing.

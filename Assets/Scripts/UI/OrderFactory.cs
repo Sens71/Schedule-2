@@ -22,8 +22,8 @@ public class OrderFactory : MonoBehaviour
    private Order GenerateOrder()
    {
       var order = new Order();
-      int random = Random.Range(0, data.MessagePreview.Length);
-      order.MessagePreview = data.MessagePreview[random];
+      int random = Random.Range(0, data.MessageData.Length);
+      order.MessageData = data.MessageData[random];
       random = Random.Range(0, data.Items.Length);
       order.ItemData = data.Items[random];
       random = Random.Range(0, data.ClientNames.Length);
@@ -39,11 +39,17 @@ public class OrderFactory : MonoBehaviour
           hours = timeManager.GetCurrentTime().hours, minutes = timeManager.GetCurrentTime().minutes,
           days = timeManager.GetCurrentTime().days + random
       };
+      InsertData(order);
       orders.Add(order);
       OnOrderCreated?.Invoke(order);
       return order;
    }
 
+   private void InsertData(Order order)
+   {
+       order.MessageData.preview = order.MessageData.preview.Replace("{item}", order.ItemData.name);
+       order.MessageData.introduction = order.MessageData.introduction.Replace("{item}", order.ItemData.name);
+   }
    private void GenerateRandomTime()
    {
        var min = minTime.days * 24 * 60 +  minTime.hours * 60 + minTime.minutes;
@@ -68,7 +74,7 @@ public class OrderFactory : MonoBehaviour
        
        for (int i = 0; i < orders.Count; i++)
        {
-           if (orders[i].dateExpires > timeManager.GetCurrentTime())
+           if (orders[i].dateExpires < timeManager.GetCurrentTime())
            {
                OnOrderExpired?.Invoke(orders[i]);
                orders.Remove(orders[i]);

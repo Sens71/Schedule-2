@@ -24,7 +24,8 @@ public class MessageGenerator: MonoBehaviour
 
     private void CreateMessage(Order order)
     {
-        Instantiate(messagePrefab);
+        var message = Instantiate(messagePrefab, parent);
+        message.SetOrder(order);
     }
 
     private void DeleteMessage(Order order)

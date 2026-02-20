@@ -3,7 +3,7 @@
 [Serializable]
 public class Order
 {
-   public string MessagePreview;
+   public MessageData MessageData;
    public ItemData ItemData;
    public string ClientName;
    public string ClientSurname;
