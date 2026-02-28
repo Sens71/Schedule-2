@@ -10,4 +10,5 @@ public class Order
    public string ClientNumber;
    public ClockTime dateTaken;
    public ClockTime dateExpires;
+   public MessageState State = MessageState.Intruduction;
 }

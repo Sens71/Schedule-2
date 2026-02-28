@@ -6,8 +6,8 @@ using UnityEngine;
 public class MessageGenerator: MonoBehaviour
 {
     [SerializeField] private OrderFactory orderFactory;
-    private List<Message> messages = new();
-    [SerializeField] private Message messagePrefab;
+    private List<MessagePreview> messages = new();
+    [SerializeField] private MessagePreview messagePreviewPrefab;
     [SerializeField] private Transform parent;
 
     private void OnEnable()
@@ -24,7 +24,7 @@ public class MessageGenerator: MonoBehaviour
 
     private void CreateMessage(Order order)
     {
-        var message = Instantiate(messagePrefab, parent);
+        var message = Instantiate(messagePreviewPrefab, parent);
         message.SetOrder(order);
     }
 
