@@ -1,6 +1,8 @@
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Message : MonoBehaviour
 {
@@ -10,7 +12,12 @@ public class Message : MonoBehaviour
    [SerializeField] private GameObject messagePanel;
    [SerializeField] private Transform content;
    [SerializeField] private GameObject messagePreviewPanel;
+   [SerializeField] private MessageOption optionPrefab;
+   [SerializeField] private BargainMenu bargainMenuPrefab;
+   private MessageOption option;
    private Order _order;
+   private BargainMenu _bargainMenu;
+   
 
    public void OpenMessage(Order order)
    {
@@ -21,13 +28,21 @@ public class Message : MonoBehaviour
       {
          case  MessageState.Intruduction:
             GenerateMessage(order.MessageData.introduction,true);
+            option = Instantiate(optionPrefab, content);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
+            Canvas.ForceUpdateCanvases();
+            option.accept.onClick.AddListener(AcceptTask);
+            option.reject.onClick.AddListener(RejectTask);
+            option.bargain.onClick.AddListener(TryBargain);
             break;
          case  MessageState.AcceptTask:
             GenerateMessage(order.MessageData.introduction,true);
+            GenerateMessage(order.PlayerMessageData.acceptTask,false);
             GenerateMessage(order.MessageData.acceptTask,true);
             break;
          case  MessageState.RejectTask:
             GenerateMessage(order.MessageData.introduction,true);
+            GenerateMessage(order.PlayerMessageData.rejectTask,false);
             GenerateMessage(order.MessageData.rejectTask,true);
             break;
          case  MessageState.BargainPositive:
@@ -36,6 +51,7 @@ public class Message : MonoBehaviour
             break;
          case  MessageState.BargainNegative:
             GenerateMessage(order.MessageData.introduction,true);
+            GenerateMessage(order.PlayerMessageData.rejectBargain,false);
             GenerateMessage(order.MessageData.bargainNegative,true);
             break;
          case MessageState.DealOverPositiveBargain:
@@ -59,6 +75,12 @@ public class Message : MonoBehaviour
             GenerateMessage(order.MessageData.dealOverNegative,true);
             break;
       }
+
+      if (option != null)
+      {
+         EditorUtility.SetDirty(option);
+      }
+      
    }
    private void GenerateMessage(string message, bool reciever)
    {
@@ -85,6 +107,29 @@ public class Message : MonoBehaviour
       messagePanel.SetActive(false);
       messagePreviewPanel.SetActive(true);
    }
+
+   public void AcceptTask()
+   {
+      Destroy(option.gameObject);
+      _order.State = MessageState.AcceptTask;
+      GenerateMessage(_order.PlayerMessageData.acceptTask,false);
+      GenerateMessage(_order.MessageData.acceptTask,true);
+   }
+
+   public void RejectTask()
+   {
+      Destroy(option.gameObject);
+      _order.State = MessageState.RejectTask;
+      GenerateMessage(_order.PlayerMessageData.rejectTask,false);
+      GenerateMessage(_order.MessageData.rejectTask,true);
+   }
+   public void TryBargain()
+   {
+      Destroy(option.gameObject);
+      _bargainMenu = Instantiate(bargainMenuPrefab, content);
+      _bargainMenu.SetData(_order);
+   }
+
 }
 
 public enum MessageState

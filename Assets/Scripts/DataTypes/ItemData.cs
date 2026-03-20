@@ -7,6 +7,7 @@ public class ItemData: ScriptableObject
     public string name;
     public Sprite icon;
     public int amount;
+    public int price;
     public Color bgColor = Color.yellow;
 
     public event Action OnChange;

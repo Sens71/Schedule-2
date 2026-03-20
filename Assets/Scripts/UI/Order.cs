@@ -4,7 +4,11 @@
 public class Order
 {
    public MessageData MessageData;
+   public PlayerMessageData PlayerMessageData;
    public ItemData ItemData;
+   public int Amount;
+   public int Price;
+   public int MaxBargain;
    public string ClientName;
    public string ClientSurname;
    public string ClientNumber;

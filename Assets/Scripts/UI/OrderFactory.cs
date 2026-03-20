@@ -8,8 +8,12 @@ public class OrderFactory : MonoBehaviour
    [SerializeField] private OrderDataSamples data;
    private TimeManager timeManager; 
    public List<Order> orders = new();
+   [SerializeField] private Vector2 randomItemAmount;
+   [SerializeField] private Vector2 priceRange;
+   [SerializeField] private Vector2 bargainRange;
    [SerializeField] private ClockTime minTime;
    [SerializeField] private ClockTime maxTime;
+   [SerializeField] private PlayerMessageData[] playerMessageData;
    private ClockTime randomTime;
    public event Action<Order> OnOrderCreated;
    public event Action<Order> OnOrderExpired;
@@ -24,8 +28,17 @@ public class OrderFactory : MonoBehaviour
       var order = new Order();
       int random = Random.Range(0, data.MessageData.Length);
       order.MessageData = data.MessageData[random];
+      random = Random.Range(0, playerMessageData.Length);
+      order.PlayerMessageData = playerMessageData[random];
       random = Random.Range(0, data.Items.Length);
       order.ItemData = data.Items[random];
+      random = (int)Random.Range(randomItemAmount.x,randomItemAmount.y);
+      order.Amount = random;
+      float priceRandom = Random.Range(priceRange.x, priceRange.y);
+      order.Price = (int)(priceRandom * order.ItemData.price * order.Amount);
+      float x = Random.Range(bargainRange.x, bargainRange.y);
+      float barRate = (priceRange.y - priceRandom)* x;
+      order.MaxBargain = (int)(order.Price * (1 + barRate));
       random = Random.Range(0, data.ClientNames.Length);
       order.ClientName = data.ClientNames[random];
       random = Random.Range(0, data.ClientSurnames.Length);
@@ -42,13 +55,20 @@ public class OrderFactory : MonoBehaviour
       InsertData(order);
       orders.Add(order);
       OnOrderCreated?.Invoke(order);
+      
       return order;
    }
 
    private void InsertData(Order order)
    {
        order.MessageData.preview = order.MessageData.preview.Replace("{item}", order.ItemData.name);
+       order.MessageData.introduction = order.MessageData.introduction.Replace("{amount}", order.ItemData.name);
+       order.MessageData.introduction = order.MessageData.introduction.Replace("{price}", order.ItemData.name);
        order.MessageData.introduction = order.MessageData.introduction.Replace("{item}", order.ItemData.name);
+       order.MessageData.bargainPositive = order.MessageData.bargainPositive.Replace("{price}", order.ItemData.name);
+       order.MessageData.bargainNegative = order.MessageData.bargainNegative.Replace("{price}", order.ItemData.name);
+       
+       
    }
    private void GenerateRandomTime()
    {
