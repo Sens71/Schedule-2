@@ -127,7 +127,32 @@ public class Message : MonoBehaviour
    {
       Destroy(option.gameObject);
       _bargainMenu = Instantiate(bargainMenuPrefab, content);
-      _bargainMenu.SetData(_order);
+      _bargainMenu.SetData(_order,MakeDealCallback,CancelBargainCallback);
+   }
+
+   private void MakeDealCallback()
+   {
+      Destroy(_bargainMenu.gameObject);
+      if (_order.OfferedPrice >= _order.MaxBargain)
+      {
+         _order.State = MessageState.BargainPositive;
+         GenerateMessage(_order.MessageData.bargainPositive,true);
+      }
+      else
+      {
+         _order.State = MessageState.BargainNegative;
+         GenerateMessage(_order.PlayerMessageData.rejectBargain,false);
+         GenerateMessage(_order.MessageData.bargainNegative,true);
+      }
+   }
+
+   private void CancelBargainCallback()
+   {
+      Destroy(_bargainMenu.gameObject);
+      option = Instantiate(optionPrefab, content);
+      option.accept.onClick.AddListener(AcceptTask);
+      option.reject.onClick.AddListener(RejectTask);
+      option.bargain.onClick.AddListener(TryBargain);
    }
 
 }

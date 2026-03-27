@@ -9,6 +9,7 @@ public class Order
    public int Amount;
    public int Price;
    public int MaxBargain;
+   public int OfferedPrice;
    public string ClientName;
    public string ClientSurname;
    public string ClientNumber;

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: MessageData
   m_EditorClassIdentifier: 
   preview: It's me again. Need the usual Decoration for the weekend...
-  introduction: Hey man, it's me again. The last batch was fire. I'm throwing another
-    party this weekend, so I need the usual. Let's say Decoration of Decoration for
-    Decoration? When can you swing by?
+  introduction: "Yo, don\u2019t leave me hanging. Got people showing up in an hour
+    and the stash is looking empty. Need Can Product of Can Product like yesterday.
+    I\u2019ve got Can Product on me, just say when and where. You good to come through?"
   acceptTask: Cool. Same spot as last time? Just put it there and send the coordinates.
     I'll grab it later.
   rejectTask: Wait, what? Come on man, it's me. You sure? ...Alright, hit me up if
