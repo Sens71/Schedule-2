@@ -133,14 +133,16 @@ public class Message : MonoBehaviour
    private void MakeDealCallback()
    {
       Destroy(_bargainMenu.gameObject);
-      if (_order.OfferedPrice >= _order.MaxBargain)
+      if (_order.OfferedPrice <= _order.MaxBargain)
       {
          _order.State = MessageState.BargainPositive;
+         _order.MessageData.bargainPositive = _order.MessageData.bargainPositive.Replace("{price}", _order.OfferedPrice.ToString());
          GenerateMessage(_order.MessageData.bargainPositive,true);
       }
       else
       {
          _order.State = MessageState.BargainNegative;
+         _order.MessageData.bargainNegative = _order.MessageData.bargainNegative.Replace("{price}", _order.OfferedPrice.ToString());         
          GenerateMessage(_order.PlayerMessageData.rejectBargain,false);
          GenerateMessage(_order.MessageData.bargainNegative,true);
       }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079b88322ef30e44688176a35eb4e791, type: 3}
   m_Name: MessageData 3
   m_EditorClassIdentifier: 
-  preview: Got your contact. Need {item} for a private thing...
+  preview: Got your contact. Need Decoration for a private thing...
   introduction: I got your number from a friend. I'm organizing a small gathering
     and I'm looking for some {item}. If the quality is good, I'll take {amount}.
     I'm thinking about {price} for this. Let me know.

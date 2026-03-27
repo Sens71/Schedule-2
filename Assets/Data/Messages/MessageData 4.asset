@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079b88322ef30e44688176a35eb4e791, type: 3}
   m_Name: MessageData 4
   m_EditorClassIdentifier: 
-  preview: Hey, need {item} ASAP, people are already here...
+  preview: Hey, need Can Product ASAP, people are already here...
   introduction: Hey, it's urgent. My friends are already here, and we're out of stock.
     I need {amount} of {item} ASAP. I can do {price} for the whole lot. Don't let
     me down.

@@ -27,7 +27,8 @@ public class OrderFactory : MonoBehaviour
    {
       var order = new Order();
       int random = Random.Range(0, data.MessageData.Length);
-      order.MessageData = data.MessageData[random];
+      var messageData = Instantiate(data.MessageData[random]);
+      order.MessageData = messageData;
       random = Random.Range(0, playerMessageData.Length);
       order.PlayerMessageData = playerMessageData[random];
       random = Random.Range(0, data.Items.Length);
@@ -62,11 +63,9 @@ public class OrderFactory : MonoBehaviour
    private void InsertData(Order order)
    {
        order.MessageData.preview = order.MessageData.preview.Replace("{item}", order.ItemData.name);
-       order.MessageData.introduction = order.MessageData.introduction.Replace("{amount}", order.ItemData.name);
-       order.MessageData.introduction = order.MessageData.introduction.Replace("{price}", order.ItemData.name);
+       order.MessageData.introduction = order.MessageData.introduction.Replace("{amount}", order.Amount.ToString());
+       order.MessageData.introduction = order.MessageData.introduction.Replace("{price}", order.Price.ToString());
        order.MessageData.introduction = order.MessageData.introduction.Replace("{item}", order.ItemData.name);
-       order.MessageData.bargainPositive = order.MessageData.bargainPositive.Replace("{price}", order.ItemData.name);
-       order.MessageData.bargainNegative = order.MessageData.bargainNegative.Replace("{price}", order.ItemData.name);
        
        
    }

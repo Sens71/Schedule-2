@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079b88322ef30e44688176a35eb4e791, type: 3}
   m_Name: MessageData 2
   m_EditorClassIdentifier: 
-  preview: Looking for quality {item}, not that street garbage...
+  preview: Looking for quality Decoration, not that street garbage...
   introduction: Yo, I need something special for tonight's party. Not that cheap
     stuff. I want {amount} of your best {item}. I'm ready to pay {price}, but only
     if it's top-shelf. Deal?
