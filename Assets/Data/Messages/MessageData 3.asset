@@ -22,8 +22,8 @@ MonoBehaviour:
   rejectTask: "...Alright. Noted. I'll remember this.\r"
   bargainPositive: Deal. {price} it is. But for that price, make sure it's clean.
     Send details.
-  bargainNegative: Too high. Not worth the risk for me. Maybe next time if price
-    drops.
+  bargainNegative: Too high. {price} ain't worth the risk for me. Maybe next time
+    if it drops.
   dealOverPositive: Found it. Clean. We're good.
   dealOverNegative: ...Nothing showed up. I'm deleting the conversation. This never
     happened.

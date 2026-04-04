@@ -20,7 +20,7 @@ MonoBehaviour:
     I'll grab it later.
   rejectTask: Wait, what? Come on man, it's me. You sure? ...Alright, hit me up if
     you change your mind.
-  bargainPositive: For you? Alright, {bargain}. But next time give me better price,
+  bargainPositive: For you? Alright, {price}. But next time give me better price,
     yeah? We're cool. Send it.
   bargainNegative: Come on man, that's not cool. I thought we had a deal. Can't do
     {price}. Maybe another time.

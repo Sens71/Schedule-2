@@ -22,7 +22,8 @@ MonoBehaviour:
 '
   rejectTask: What? Seriously? I got people waiting. You just lost a regular. Whatever,
     I'll find someone else.
-  bargainPositive: Fine, whatever! Just hurry up with it. Send location when ready.
+  bargainPositive: "Fine, {price} \u2014 whatever! Just hurry up with it. Send location
+    when ready."
   bargainNegative: '{price}? You kidding? I''ll find someone faster. Forget it.'
   dealOverPositive: "Got it. Finally. My guys are happy. Later.\r"
   dealOverNegative: Where the hell are you? I've been waiting for an hour. People

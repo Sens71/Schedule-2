@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class Message : MonoBehaviour
 {
-   [SerializeField] private GameObject messageSent;
-   [SerializeField] private GameObject messageReceived;
+   [SerializeField] private MessageComponents messageSent;
+   [SerializeField] private MessageComponents messageReceived;
    [SerializeField] private TMP_Text phoneNumber;
    [SerializeField] private GameObject messagePanel;
    [SerializeField] private Transform content;
@@ -84,7 +84,7 @@ public class Message : MonoBehaviour
    }
    private void GenerateMessage(string message, bool reciever)
    {
-      GameObject instance;
+      MessageComponents instance;
       if (reciever)
       {
          instance = Instantiate(messageReceived, content);
@@ -93,7 +93,8 @@ public class Message : MonoBehaviour
       {
          instance = Instantiate(messageSent, content);
       }
-      var text = instance.GetComponentInChildren<TMP_Text>();
+
+      var text = instance.MessageText;
       text.text = message;
    }
 

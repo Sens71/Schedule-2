@@ -18,9 +18,7 @@ MonoBehaviour:
   acceptTask: Drop it somewhere near the corner store on 5th. Send pic when done.
   rejectTask: Eh, your loss. Too lazy to find someone else now. Great.
   bargainPositive: Eh, {price} works. Don't wanna argue. Just do it quick.
-  bargainNegative: 'Nah, too much effort for that price. I''ll pass.
-
-'
+  bargainNegative: Nah, {price}? Too much effort for that. I'll pass.
   dealOverPositive: Got it. Money's there. Whatever.
   dealOverNegative: Yo, it's been hours. I don't see shit. Had to go out myself now
     because of you. Thanks for nothing.
