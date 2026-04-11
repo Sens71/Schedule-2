@@ -22,69 +22,78 @@ public class ToolManager : MonoBehaviour
 
 
     public void BuildObject(Ghost building)
-    {   
+    {
         if (ghost == null)
         {
             ghost = Instantiate(building);
-        }   
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        buildPanel.SetActive(false);
+        }
+        CloseMenu();
     }
+
     public void PlantObject(Plant plant)
-    {   
+    {
         if (this.plant == null)
         {
             this.plant = plant;
         }
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        plantPanel.SetActive(false);
-        
+        CloseMenu();
     }
 
     public void UseTool(Tool tool)
     {
         tool.gameObject.SetActive(true);
         toolPanel.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
+        CloseMenu();
     }
+
     void Update()
     {
         Building();
         Planting();
         Harvesting();
+
         if (_inputActions.PlayerControl.Menu.WasPressedThisFrame())
         {
-            if (controlPanel.activeSelf)
-            {
-                controlPanel.SetActive(false);
-                toolPanel.SetActive(false);
-                buildPanel.SetActive(false);
-                plantPanel.SetActive(false);    
-                inventoryPanel.SetActive(false);
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-            else
-            {
-                controlPanel.SetActive(true);
-                toolPanel.SetActive(false);
-                buildPanel.SetActive(false);
-                plantPanel.SetActive(false);
-                inventoryPanel.SetActive(false);
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                if(ghost != null)
-                {
-                    Destroy(ghost.gameObject);
-                    ghost = null;
-                }
-                plant = null;
-            }
+            OpenMenu();
         }
+        else if (_inputActions.UI.Switch.WasPressedThisFrame())
+        {
+            CloseMenu();
+        }
+    }
+
+    private void OpenMenu()
+    {
+        controlPanel.SetActive(true);
+        toolPanel.SetActive(false);
+        buildPanel.SetActive(false);
+        plantPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        if (ghost != null)
+        {
+            Destroy(ghost.gameObject);
+            ghost = null;
+        }
+        plant = null;
+
+        _inputActions.PlayerControl.Disable();
+        _inputActions.UI.Enable();
+    }
+
+    private void CloseMenu()
+    {
+        controlPanel.SetActive(false);
+        toolPanel.SetActive(false);
+        buildPanel.SetActive(false);
+        plantPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        _inputActions.UI.Disable();
+        _inputActions.PlayerControl.Enable();
     }
     private void Planting()
     {

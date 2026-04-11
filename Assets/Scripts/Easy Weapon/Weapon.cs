@@ -15,6 +15,7 @@
 /// </summary>
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -207,6 +208,7 @@ public class Weapon : MonoBehaviour
 
 	// Other
 	private bool canFire = true;						// Whether or not the weapon can currently fire (used for semi-auto weapons)
+	private PlayerInputActions _inputActions;
 
 
 	// Use this for initialization
@@ -250,6 +252,9 @@ public class Weapon : MonoBehaviour
         // Make sure weaponModel isn't null
         if (weaponModel == null)
             weaponModel = gameObject;
+
+        if (playerWeapon)
+            _inputActions = Player.Instance.inputActions;
 
         // Make sure crosshairTexture isn't null
         if (crosshairTexture == null)
@@ -321,12 +326,15 @@ public class Weapon : MonoBehaviour
 	void CheckForUserInput()
 	{
 
+		bool fireHeld     = _inputActions.PlayerControl.Attack.IsPressed();
+		bool fireReleased = _inputActions.PlayerControl.Attack.WasReleasedThisFrame();
+
 		// Fire if this is a raycast type weapon and the user presses the fire button
 		if (type == WeaponType.Raycast)
 		{
 			if (fireTimer >= actualROF && burstCounter < burstRate && canFire)
 			{
-				if (Input.GetButton("Fire1"))
+				if (fireHeld)
 				{
 					if (!warmup)	// Normal firing when the user holds down the fire button
 					{
@@ -337,9 +345,9 @@ public class Weapon : MonoBehaviour
 						heat += Time.deltaTime;
 					}
 				}
-				if (warmup && Input.GetButtonUp("Fire1"))
+				if (warmup && fireReleased)
 				{
-					if (allowCancel && Input.GetButton("Cancel"))
+					if (allowCancel && Keyboard.current[Key.Escape].isPressed)
 					{
 						heat = 0.0f;
 					}
@@ -355,7 +363,7 @@ public class Weapon : MonoBehaviour
 		{
 			if (fireTimer >= actualROF && burstCounter < burstRate && canFire)
 			{
-				if (Input.GetButton("Fire1"))
+				if (fireHeld)
 				{
 					if (!warmup)	// Normal firing when the user holds down the fire button
 					{
@@ -366,9 +374,9 @@ public class Weapon : MonoBehaviour
 						heat += Time.deltaTime;
 					}
 				}
-				if (warmup && Input.GetButtonUp("Fire1"))
+				if (warmup && fireReleased)
 				{
-					if (allowCancel && Input.GetButton("Cancel"))
+					if (allowCancel && Keyboard.current[Key.Escape].isPressed)
 					{
 						heat = 0.0f;
 					}
@@ -393,7 +401,7 @@ public class Weapon : MonoBehaviour
 		// Shoot a beam if this is a beam type weapon and the user presses the fire button
 		if (type == WeaponType.Beam)
 		{
-			if (Input.GetButton("Fire1") && beamHeat <= maxBeamHeat && !coolingDown)
+			if (fireHeld && beamHeat <= maxBeamHeat && !coolingDown)
 			{
 				Beam();
 			}
@@ -413,13 +421,13 @@ public class Weapon : MonoBehaviour
 		}
 
 		// Reload if the "Reload" button is pressed
-		if (Input.GetKeyDown(KeyCode.R))
+		if (Keyboard.current[Key.R].wasPressedThisFrame)
 		{
 			Reload();
 		}
 
 		// If the weapon is semi-auto and the user lets up on the button, set canFire to true
-		if (Input.GetButtonUp("Fire1"))
+		if (fireReleased)
 			canFire = true;
 	}
 
