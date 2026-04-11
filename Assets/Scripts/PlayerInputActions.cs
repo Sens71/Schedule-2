@@ -154,6 +154,42 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""a1b2c3d4-e5f6-7890-abcd-ef1234567891"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Place"",
+                    ""type"": ""Button"",
+                    ""id"": ""b2c3d4e5-f6a7-8901-bcde-f01234567892"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3d4e5f6-a7b8-9012-cdef-012345678903"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondaryAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""d4e5f6a7-b8c9-0123-defa-123456789014"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -321,6 +357,50 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5f6a7b8-c9d0-1234-efab-234567890125"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6a7b8c9-d0e1-2345-fabc-345678901236"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Place"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7b8c9d0-e1f2-3456-abcd-456789012347"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8c9d0e1-f2a3-4567-bcde-567890123458"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondaryAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -395,6 +475,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_PlayerControl_Zoom = m_PlayerControl.FindAction("Zoom", throwIfNotFound: true);
         m_PlayerControl_Jump = m_PlayerControl.FindAction("Jump", throwIfNotFound: true);
         m_PlayerControl_Sprint = m_PlayerControl.FindAction("Sprint", throwIfNotFound: true);
+        m_PlayerControl_Menu = m_PlayerControl.FindAction("Menu", throwIfNotFound: true);
+        m_PlayerControl_Place = m_PlayerControl.FindAction("Place", throwIfNotFound: true);
+        m_PlayerControl_Attack = m_PlayerControl.FindAction("Attack", throwIfNotFound: true);
+        m_PlayerControl_SecondaryAction = m_PlayerControl.FindAction("SecondaryAction", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Jump = m_UI.FindAction("Jump", throwIfNotFound: true);
@@ -487,6 +571,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControl_Zoom;
     private readonly InputAction m_PlayerControl_Jump;
     private readonly InputAction m_PlayerControl_Sprint;
+    private readonly InputAction m_PlayerControl_Menu;
+    private readonly InputAction m_PlayerControl_Place;
+    private readonly InputAction m_PlayerControl_Attack;
+    private readonly InputAction m_PlayerControl_SecondaryAction;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlayerControl".
     /// </summary>
@@ -526,6 +614,22 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerControl/Sprint".
         /// </summary>
         public InputAction @Sprint => m_Wrapper.m_PlayerControl_Sprint;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerControl/Menu".
+        /// </summary>
+        public InputAction @Menu => m_Wrapper.m_PlayerControl_Menu;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerControl/Place".
+        /// </summary>
+        public InputAction @Place => m_Wrapper.m_PlayerControl_Place;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerControl/Attack".
+        /// </summary>
+        public InputAction @Attack => m_Wrapper.m_PlayerControl_Attack;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerControl/SecondaryAction".
+        /// </summary>
+        public InputAction @SecondaryAction => m_Wrapper.m_PlayerControl_SecondaryAction;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -573,6 +677,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @Menu.started += instance.OnMenu;
+            @Menu.performed += instance.OnMenu;
+            @Menu.canceled += instance.OnMenu;
+            @Place.started += instance.OnPlace;
+            @Place.performed += instance.OnPlace;
+            @Place.canceled += instance.OnPlace;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @SecondaryAction.started += instance.OnSecondaryAction;
+            @SecondaryAction.performed += instance.OnSecondaryAction;
+            @SecondaryAction.canceled += instance.OnSecondaryAction;
         }
 
         /// <summary>
@@ -605,6 +721,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @Menu.started -= instance.OnMenu;
+            @Menu.performed -= instance.OnMenu;
+            @Menu.canceled -= instance.OnMenu;
+            @Place.started -= instance.OnPlace;
+            @Place.performed -= instance.OnPlace;
+            @Place.canceled -= instance.OnPlace;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @SecondaryAction.started -= instance.OnSecondaryAction;
+            @SecondaryAction.performed -= instance.OnSecondaryAction;
+            @SecondaryAction.canceled -= instance.OnSecondaryAction;
         }
 
         /// <summary>
@@ -801,6 +929,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSprint(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Menu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMenu(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Place" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPlace(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Attack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAttack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SecondaryAction" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSecondaryAction(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ToolManager : MonoBehaviour
 {
@@ -11,6 +12,13 @@ public class ToolManager : MonoBehaviour
     public GameObject controlPanel;
     public GameObject inventoryPanel;
     public Storage storage;
+
+    private PlayerInputActions _inputActions;
+
+    private void Start()
+    {
+        _inputActions = Player.Instance.inputActions;
+    }
 
 
     public void BuildObject(Ghost building)
@@ -48,9 +56,8 @@ public class ToolManager : MonoBehaviour
         Building();
         Planting();
         Harvesting();
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (_inputActions.PlayerControl.Menu.WasPressedThisFrame())
         {
-
             if (controlPanel.activeSelf)
             {
                 controlPanel.SetActive(false);
@@ -91,7 +98,7 @@ public class ToolManager : MonoBehaviour
                 if (hit.collider.TryGetComponent(out Pot pot))
                 {
                     pot.Select();
-                    if (Input.GetKeyDown(KeyCode.F))
+                    if (_inputActions.PlayerControl.Place.WasPressedThisFrame())
                     {
                         if(plant.seedType.amount > 0)
                         {
@@ -110,7 +117,7 @@ public class ToolManager : MonoBehaviour
         
         if (ghost != null)
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (_inputActions.PlayerControl.Place.WasPressedThisFrame())
             {
                 Instantiate(ghost.prefab, ghost.transform.position, ghost.transform.rotation);
                 Destroy(ghost.gameObject);

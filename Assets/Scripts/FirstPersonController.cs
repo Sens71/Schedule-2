@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -17,6 +18,7 @@ using UnityEngine.UI;
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
+    private PlayerInputActions _inputActions;
 
     #region Camera Movement Variables
 
@@ -151,6 +153,8 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
+        _inputActions = Player.Instance.inputActions;
+
         if(lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -207,16 +211,18 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if(cameraCanMove)
         {
-            yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
+            Vector2 lookDelta = _inputActions.PlayerControl.Look.ReadValue<Vector2>();
+
+            yaw = transform.localEulerAngles.y + lookDelta.x * mouseSensitivity;
 
             if (!invertCamera)
             {
-                pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
+                pitch -= mouseSensitivity * lookDelta.y;
             }
             else
             {
                 // Inverted Y
-                pitch += mouseSensitivity * Input.GetAxis("Mouse Y");
+                pitch += mouseSensitivity * lookDelta.y;
             }
 
             // Clamp pitch between lookAngle
@@ -232,7 +238,7 @@ public class FirstPersonController : MonoBehaviour
         {
             // Changes isZoomed when key is pressed
             // Behavior for toogle zoom
-            if(Input.GetKeyDown(zoomKey) && !holdToZoom && !isSprinting)
+            if(_inputActions.PlayerControl.SecondaryAction.WasPressedThisFrame() && !holdToZoom && !isSprinting)
             {
                 if (!isZoomed)
                 {
@@ -248,11 +254,11 @@ public class FirstPersonController : MonoBehaviour
             // Behavior for hold to zoom
             if(holdToZoom && !isSprinting)
             {
-                if(Input.GetKeyDown(zoomKey))
+                if(_inputActions.PlayerControl.SecondaryAction.WasPressedThisFrame())
                 {
                     isZoomed = true;
                 }
-                else if(Input.GetKeyUp(zoomKey))
+                else if(_inputActions.PlayerControl.SecondaryAction.WasReleasedThisFrame())
                 {
                     isZoomed = false;
                 }
@@ -326,7 +332,7 @@ public class FirstPersonController : MonoBehaviour
         #region Jump
 
         // Gets input and calls jump method
-        if(enableJump && Input.GetKeyDown(jumpKey) && isGrounded)
+        if(enableJump && _inputActions.PlayerControl.Jump.WasPressedThisFrame() && isGrounded)
         {
             Jump();
         }
@@ -337,17 +343,17 @@ public class FirstPersonController : MonoBehaviour
 
         if (enableCrouch)
         {
-            if(Input.GetKeyDown(crouchKey) && !holdToCrouch)
+            if(_inputActions.PlayerControl.Crouch.WasPressedThisFrame() && !holdToCrouch)
             {
                 Crouch();
             }
-            
-            if(Input.GetKeyDown(crouchKey) && holdToCrouch)
+
+            if(_inputActions.PlayerControl.Crouch.WasPressedThisFrame() && holdToCrouch)
             {
                 isCrouched = false;
                 Crouch();
             }
-            else if(Input.GetKeyUp(crouchKey) && holdToCrouch)
+            else if(_inputActions.PlayerControl.Crouch.WasReleasedThisFrame() && holdToCrouch)
             {
                 isCrouched = true;
                 Crouch();
@@ -371,7 +377,8 @@ public class FirstPersonController : MonoBehaviour
         if (playerCanMove)
         {
             // Calculate how fast we should be moving
-            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            Vector2 moveInput = _inputActions.PlayerControl.Move.ReadValue<Vector2>();
+            Vector3 targetVelocity = new Vector3(moveInput.x, 0, moveInput.y);
 
             // Checks if player is walking and isGrounded
             // Will allow head bob
@@ -385,7 +392,7 @@ public class FirstPersonController : MonoBehaviour
             }
 
             // All movement calculations shile sprint is active
-            if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
+            if (enableSprint && _inputActions.PlayerControl.Sprint.IsPressed() && sprintRemaining > 0f && !isSprintCooldown)
             {
                 targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
 

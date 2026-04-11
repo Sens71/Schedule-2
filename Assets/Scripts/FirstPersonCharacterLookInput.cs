@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace ECM2.Examples.FirstPerson
 {
@@ -21,6 +22,8 @@ namespace ECM2.Examples.FirstPerson
         
         private FirstPersonCharacter _character;
 
+        private PlayerInputActions _inputActions;
+
         private void Awake()
         {
             _character = GetComponent<FirstPersonCharacter>();
@@ -28,16 +31,12 @@ namespace ECM2.Examples.FirstPerson
 
         private void Start()
         {
-            
+            _inputActions = Player.Instance.inputActions;
         }
 
         private void Update()
         {
-            Vector2 lookInput = new Vector2
-            {
-                x = Input.GetAxisRaw("Mouse X"),
-                y = Input.GetAxisRaw("Mouse Y")
-            };
+            Vector2 lookInput = _inputActions.PlayerControl.Look.ReadValue<Vector2>();
 
             lookInput *= mouseSensitivity;
 
