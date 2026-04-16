@@ -5,8 +5,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Message : MonoBehaviour
+public class Message : MonoBehaviour, IUIPanel
 {
+    private bool _isOpen;
    [SerializeField] private MessageComponents messageSent;
    [SerializeField] private MessageComponents messageReceived;
    [SerializeField] private TMP_Text phoneNumber;
@@ -25,10 +26,25 @@ public class Message : MonoBehaviour
       _timeManager = FindAnyObjectByType<TimeManager>();
    }
 
+   public void Open() { }
+
+   public void Close()
+   {
+      if (!_isOpen) return;
+      _isOpen = false;
+      for (int i = content.childCount - 1; i >= 0; i--)
+         Destroy(content.GetChild(i).gameObject);
+      messagePanel.SetActive(false);
+      IUIPanel.Notify(this, false, false);
+   }
+
    public void OpenMessage(Order order)
    {
+      if (_isOpen) return;
+      _isOpen = true;
       _order = order;
       messagePanel.SetActive(true);
+      IUIPanel.Notify(this, true, true);
 
       switch (_order.State)
       {
@@ -103,16 +119,7 @@ public class Message : MonoBehaviour
       instance.DateText.text = time.ToString();
    }
 
-   public void CloseMessage()
-   {
-      for (int i = content.childCount - 1; i >= 0; i--)
-      {
-         var child = content.GetChild(i).gameObject;
-         Destroy(child);
-      }
-      messagePanel.SetActive(false);
-      messagePreviewPanel.SetActive(true);
-   }
+   public void CloseMessage() => Close();
 
    public void AcceptTask()
    {

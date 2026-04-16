@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ToolManager : MonoBehaviour
+public class ToolManager : MonoBehaviour, IUIPanel
 {
     private Ghost ghost;
     private Plant plant;
+    private bool _isOpen;
     public float buildingDistance;
     public GameObject buildPanel;
     public GameObject plantPanel;
@@ -20,30 +21,42 @@ public class ToolManager : MonoBehaviour
         _inputActions = Player.Instance.inputActions;
     }
 
+    public void Open()
+    {
+        if (_isOpen) return;
+        _isOpen = true;
+        controlPanel.SetActive(true);
+        IUIPanel.Notify(this, true, true);
+    }
+
+    public void Close()
+    {
+        if (!_isOpen) return;
+        _isOpen = false;
+        controlPanel.SetActive(false);
+        if (ghost != null) { Destroy(ghost.gameObject); ghost = null; }
+        plant = null;
+        IUIPanel.Notify(this, false, false);
+    }
 
     public void BuildObject(Ghost building)
     {
         if (ghost == null)
-        {
             ghost = Instantiate(building);
-        }
-        CloseMenu();
+        Close();
     }
 
     public void PlantObject(Plant plant)
     {
         if (this.plant == null)
-        {
             this.plant = plant;
-        }
-        CloseMenu();
+        Close();
     }
 
     public void UseTool(Tool tool)
     {
         tool.gameObject.SetActive(true);
-        toolPanel.SetActive(false);
-        CloseMenu();
+        Close();
     }
 
     void Update()
@@ -53,51 +66,11 @@ public class ToolManager : MonoBehaviour
         Harvesting();
 
         if (_inputActions.PlayerControl.Menu.WasPressedThisFrame())
-        {
-            OpenMenu();
-        }
-        else if (_inputActions.UI.Switch.WasPressedThisFrame())
-        {
-            CloseMenu();
-        }
+            Open();
     }
 
-    private void OpenMenu()
-    {
-        controlPanel.SetActive(true);
-        toolPanel.SetActive(false);
-        buildPanel.SetActive(false);
-        plantPanel.SetActive(false);
-        inventoryPanel.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        if (ghost != null)
-        {
-            Destroy(ghost.gameObject);
-            ghost = null;
-        }
-        plant = null;
-
-        _inputActions.PlayerControl.Disable();
-        _inputActions.UI.Enable();
-    }
-
-    private void CloseMenu()
-    {
-        controlPanel.SetActive(false);
-        toolPanel.SetActive(false);
-        buildPanel.SetActive(false);
-        plantPanel.SetActive(false);
-        inventoryPanel.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        _inputActions.UI.Disable();
-        _inputActions.PlayerControl.Enable();
-    }
     private void Planting()
     {
-        
         if (plant != null)
         {
             RaycastHit hit;
@@ -109,21 +82,20 @@ public class ToolManager : MonoBehaviour
                     pot.Select();
                     if (_inputActions.PlayerControl.Place.WasPressedThisFrame())
                     {
-                        if(plant.seedType.amount > 0)
+                        if (plant.seedType.amount > 0)
                         {
                             pot.PlantSeed(plant);
                             plant.seedType.ChangeAmount(-1);
                             plant = null;
                         }
-                        
                     }
                 }
             }
         }
     }
+
     private void Building()
     {
-        
         if (ghost != null)
         {
             if (_inputActions.PlayerControl.Place.WasPressedThisFrame())
@@ -134,13 +106,11 @@ public class ToolManager : MonoBehaviour
             RaycastHit hit;
             Ray screenRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
             if (Physics.Raycast(screenRay, out hit, buildingDistance))
-            {
                 ghost.transform.position = hit.point;
-            }
         }
     }
+
     private void Harvesting()
     {
-        
     }
 }

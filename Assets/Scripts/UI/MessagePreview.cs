@@ -28,9 +28,6 @@ public class MessagePreview : MonoBehaviour
 
     private void OnButtonClick()
     {
-        GameObject.Find("Messages").SetActive(false);
-        
         message.OpenMessage(_order);
-        
     }
 }

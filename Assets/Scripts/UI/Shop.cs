@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Shop : MonoBehaviour
+public class Shop : MonoBehaviour, IUIPanel
 {
     public List<ExchangeToken> buyTokens = new();
     public List<ExchangeToken> sellTokens = new();
@@ -12,11 +12,33 @@ public class Shop : MonoBehaviour
     private List<GameObject> buySlots = new List<GameObject>();
     private List<GameObject> sellSlots = new List<GameObject>();
     private bool isSelling = true;
+    private bool _isOpen;
     public GameObject panel;
+
     void Start()
     {
         Buy();
     }
+
+    public void Open()
+    {
+        if (_isOpen) return;
+        _isOpen = true;
+        panel.SetActive(true);
+        IUIPanel.Notify(this, true, true);
+    }
+
+    public void Close()
+    {
+        if (!_isOpen) return;
+        _isOpen = false;
+        panel.SetActive(false);
+        IUIPanel.Notify(this, false, false);
+    }
+
+    // Вызывается кнопкой закрытия в UI
+    public void CloseShop() => Close();
+
     private void CreateSlot(ItemData itemData, GameObject slot)
     {
         var textAmount = slot.transform.Find("Amount").GetComponent<TMP_Text>();
@@ -28,18 +50,17 @@ public class Shop : MonoBehaviour
         icon.sprite = itemData.icon;
         bg.color = itemData.bgColor;
     }
+
     public void Buy()
     {
-
-        if(isSelling == true)
+        if (isSelling == true)
         {
-
             isSelling = false;
             EraseSlots(sellSlots);
             GenerateSlots(buySlots, buyTokens);
         }
-        
     }
+
     public void Sell()
     {
         if (isSelling == false)
@@ -48,8 +69,8 @@ public class Shop : MonoBehaviour
             EraseSlots(buySlots);
             GenerateSlots(sellSlots, sellTokens);
         }
-        
     }
+
     private void GenerateSlots(List<GameObject> items, List<ExchangeToken> tokens)
     {
         itemSlot.SetActive(true);
@@ -61,26 +82,18 @@ public class Shop : MonoBehaviour
         }
         buySlots.Remove(itemSlot);
         itemSlot.SetActive(false);
-
     }
+
     private void EraseSlots(List<GameObject> items)
     {
-        foreach (var item  in items)
+        foreach (var item in items)
         {
-            if(item != null)
-            {
+            if (item != null)
                 Destroy(item);
-            }
         }
         items.Clear();
     }
-    public void CloseShop()
-    {
-        panel.SetActive(false);
-        var _actions = FindAnyObjectByType<Player>().inputActions;
-        _actions.UI.Disable();
-        _actions.PlayerControl.Enable();
-    }
+
     public void Exchange(GameObject slot)
     {
         var index = 0;
@@ -88,7 +101,7 @@ public class Shop : MonoBehaviour
         if (isSelling)
         {
             tokens = sellTokens;
-            index = sellSlots.IndexOf(slot);    
+            index = sellSlots.IndexOf(slot);
         }
         else
         {
@@ -104,6 +117,7 @@ public class Shop : MonoBehaviour
         CreateSlot(itemReceived, slot);
     }
 }
+
 [Serializable]
 public class ExchangeToken
 {

@@ -9,8 +9,8 @@ public class Trader : MonoBehaviour
     public GameObject shop;
     void Start()
     {
-        player = FindAnyObjectByType<Player>();
-        _actions = player.inputActions;
+        player = Player.Instance;
+        _actions = Player.Instance.inputActions;
         _actions.PlayerControl.Interact.performed += ActivateShop;
     }
 
@@ -23,11 +23,6 @@ public class Trader : MonoBehaviour
     private void ActivateShop(InputAction.CallbackContext ctx)
     {
         if (playerClose)
-        {
-            shop.SetActive(true);
-            _actions.UI.Enable();
-            _actions.PlayerControl.Disable();
-        }
-
+            shop.GetComponent<Shop>().Open();
     }
 }

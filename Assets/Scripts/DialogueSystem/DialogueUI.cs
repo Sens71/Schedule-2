@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,8 +6,9 @@ using TMPro;
 
 namespace HeneGames.DialogueSystem
 {
-    public class DialogueUI : MonoBehaviour
+    public class DialogueUI : MonoBehaviour, IUIPanel
     {
+        private bool _isOpen;
         #region Singleton
 
         public static DialogueUI instance { get; private set; }
@@ -72,10 +73,6 @@ namespace HeneGames.DialogueSystem
             }
         }
 
-        /// <summary>
-        /// If a sentence is being written and this function is called, the sentence is completed instead of immediately moving to the next sentence.
-        /// This function needs to be called twice if you want to switch to a new sentence.
-        /// </summary>
         public void NextSentenceSoft()
         {
             if (startDialogueDelayTimer <= 0f)
@@ -93,35 +90,38 @@ namespace HeneGames.DialogueSystem
             }
         }
 
-        /// <summary>
-        /// Even if a sentence is being written, with this function immediately moves to the next sentence.
-        /// </summary>
         public void NextSentenceHard()
         {
-            //Continue only if we have dialogue
             if (currentDialogueManager == null)
                 return;
 
-            //Tell the current dialogue manager to display the next sentence. This function also gives information if we are at the last sentence
             currentDialogueManager.NextSentence(out bool lastSentence);
 
-            //If last sentence remove current dialogue manager
             if (lastSentence)
             {
                 currentDialogueManager = null;
             }
         }
 
+        public void Open() { }
+
+        public void Close()
+        {
+            if (!_isOpen) return;
+            currentDialogueManager?.StopDialogue();
+        }
+
         public void StartDialogue(DialogueManager _dialogueManager)
         {
-            //Delay timer
             startDialogueDelayTimer = 0.1f;
-
-            //Store dialogue manager
             currentDialogueManager = _dialogueManager;
-
-            //Start displaying dialogue
             currentDialogueManager.StartDialogue();
+
+            if (!_isOpen)
+            {
+                _isOpen = true;
+                IUIPanel.Notify(this, true, true);
+            }
         }
 
         public void ShowSentence(DialogueCharacter _dialogueCharacter, string _message)
@@ -147,6 +147,11 @@ namespace HeneGames.DialogueSystem
         public void ClearText()
         {
             dialogueWindow.SetActive(false);
+            if (_isOpen)
+            {
+                _isOpen = false;
+                IUIPanel.Notify(this, false, false);
+            }
         }
 
         public void ShowInteractionUI(bool _value)
