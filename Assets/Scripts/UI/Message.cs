@@ -20,10 +20,12 @@ public class Message : MonoBehaviour, IUIPanel
    private Order _order;
    private BargainMenu _bargainMenu;
    private TimeManager _timeManager;
+   private QuestFactory _questFactory;
 
    private void Awake()
    {
       _timeManager = FindAnyObjectByType<TimeManager>();
+      _questFactory = FindAnyObjectByType<QuestFactory>();
    }
 
    public void Open() { }
@@ -128,6 +130,7 @@ public class Message : MonoBehaviour, IUIPanel
       _order.State = MessageState.AcceptTask;
       GenerateMessage(_order.PlayerMessageData.acceptTask,false, _order.dateResponded);
       GenerateMessage(_order.MessageData.acceptTask,true, _order.dateResponded);
+      _questFactory.GenerateQuest(_order);
    }
 
    public void RejectTask()
@@ -153,6 +156,7 @@ public class Message : MonoBehaviour, IUIPanel
          _order.State = MessageState.BargainPositive;
          _order.MessageData.bargainPositive = _order.MessageData.bargainPositive.Replace("{price}", _order.OfferedPrice.ToString());
          GenerateMessage(_order.MessageData.bargainPositive,true, _order.dateResponded);
+         _questFactory.GenerateQuest(_order);
       }
       else
       {

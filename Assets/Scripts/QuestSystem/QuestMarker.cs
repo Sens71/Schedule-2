@@ -18,6 +18,7 @@ public class QuestMarker : MonoBehaviour
     public void AssignQuest(Quest quest)
     {
         _quest = quest;
+        print(gameObject.name);
     }
 
     private void Update()
@@ -31,6 +32,26 @@ public class QuestMarker : MonoBehaviour
 
     private void TryComplete()
     {
+        print("Trying to complete quest");
+        ItemData questItemRequired = null;
+        ItemData questItemReward = null;
+        foreach (var item in playerStorage.items)
+        {
+            if(_quest.itemRequest.name == item.name)
+                questItemRequired = _quest.itemRequest;
+        }
+        foreach (var item in playerStorage.items)
+        {
+            if(_quest.itemReward.name == item.name)
+                questItemReward = _quest.itemReward;
+        }
         
+
+        if (_quest.requiredAmount > questItemRequired.amount)
+            return;
+        questItemReward.amount += _quest.rewardAmount;
+        questItemRequired.amount -= _quest.requiredAmount;
+        print("quest Completed");
+        _quest = null;
     }
 }
