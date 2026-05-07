@@ -1,0 +1,7 @@
+1.Drag and drop system
+2.Rework Planting system
+3.Back button in message
+4.Tab fix in phone
+5.Police bug on game end
+6.scissors model
+7.Quest markers highlight on active
