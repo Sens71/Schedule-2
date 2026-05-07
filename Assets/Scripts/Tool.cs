@@ -12,6 +12,12 @@ public class Tool : MonoBehaviour
         _inputActions = Player.Instance.inputActions;
     }
 
+    public void Equip()
+    {
+        UIStateManager.Instance.CloseAll();
+        gameObject.SetActive(true);
+    }
+
     void Update()
     {
         RaycastHit hit;

@@ -1569,6 +1569,7 @@ GameObject:
   - component: {fileID: 8787397}
   - component: {fileID: 8787400}
   - component: {fileID: 8787399}
+  - component: {fileID: 8787401}
   m_Layer: 5
   m_Name: EquipmentMenu
   m_TagString: Untagged
@@ -1672,6 +1673,19 @@ MonoBehaviour:
   m_Spacing: {x: 30, y: 30}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &8787401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8787394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5cc577cbf400142963275bae2efdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closePrevious: 1
 --- !u!1001 &9091648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7395,6 +7409,7 @@ GameObject:
   - component: {fileID: 46343267}
   - component: {fileID: 46343270}
   - component: {fileID: 46343269}
+  - component: {fileID: 46343271}
   m_Layer: 5
   m_Name: PlantMenu
   m_TagString: Untagged
@@ -7501,6 +7516,19 @@ MonoBehaviour:
   m_Spacing: {x: 20, y: 20}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &46343271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46343264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5cc577cbf400142963275bae2efdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closePrevious: 1
 --- !u!1001 &46826600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22494,7 +22522,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1503245794}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
         m_MethodName: UseTool
         m_Mode: 2
@@ -23837,34 +23865,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 871901272}
-        m_TargetAssemblyTypeName: UIPanel, Assembly-CSharp
+      - m_Target: {fileID: 1244812965}
+        m_TargetAssemblyTypeName: PhoneController, Assembly-CSharp
         m_MethodName: Open
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 504963484}
-        m_TargetAssemblyTypeName: UIPanel, Assembly-CSharp
-        m_MethodName: Open
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 846179151}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -38433,6 +38437,7 @@ GameObject:
   - component: {fileID: 252534502}
   - component: {fileID: 252534504}
   - component: {fileID: 252534505}
+  - component: {fileID: 252534506}
   m_Layer: 5
   m_Name: BuildingMenu
   m_TagString: Untagged
@@ -38536,6 +38541,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &252534506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252534499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5cc577cbf400142963275bae2efdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closePrevious: 1
 --- !u!1001 &252701613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43705,22 +43723,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 252534499}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 846179151}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 252534506}
+        m_TargetAssemblyTypeName: UIPanel, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -49164,22 +49170,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8787394}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 846179151}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 8787401}
+        m_TargetAssemblyTypeName: UIPanel, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -50899,7 +50893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &328201077
 RectTransform:
   m_ObjectHideFlags: 0
@@ -80397,7 +80391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &504963482
 RectTransform:
   m_ObjectHideFlags: 0
@@ -127180,9 +127174,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1503245794}
-        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: PlantObject
+      - m_Target: {fileID: 1008712962}
+        m_TargetAssemblyTypeName: PlantingSystem, Assembly-CSharp
+        m_MethodName: StartPlanting
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 5515337273849359840, guid: 6662ac34b3a5b194d8afe54b8fc22548, type: 3}
@@ -131972,45 +131966,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 177349617}
-        m_TargetAssemblyTypeName: UIPanel, Assembly-CSharp
-        m_MethodName: Close
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1005173590}
-        m_TargetAssemblyTypeName: UIPanel, Assembly-CSharp
-        m_MethodName: Close
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 504963484}
-        m_TargetAssemblyTypeName: UIPanel, Assembly-CSharp
-        m_MethodName: Open
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1244812964}
-        m_TargetAssemblyTypeName: Message, Assembly-CSharp
-        m_MethodName: Close
+      - m_Target: {fileID: 1244812965}
+        m_TargetAssemblyTypeName: PhoneController, Assembly-CSharp
+        m_MethodName: GoHome
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -133007,6 +132965,7 @@ GameObject:
   - component: {fileID: 846179154}
   - component: {fileID: 846179153}
   - component: {fileID: 846179156}
+  - component: {fileID: 846179157}
   m_Layer: 5
   m_Name: Control
   m_TagString: Untagged
@@ -133116,6 +133075,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 0
+--- !u!114 &846179157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846179151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5cc577cbf400142963275bae2efdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closePrevious: 1
 --- !u!1001 &846274287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -157058,6 +157030,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 408088, guid: aab301b5d4a9c1b4ab55351b46f6be40, type: 3}
   m_PrefabInstance: {fileID: 1008623808}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1008712960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1008712961}
+  - component: {fileID: 1008712962}
+  m_Layer: 0
+  m_Name: PlantSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1008712961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008712960}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1785120995}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1008712962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008712960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d66562aa43d891241ab17f30c3fb311a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantingDistance: 5
 --- !u!1001 &1009092299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -163941,9 +163958,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1503245794}
-        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: BuildObject
+      - m_Target: {fileID: 2016432521}
+        m_TargetAssemblyTypeName: BuildingSystem, Assembly-CSharp
+        m_MethodName: StartPlacing
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1063106648149479460, guid: a5d239521fa9dd74ea2365dcb861a444, type: 3}
@@ -183269,9 +183286,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1503245794}
-        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: PlantObject
+      - m_Target: {fileID: 1008712962}
+        m_TargetAssemblyTypeName: PlantingSystem, Assembly-CSharp
+        m_MethodName: StartPlanting
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2308133630318864595, guid: 91fb15e9d2bcf1c4bbf25fac679dde2a, type: 3}
@@ -193974,6 +193991,7 @@ GameObject:
   - component: {fileID: 1244812963}
   - component: {fileID: 1244812964}
   - component: {fileID: 871901272}
+  - component: {fileID: 1244812965}
   m_Layer: 5
   m_Name: Phone
   m_TagString: Untagged
@@ -194028,6 +194046,20 @@ MonoBehaviour:
   messagePreviewPanel: {fileID: 871901270}
   optionPrefab: {fileID: 3595121117319287191, guid: d55fe0ea7b1d7864798ed199646ee61b, type: 3}
   bargainMenuPrefab: {fileID: 1980797480804800261, guid: 5fb921db1e8ccd64c856c2d40a4c30ed, type: 3}
+--- !u!114 &1244812965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244812962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bafb8f8afd9cf574b80af21f1d473fae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phonePanel: {fileID: 871901272}
+  mainMenu: {fileID: 504963484}
 --- !u!1001 &1245813283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198790,22 +198822,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 46343264}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 846179151}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 46343271}
+        m_TargetAssemblyTypeName: UIPanel, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -205212,9 +205232,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1503245794}
-        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: PlantObject
+      - m_Target: {fileID: 1008712962}
+        m_TargetAssemblyTypeName: PlantingSystem, Assembly-CSharp
+        m_MethodName: StartPlanting
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 907553294004115674, guid: 340d266c29ab9e843942568a76e50966, type: 3}
@@ -232636,6 +232656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397a27d23b758754aa69c7e1616801c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMenu: {fileID: 846179157}
 --- !u!1001 &1486948907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -236660,7 +236681,6 @@ GameObject:
   - component: {fileID: 1503245789}
   - component: {fileID: 1503245788}
   - component: {fileID: 1503245793}
-  - component: {fileID: 1503245794}
   - component: {fileID: 1503245795}
   - component: {fileID: 1503245796}
   - component: {fileID: 1503245797}
@@ -236884,25 +236904,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1503245794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503245787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 844a692c5f1c1a241a15eb540349c36c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildingDistance: 5
-  buildPanel: {fileID: 252534499}
-  plantPanel: {fileID: 46343264}
-  toolPanel: {fileID: 8787394}
-  controlPanel: {fileID: 846179151}
-  inventoryPanel: {fileID: 1645090968}
-  storage: {fileID: 11400000, guid: 1167c462336367145a9e8facfa2d9d62, type: 2}
 --- !u!114 &1503245795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256002,22 +256003,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1645090968}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 846179151}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1645090974}
+        m_TargetAssemblyTypeName: UIPanel, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -257985,6 +257974,7 @@ GameObject:
   - component: {fileID: 1645090970}
   - component: {fileID: 1645090972}
   - component: {fileID: 1645090973}
+  - component: {fileID: 1645090974}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -258091,6 +258081,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1645090974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645090968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5cc577cbf400142963275bae2efdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closePrevious: 1
 --- !u!1001 &1645326357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272954,9 +272957,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1503245794}
-        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: PlantObject
+      - m_Target: {fileID: 1008712962}
+        m_TargetAssemblyTypeName: PlantingSystem, Assembly-CSharp
+        m_MethodName: StartPlanting
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: -697515236097283572, guid: a602764cf791edd4384aa97cb5734da9, type: 3}
@@ -280646,6 +280649,8 @@ Transform:
   - {fileID: 387436272}
   - {fileID: 1486639891}
   - {fileID: 822861292}
+  - {fileID: 2016432520}
+  - {fileID: 1008712961}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1785347743
@@ -287619,7 +287624,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1503245794}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
         m_MethodName: PlantObject
         m_Mode: 2
@@ -315349,6 +315354,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 424094, guid: b408ff046e97d28428f851dbcce2f2d5, type: 3}
   m_PrefabInstance: {fileID: 2014955066}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2016432519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2016432520}
+  - component: {fileID: 2016432521}
+  m_Layer: 0
+  m_Name: BuildingSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2016432520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016432519}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1785120995}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2016432521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016432519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4a210056aada04385be9c81ed6b834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placementDistance: 10
 --- !u!1001 &2016569971
 PrefabInstance:
   m_ObjectHideFlags: 0

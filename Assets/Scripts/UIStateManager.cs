@@ -10,6 +10,8 @@ public class UIStateManager : MonoBehaviour
     private PlayerInputActions _inputActions;
     private bool _replacing;
 
+    public UIPanel gameMenu;
+
     public bool IsUIOpen => _stack.Count > 0;
 
     void Awake()
@@ -31,7 +33,12 @@ public class UIStateManager : MonoBehaviour
 
     void Update()
     {
-        if (_stack.Count == 0) return;
+        if (_stack.Count == 0)
+        {
+            if (_inputActions != null && _inputActions.PlayerControl.Menu.WasPressedThisFrame())
+                gameMenu?.Open();
+            return;
+        }
 
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
             _stack.Peek().Close();
@@ -43,6 +50,18 @@ public class UIStateManager : MonoBehaviour
     public void CloseAll()
     {
         while (_stack.Count > 0)
+            _stack.Peek().Close();
+    }
+
+    public void CloseTop()
+    {
+        if (_stack.Count > 0)
+            _stack.Peek().Close();
+    }
+
+    public void CloseUntil(IUIPanel target)
+    {
+        while (_stack.Count > 0 && _stack.Peek() != target)
             _stack.Peek().Close();
     }
 

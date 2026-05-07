@@ -1,7 +1,22 @@
 {
   "permissions": {
     "allow": [
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "Bash(Get-ChildItem -Path \"F:\\\\Git\\\\Schedule-2\\\\Assets\\\\Scripts\" -Filter \"*.cs\" -File)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(findstr /N \"m_Name: Player\" \"Assets\\\\Scenes\\\\City.unity\")",
+      "Bash(get-content \"Assets\\\\HeneGames\\\\Dialogue System\\\\Prefabs\\\\Player.prefab\")",
+      "Bash(Select-String -Pattern \"^guid:\")",
+      "Bash(Get-ChildItem -Path \"F:\\\\Git\\\\Schedule-2\\\\Assets\\\\ECM2\" -Recurse -Force)",
+      "Bash(Select-Object FullName, Mode)",
+      "Bash(Sort-Object FullName)",
+      "Bash(Format-Table -AutoSize)",
+      "PowerShell(head *)",
+      "Bash(grep *)",
+      "Bash(Remove-Item \"F:\\\\Git\\\\Schedule-2\\\\Assets\\\\Scripts\\\\FirstPersonController.cs\" -Force)",
+      "Bash(Remove-Item \"F:\\\\Git\\\\Schedule-2\\\\Assets\\\\Scripts\\\\FirstPersonController.cs.meta\" -Force)",
+      "Bash(Select-String -Path \"F:\\\\Git\\\\Schedule-2\\\\Assets\\\\Scenes\\\\City.unity\" -Pattern \"fileID: 1244812962|fileID: 504963481|fileID: 871901270\" -Context 0,30)",
+      "Bash(Select-Object -First 150)"
     ]
   }
 }
