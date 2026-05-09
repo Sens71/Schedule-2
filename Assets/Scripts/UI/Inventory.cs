@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, IBeginDragHandler
 {
     public Storage storage;
     public GameObject itemSlot;
@@ -60,4 +61,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        print("OnBeginDrag");
+        print(eventData.position);
+    }
 }

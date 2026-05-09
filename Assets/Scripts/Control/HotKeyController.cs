@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class HotKeyController : MonoBehaviour
@@ -66,4 +67,5 @@ public class HotKeyController : MonoBehaviour
     {
         
     }
+
 }
