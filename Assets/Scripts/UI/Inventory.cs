@@ -45,6 +45,7 @@ public class Inventory : MonoBehaviour, IBeginDragHandler
         var textName = slot.transform.Find("Name").GetComponent<TMP_Text>();
         var icon = slot.transform.Find("Button").GetComponent<Image>();
         var bg = slot.transform.Find("Bg").GetComponent<Image>();
+        slot.GetComponent<Dragable>().item = itemData;
         textAmount.text = itemData.amount.ToString();
         textName.text = itemData.name.ToString();
         icon.sprite = itemData.icon;

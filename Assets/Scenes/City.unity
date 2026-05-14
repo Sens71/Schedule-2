@@ -89404,11 +89404,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff27959f0dfa984fb50147656b39f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  object1: {fileID: 798041513}
-  object2: {fileID: 0}
-  object3: {fileID: 1939151147}
-  object4: {fileID: 1387230388}
-  object5: {fileID: 1064877490}
+  dropSlots:
+  - {fileID: 796572233}
+  - {fileID: 560875243}
+  - {fileID: 1471645907}
+  - {fileID: 1114142217}
+  - {fileID: 1205597598}
+  weaponObject: {fileID: 0}
 --- !u!1001 &559335002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89895,6 +89897,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a45abe3bd46f448a10c11b7f036069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  icon: {fileID: 1458445420}
 --- !u!1001 &561041296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101903,7 +101907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c69557950778624baafdef9ace3a1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghost: {fileID: 0}
+  item: {fileID: 0}
 --- !u!222 &636747337
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -125825,6 +125829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a45abe3bd46f448a10c11b7f036069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  icon: {fileID: 1754862105}
 --- !u!1001 &797262926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -167262,11 +167268,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 409754, guid: 60d3688bc6832bf45ac9ea2bf1c8ab03, type: 3}
   m_PrefabInstance: {fileID: 1063969797}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1064877490 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5192176441669688679, guid: bdba793875e6a1a409d551982b6b6951, type: 3}
-  m_PrefabInstance: {fileID: 1154498164}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1066170012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175990,6 +175991,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a45abe3bd46f448a10c11b7f036069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  icon: {fileID: 583478307}
 --- !u!1001 &1114208891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181980,7 +181983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 300495907323331231, guid: bdba793875e6a1a409d551982b6b6951, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 300495907329880051, guid: bdba793875e6a1a409d551982b6b6951, type: 3}
       propertyPath: power
@@ -189993,6 +189996,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a45abe3bd46f448a10c11b7f036069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  icon: {fileID: 2003854693}
 --- !u!1001 &1206380378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -217952,11 +217957,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 474114, guid: 239828adc5be7214c8fa4d6fe7dd6aff, type: 3}
   m_PrefabInstance: {fileID: 1386944418}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1387230388 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3966108876057567581, guid: bdba793875e6a1a409d551982b6b6951, type: 3}
-  m_PrefabInstance: {fileID: 1154498164}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1388241649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -232454,6 +232454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a45abe3bd46f448a10c11b7f036069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  icon: {fileID: 1510417647}
 --- !u!1001 &1472150040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -305582,11 +305584,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 485062, guid: 260ea4bf1ba71314c9c3833b491586bc, type: 3}
   m_PrefabInstance: {fileID: 1939146153}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1939151147 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4309419848450671990, guid: bdba793875e6a1a409d551982b6b6951, type: 3}
-  m_PrefabInstance: {fileID: 1154498164}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1939508179
 PrefabInstance:

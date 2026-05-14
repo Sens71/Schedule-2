@@ -3,7 +3,8 @@ using UnityEngine.EventSystems;
 
 public class Dragable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public GameObject ghost;
+    private GameObject ghost;
+    public ItemData item;
     
     public void OnBeginDrag(PointerEventData eventData)
     {

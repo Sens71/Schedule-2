@@ -1,15 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class HotKeyController : MonoBehaviour
+public class HotKeyController : MonoBehaviour   
 {
     private PlayerInputActions inputActions;
-    public GameObject object1;
-    public GameObject object2;
-    public GameObject object3;
-    public GameObject object4;
-    public GameObject object5;
+    [SerializeField] private List<(GameObject, ItemData)> itemMapping = new();
+    [SerializeField] private HotKeyDrop[] dropSlots;
+    [SerializeField] private GameObject weaponObject;
+    [SerializeField] private GameObject weaponObject2;
+
     
     void Start()
     {
@@ -23,45 +24,42 @@ public class HotKeyController : MonoBehaviour
 
     private void HotKey1(InputAction.CallbackContext context)
     {
-        object1.SetActive(true);
-        object2.SetActive(false);
-        object3.SetActive(false);
-        object4.SetActive(false);
-        object5.SetActive(false);
+        TryActivateItem(dropSlots[0].item);
     }
     private void HotKey2(InputAction.CallbackContext context)
     {
-        object1.SetActive(false);
-        object2.SetActive(true);
-        object3.SetActive(false);
-        object4.SetActive(false);
-        object5.SetActive(false);
+        TryActivateItem(dropSlots[1].item);
     }
     private void HotKey3(InputAction.CallbackContext context)
     {
-        object1.SetActive(false);
-        object2.SetActive(false);
-        object3.SetActive(true);
-        object4.SetActive(false);
-        object5.SetActive(false);
+        TryActivateItem(dropSlots[2].item);
     }
 
     private void HotKey4(InputAction.CallbackContext context)
     {
-        object1.SetActive(false);
-        object2.SetActive(false);
-        object3.SetActive(false);
-        object4.SetActive(true);
-        object5.SetActive(false);
+        TryActivateItem(dropSlots[3].item);
     }
 
     private void HotKey5(InputAction.CallbackContext context)
     {
-        object1.SetActive(false);
-        object2.SetActive(false);
-        object3.SetActive(false);
-        object4.SetActive(false);
-        object5.SetActive(true);
+        TryActivateItem(dropSlots[4].item);
+    }
+
+    private void TryActivateItem(ItemData item)
+    {   
+        if(item == null)
+            return;
+        if (item.name == "Gun")
+        {
+            weaponObject.SetActive(true);
+            weaponObject2.SetActive(false);
+        }
+
+        if (item.name == "Scissors")
+        {
+            weaponObject.SetActive(false);
+            weaponObject2.SetActive(true);
+        }
     }
     void Update()
     {
