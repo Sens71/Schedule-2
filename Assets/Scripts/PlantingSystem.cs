@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlantingSystem : MonoBehaviour
 {
+    [SerializeField] private SeedRegistry seedRegistry;
     public float plantingDistance = 5f;
 
     private Plant _plant;
@@ -14,9 +15,9 @@ public class PlantingSystem : MonoBehaviour
         _inputActions = Player.Instance.inputActions;
     }
 
-    public void StartPlanting(Plant plant)
+    public void StartPlanting(ItemData itemData)
     {
-        _plant = plant;
+        _plant = seedRegistry.GetPlant(itemData);
         UIStateManager.Instance.CloseAll();
     }
 

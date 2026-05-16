@@ -5,8 +5,10 @@ public class StatsHandler : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
+    public float healAmount = 50;
     public event Action<GameObject> OnDeath;
     public event Action<float> OnHealthChanged;
+    public ItemData med;
     void Start()
     {
         currentHealth = maxHealth;
@@ -28,4 +30,10 @@ public class StatsHandler : MonoBehaviour
         
     }
 
+
+
+    private void Update()
+    {
+        
+    }
 }
