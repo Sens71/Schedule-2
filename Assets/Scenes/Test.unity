@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 120183603}
   - component: {fileID: 120183602}
   - component: {fileID: 120183606}
+  - component: {fileID: 120183607}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -269,14 +270,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02fe8cde6a63a21469c5df09abc27c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clockTimeA:
-    days: 3
-    hours: 15
-    minutes: 2
-  clockTimeB:
-    days: 3
-    hours: 17
-    minutes: 55
+  actionTest: {fileID: 120183607}
+--- !u!114 &120183607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120183601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23922c27220440ac8a1e885bcec6556e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &330364868
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,57 +1,66 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 
 public class QuestMarker : MonoBehaviour
 {
     [SerializeField] private Storage playerStorage;
     [SerializeField] private float triggerDistance = 2f;
+    [SerializeField] private MeshRenderer minimapMarker;
+    [SerializeField] private TMP_Text questInfo;
     
-    private Quest _quest;
+    public Quest _quest;
     private Player _player;
+    private MeshRenderer _meshRenderer;
+    
     
     public Quest Quest => _quest;
     private void Awake()
     {
         _player = Player.Instance;
+        _meshRenderer = GetComponent<MeshRenderer>();
+        SetMarkerActive(false);
     }
 
     public void AssignQuest(Quest quest)
     {
         _quest = quest;
+        questInfo.text = quest.itemRequest.name + ": " + quest.requiredAmount;
         print(gameObject.name);
     }
 
     private void Update()
     {
-        if(_quest == null)
+        if (_quest is null)
+        {
+            SetMarkerActive(false);
             return;
-        if(Vector3.Distance(transform.position, _player.transform.position) > triggerDistance) 
+        }
+
+        if (Vector3.Distance(transform.position, _player.transform.position) > triggerDistance)
+        {
+            SetMarkerActive(true);
             return;
+        }
+            
         TryComplete();
     }
 
     private void TryComplete()
     {
-        print("Trying to complete quest");
-        ItemData questItemRequired = null;
-        ItemData questItemReward = null;
-        foreach (var item in playerStorage.items)
-        {
-            if(_quest.itemRequest.name == item.name)
-                questItemRequired = _quest.itemRequest;
-        }
-        foreach (var item in playerStorage.items)
-        {
-            if(_quest.itemReward.name == item.name)
-                questItemReward = _quest.itemReward;
-        }
-        
-
-        if (_quest.requiredAmount > questItemRequired.amount)
+        if (_quest.requiredAmount > _quest.itemRequest.amount)
             return;
-        questItemReward.amount += _quest.rewardAmount;
-        questItemRequired.amount -= _quest.requiredAmount;
-        print("quest Completed");
+        
+        _quest.itemReward.amount += _quest.rewardAmount;
+        _quest.itemRequest.amount -= _quest.requiredAmount;
+        _quest.Complete();
         _quest = null;
+    }
+
+    private void SetMarkerActive(bool active)
+    {
+        _meshRenderer.enabled = active;
+        minimapMarker.enabled = active;
+        questInfo.enabled = active;
     }
 }
