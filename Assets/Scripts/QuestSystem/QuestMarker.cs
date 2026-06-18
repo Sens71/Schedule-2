@@ -6,10 +6,10 @@ public class QuestMarker : MonoBehaviour
 {
     [SerializeField] private Storage playerStorage;
     [SerializeField] private float triggerDistance = 2f;
-    [SerializeField] private MeshRenderer minimapMarker;
     [SerializeField] private TMP_Text questInfo;
+    [SerializeField] private CanvasGroup localGroup;
     
-    public Quest _quest;
+    private Quest _quest;
     private Player _player;
     private MeshRenderer _meshRenderer;
     
@@ -59,8 +59,8 @@ public class QuestMarker : MonoBehaviour
 
     private void SetMarkerActive(bool active)
     {
+        localGroup.alpha = active ? 1f : 0f;
         _meshRenderer.enabled = active;
-        minimapMarker.enabled = active;
         questInfo.enabled = active;
     }
 }

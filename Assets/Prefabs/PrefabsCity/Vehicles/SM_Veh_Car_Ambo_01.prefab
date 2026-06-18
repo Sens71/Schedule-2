@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 412770}
   - component: {fileID: 3341786}
   - component: {fileID: 2325260}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SteeringW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 3339874}
   - component: {fileID: 2392894}
   - component: {fileID: 135742517564527680}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_fr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 3337738}
   - component: {fileID: 2333616}
   - component: {fileID: 135987676544849832}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_rl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 3358960}
   - component: {fileID: 2323252}
   - component: {fileID: 135837839025309928}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_fl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 3367310}
   - component: {fileID: 2372614}
   - component: {fileID: 135472224701782512}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel_rr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 420462}
   - component: {fileID: 3314422}
   - component: {fileID: 2393026}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,7 +619,7 @@ GameObject:
   - component: {fileID: 282746045305546318}
   - component: {fileID: -1480650419882498051}
   - component: {fileID: -5686598653934346940}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Veh_Car_Ambo_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -791,7 +791,7 @@ GameObject:
   - component: {fileID: 415410}
   - component: {fileID: 3315870}
   - component: {fileID: 2326082}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,7 +878,7 @@ GameObject:
   - component: {fileID: 425302}
   - component: {fileID: 3339654}
   - component: {fileID: 2396186}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -964,7 +964,7 @@ GameObject:
   - component: {fileID: 462858}
   - component: {fileID: 3385844}
   - component: {fileID: 2365200}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1050,7 +1050,7 @@ GameObject:
   - component: {fileID: 409978}
   - component: {fileID: 3337476}
   - component: {fileID: 2321892}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door_r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1137,7 +1137,7 @@ GameObject:
   - component: {fileID: 444242}
   - component: {fileID: 3321632}
   - component: {fileID: 2323050}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
