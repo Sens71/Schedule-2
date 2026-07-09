@@ -1,27 +1,22 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 [CreateAssetMenu(fileName = "EvaluatorData", menuName = "Data/EvaluatorData")]
 public class EvaluatorData : ScriptableObject
 {
-    
-
-    public Func<int,int,string> text;
-    public int c;
-    public int b;
-    public Func<int> testNumber;
-
+    public List<CanDrug> drugs;
+    public List<ReagentData> reagents;
     public void Evaluate()
     {
-        testNumber = () => c + b;
-        text = HelloWorld;
-        string a = text?.Invoke(testNumber(),5);
-        Debug.Log(a);
+        var drug = new CanDrug(reagents.ToArray());
+        drugs.Add(drug);
+    }
+    private void Mixreagents(params ReagentData[] reagent)
+    {
+            
     }
 
-    private string HelloWorld(int i, int g)
-    {
-        return "Hello World"  + i + g;
-    }
 }

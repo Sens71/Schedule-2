@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9335a6d3e522b4c88f41c13485cda0, type: 3}
   m_Name: EvaluatorData
   m_EditorClassIdentifier: 
-  c: 2
-  b: 1
+  drugs: []
+  reagents:
+  - {fileID: 11400000, guid: 7ef67daf00682b04a9bbb5128e1816d0, type: 2}
+  - {fileID: 11400000, guid: 8f9ad2d41e071cf47a9b96ac0b328753, type: 2}

@@ -4,7 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item", menuName = "MyData/Item")]
 public class ItemData: ScriptableObject
 {
-    public string name;
     public Sprite icon;
     public int amount;
     public int price;
@@ -17,4 +16,5 @@ public class ItemData: ScriptableObject
         this.amount += amount;
         OnChange?.Invoke();
     }
+    
 }
