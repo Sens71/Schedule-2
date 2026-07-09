@@ -58,6 +58,8 @@ public class CanDrug
 
     private void DefineColor()
     {
+        
+        
         (Color color, float weight)[] contributions =
         {
             (Effects.adictivness.color,  adictivness),
@@ -76,17 +78,17 @@ public class CanDrug
             (Effects.sneaky.color,       sneaky),
         };
 
-        Color sum = Color.black;
+        Color totalColor = Color.black;
         float totalWeight = 0f;
 
         foreach (var (color, weight) in contributions)
         {
             float w = weight / 100f;
-            sum += color * w;
+            totalColor += color * w;
             totalWeight += w;
         }
 
-        iconColor = totalWeight > 0f ? sum / totalWeight : Color.gray;
+        iconColor = totalWeight > 0f ? totalColor / totalWeight : Color.white;
         iconColor.a = 1f;
     }
 }
