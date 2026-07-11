@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9335a6d3e522b4c88f41c13485cda0, type: 3}
   m_Name: EvaluatorData
   m_EditorClassIdentifier: 
-  drugs: []
+  icon: {fileID: 21300000, guid: d4ed2c24a7c24e3419b43faf029ce757, type: 3}
+  finalColor: {r: 0.5123967, g: 0.46280995, b: 0.5909091, a: 1}
   reagents:
-  - {fileID: 11400000, guid: 7ef67daf00682b04a9bbb5128e1816d0, type: 2}
+  - {fileID: 11400000, guid: 61f49039b11ce374fb6cb19120b33609, type: 2}
   - {fileID: 11400000, guid: 8f9ad2d41e071cf47a9b96ac0b328753, type: 2}
+  - {fileID: 11400000, guid: f750453ef16d5a543824e8bd0b975a7d, type: 2}
+  storage: {fileID: 11400000, guid: 1167c462336367145a9e8facfa2d9d62, type: 2}

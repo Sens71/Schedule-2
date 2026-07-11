@@ -4,6 +4,8 @@ using UnityEngine;
 [Serializable]
 public class CanDrug
 {
+    public float baseValue = 60;
+    public float totalValue;
     public Color iconColor;
     public float adictivness;
     public float energizing;
@@ -19,7 +21,10 @@ public class CanDrug
     public float seizure;
     public float slippery;
     public float sneaky;
-    
+    public float extraMultiplierEffect;
+
+    private float totalMultiplier;
+
     public CanDrug(params ReagentData[] reagents)
     {
         foreach (var reagent in reagents)
@@ -38,6 +43,7 @@ public class CanDrug
             seizure += reagent.seizure;
             slippery += reagent.slippery;
             sneaky += reagent.sneaky;
+            extraMultiplierEffect += reagent.extraMultiplierEffect;
         }
         this.adictivness = Mathf.Clamp(adictivness, 0f, 100);
         this.energizing = Mathf.Clamp(energizing, 0f, 100);
@@ -54,12 +60,11 @@ public class CanDrug
         this.slippery = Mathf.Clamp(slippery, 0f, 100);
         this.sneaky = Mathf.Clamp(sneaky, 0f, 100);
         DefineColor();
+        DefineCost();
     }
 
     private void DefineColor()
     {
-        
-        
         (Color color, float weight)[] contributions =
         {
             (Effects.adictivness.color,  adictivness),
@@ -90,5 +95,26 @@ public class CanDrug
 
         iconColor = totalWeight > 0f ? totalColor / totalWeight : Color.white;
         iconColor.a = 1f;
+    }
+
+    private void DefineCost()
+    {
+        totalMultiplier =
+            adictivness / 100 * Effects.adictivness.multiplier +
+            energizing / 100 * Effects.energizing.multiplier +
+            focused / 100 * Effects.focused.multiplier +
+            athletics / 100 * Effects.athletics.multiplier +
+            calming / 100 * Effects.calming.multiplier +
+            brightEyed / 100 * Effects.brightEyed.multiplier +
+            disorienting / 100 * Effects.disorienting.multiplier +
+            foggy / 100 * Effects.foggy.multiplier +
+            glowing / 100 * Effects.glowing.multiplier +
+            longFaced / 100 * Effects.longFaced.multiplier +
+            sedating / 100 * Effects.sedating.multiplier +
+            seizure / 100 * Effects.seizure.multiplier +
+            slippery / 100 * Effects.slippery.multiplier +
+            sneaky / 100 * Effects.sneaky.multiplier +
+            extraMultiplierEffect;
+        totalValue = baseValue * totalMultiplier;
     }
 }
