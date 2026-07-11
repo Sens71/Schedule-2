@@ -4,6 +4,7 @@ using UnityEngine;
 [Serializable]
 public class CanDrug
 {
+    public int amount;
     public float baseValue = 60;
     public float totalValue;
     public Color iconColor;
