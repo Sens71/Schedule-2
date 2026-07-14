@@ -25,3 +25,62 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e492ac337dcb9c1468d56b3a51a24c39, type: 2}
   - {fileID: 11400000, guid: fd4dd33cfd93e814e9752f436ec08f8b, type: 2}
   - {fileID: 11400000, guid: 3e5b03b3d7af0b8478d76f8fcc30adea, type: 2}
+  - {fileID: 11400000, guid: 434733e84759f1a4eaa00fcb8c65b690, type: 2}
+  - {fileID: 11400000, guid: 7ef67daf00682b04a9bbb5128e1816d0, type: 2}
+  - {fileID: 11400000, guid: fa019bbab12d9ec44a861b0a0418783e, type: 2}
+  - {fileID: 11400000, guid: 2287edbefb6eccd44b828247f2f1c63b, type: 2}
+  - {fileID: 11400000, guid: 567c57561fb74c24d99bf78fb36a8c9c, type: 2}
+  - {fileID: 11400000, guid: 6b3daa287b33e9c4da9fedfa535e2a9b, type: 2}
+  - {fileID: 11400000, guid: aa835878b16b4144d9b233e3c5a7d5b2, type: 2}
+  - {fileID: 11400000, guid: 61f49039b11ce374fb6cb19120b33609, type: 2}
+  - {fileID: 11400000, guid: 8f9ad2d41e071cf47a9b96ac0b328753, type: 2}
+  - {fileID: 11400000, guid: 6c465644f16e71e41b5ef154ba9799b8, type: 2}
+  - {fileID: 11400000, guid: d4acb3d30ef354642a1df5c8e70fa679, type: 2}
+  - {fileID: 11400000, guid: 75597997123428b4a9cdc07b4be108c1, type: 2}
+  - {fileID: 11400000, guid: c779230e4886e6b4da1745324f0e5a95, type: 2}
+  - {fileID: 11400000, guid: 99112de7a898f4c49accdf52e846aff6, type: 2}
+  - {fileID: 11400000, guid: 96c548b7dc001754589f126ed0586cd2, type: 2}
+  - {fileID: 11400000, guid: f750453ef16d5a543824e8bd0b975a7d, type: 2}
+  - {fileID: 11400000, guid: ffb3a33d99dfe6d42b483b5cbbb3af4f, type: 2}
+  - {fileID: 11400000, guid: eeee304aed794064ebb8b06846a11867, type: 2}
+  - {fileID: 11400000, guid: 5c25561b974698f408c02f51f5e35b0b, type: 2}
+  - {fileID: 11400000, guid: 0836dd485ab6e1245b919807de797dc4, type: 2}
+  canDrugs:
+  - amount: 3
+    baseValue: 60
+    totalValue: 60.24001
+    iconColor: {r: 0.34375, g: 0.41375, b: 0.3325, a: 1}
+    adictivness: 13
+    energizing: 6
+    focused: 6
+    athletics: 20
+    calming: 30
+    brightEyed: 0
+    disorienting: 0
+    foggy: 0
+    glowing: 0
+    longFaced: 0
+    sedating: 0
+    seizure: 0
+    slippery: 5
+    sneaky: 0
+    extraMultiplierEffect: 0
+  - amount: 2
+    baseValue: 60
+    totalValue: 0
+    iconColor: {r: 1, g: 1, b: 1, a: 1}
+    adictivness: 0
+    energizing: 0
+    focused: 0
+    athletics: 0
+    calming: 0
+    brightEyed: 0
+    disorienting: 0
+    foggy: 0
+    glowing: 0
+    longFaced: 0
+    sedating: 0
+    seizure: 0
+    slippery: 0
+    sneaky: 0
+    extraMultiplierEffect: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gasoline
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f62eb5b715342a84aaa2d53582edf945, type: 3}
-  amount: 0
+  amount: 5
   price: 5
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   adictivness: 1

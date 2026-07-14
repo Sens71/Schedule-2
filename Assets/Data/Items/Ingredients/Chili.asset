@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chili
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 267bdf84ce0e0a14fac73e24b8692d50, type: 3}
-  amount: 0
+  amount: 5
   price: 7
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   adictivness: 10

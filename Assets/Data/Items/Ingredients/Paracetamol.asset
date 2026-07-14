@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Paracetamol
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 8ca13e59c4e49cd4ba5ec59fde090e02, type: 3}
-  amount: 0
+  amount: 5
   price: 3
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   adictivness: 2

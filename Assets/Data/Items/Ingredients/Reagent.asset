@@ -13,9 +13,21 @@ MonoBehaviour:
   m_Name: Reagent
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: bc053d755f276104ba804c100382d368, type: 3}
-  amount: 0
+  amount: 5
   price: 20
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   adictivness: 20
   energizing: 20
   focused: 30
+  athletics: 0
+  calming: 0
+  brightEyed: 0
+  disorienting: 0
+  foggy: 0
+  glowing: 0
+  longFaced: 0
+  sedating: 0
+  seizure: 0
+  slippery: 0
+  sneaky: 0
+  extraMultiplierEffect: 0

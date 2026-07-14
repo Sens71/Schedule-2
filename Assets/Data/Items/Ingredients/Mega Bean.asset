@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mega Bean
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: b1e880130c996a1489bb21e1b04fdd1b, type: 3}
-  amount: 0
+  amount: 5
   price: 7
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   adictivness: 0
