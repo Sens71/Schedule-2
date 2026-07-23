@@ -28,6 +28,9 @@ public class MixerSlot : MonoBehaviour, IDropHandler
     [Tooltip("Image с иконкой предмета (дочерний объект 'Icon').")]
     public Image icon;
 
+    public Image border;
+    public Color borderNormal = Color.white;
+    public Color borderHighlighted = Color.yellow;
     [Tooltip("Текст с количеством. Необязательно.")]
     public TMP_Text amountText;
 
@@ -45,9 +48,32 @@ public class MixerSlot : MonoBehaviour, IDropHandler
 
     private void Awake()
     {
+        border = transform.Find("Border")?.GetComponent<Image>();
         RefreshVisual();
     }
 
+    private void OnEnable()
+    {
+        Dragable.DragStarted += OnDragStarted;
+        Dragable.DragEnded += OnDragEnded;
+    }
+
+    private void OnDisable()
+    {
+        Dragable.DragStarted -= OnDragStarted;
+        Dragable.DragEnded -= OnDragEnded;
+    }
+
+    public void OnDragStarted(ItemData dragged)
+    {
+        border.color = Accepts(dragged) ? borderHighlighted : borderNormal;
+    }
+
+    public void OnDragEnded()
+    {
+        border.color = borderNormal;
+    }
+    
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag == null)
