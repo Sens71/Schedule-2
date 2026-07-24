@@ -22,7 +22,7 @@ public class MixerSlot : MonoBehaviour, IDropHandler
 {
     [Header("Фильтр")]
     [Tooltip("Какие предметы принимает слот. Пусто = принимать любой предмет.")]
-    public List<ItemData> allowedItems = new();
+    public List<ReagentData> allowedItems = new();
 
     [Header("Визуал")]
     [Tooltip("Image с иконкой предмета (дочерний объект 'Icon').")]
@@ -38,7 +38,7 @@ public class MixerSlot : MonoBehaviour, IDropHandler
     public bool hideAmountWhenSingle = true;
 
     /// <summary>Предмет, лежащий в слоте (null — слот пуст).</summary>
-    public ItemData PlacedItem { get; private set; }
+    public ReagentData PlacedItem { get; private set; }
 
     /// <summary>Сколько единиц предмета сейчас в слоте.</summary>
     public int Count { get; private set; }
@@ -66,7 +66,7 @@ public class MixerSlot : MonoBehaviour, IDropHandler
 
     public void OnDragStarted(ItemData dragged)
     {
-        border.color = Accepts(dragged) ? borderHighlighted : borderNormal;
+        border.color = Accepts((ReagentData)dragged) ? borderHighlighted : borderNormal;
     }
 
     public void OnDragEnded()
@@ -83,11 +83,11 @@ public class MixerSlot : MonoBehaviour, IDropHandler
         if (dragable == null)
             return;
 
-        TryPlace(dragable.item);
+        TryPlace((ReagentData)dragable.item);
     }
 
     /// <summary>Проверка, разрешён ли предмет в этом слоте.</summary>
-    public bool Accepts(ItemData candidate)
+    public bool Accepts(ReagentData candidate)
     {
         if (candidate == null)
             return false;
@@ -100,7 +100,7 @@ public class MixerSlot : MonoBehaviour, IDropHandler
     /// Попытаться положить предмет в слот. Возвращает true, если предмет принят.
     /// Сам списывает 1 из инвентаря и возвращает старый стек при замене.
     /// </summary>
-    public bool TryPlace(ItemData item)
+    public bool TryPlace(ReagentData item)
     {
         if (item == null || !Accepts(item))
             return false;
