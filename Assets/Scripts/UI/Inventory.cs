@@ -8,18 +8,19 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour, IBeginDragHandler
 {
     public Storage storage;
-    public GameObject itemSlot;
-    private List<GameObject> itemSlots = new List<GameObject>();
+    public Dragable itemPrefab;
+    public Transform contentParent;
+    private List<Dragable> itemSlots = new List<Dragable>();
 
     void Start()
     {
         foreach (var item in storage.items)
         {
-            var slot = Instantiate(itemSlot, itemSlot.transform.parent);
+            var slot = Instantiate(itemPrefab, itemPrefab.transform.parent);
             itemSlots.Add(slot);
         }
-        itemSlots.Remove(itemSlot);
-        Destroy(itemSlot);
+        itemSlots.Remove(itemPrefab);
+        Destroy(itemPrefab);
         UpdateUI();
         
     }
@@ -38,27 +39,22 @@ public class Inventory : MonoBehaviour, IBeginDragHandler
             item.OnChange -= UpdateUI;
         }
     }
-        
-    private void CreateSlot(ItemData itemData, GameObject slot)
-    {
-        var textAmount = slot.transform.Find("Amount").GetComponent<TMP_Text>();
-        var textName = slot.transform.Find("Name").GetComponent<TMP_Text>();
-        var icon = slot.transform.Find("Button").GetComponent<Image>();
-        var bg = slot.transform.Find("Bg").GetComponent<Image>();
-        slot.GetComponent<Dragable>().item = itemData;
-        textAmount.text = itemData.amount.ToString();
-        textName.text = itemData.name.ToString();
-        icon.sprite = itemData.icon;
-        bg.color = itemData.bgColor;
-    }
-    
+
+
+
     private void UpdateUI()
     {
-        var index = 0;
+        for (int i = itemSlots.Count - 1; i >= 0; i--)
+        {
+            Destroy(itemSlots[i].gameObject);
+        }
+        itemSlots.Clear();
         foreach (ItemData item in storage.items)
         {
-            CreateSlot(item, itemSlots[index]);
-            index++;    
+            if (item.amount <= 0) continue;
+            var slot = Instantiate(itemPrefab, contentParent);
+            slot.SetItem(item);
+            itemSlots.Add(slot);
         }
     }
 
