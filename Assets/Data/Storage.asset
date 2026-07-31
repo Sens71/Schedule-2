@@ -46,34 +46,38 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8fce0323331954a45b6386c7866c0301, type: 2}
   - {fileID: 11400000, guid: cb405f06bdd9b1845bd389cb957d461a, type: 2}
   drugs:
-  - amount: 3
+  - name: 
+    icon: {fileID: 0}
+    amount: 1
     baseValue: 60
-    totalValue: 60.24001
-    iconColor: {r: 0.34375, g: 0.41375, b: 0.3325, a: 1}
-    adictivness: 13
-    energizing: 6
-    focused: 6
-    athletics: 20
-    calming: 30
+    totalValue: 84.18
+    iconColor: {r: 0.51666665, g: 0.43125, b: 0.37083334, a: 1}
+    adictivness: 35
+    energizing: 10
+    focused: 15
+    athletics: 0
+    calming: 0
     brightEyed: 0
     disorienting: 0
-    foggy: 0
+    foggy: 30
     glowing: 0
     longFaced: 0
     sedating: 0
     seizure: 0
-    slippery: 5
+    slippery: 30
     sneaky: 0
-    extraMultiplierEffect: 0
-  - amount: 2
+    extraMultiplierEffect: -0.2
+  - name: 
+    icon: {fileID: 0}
+    amount: 1
     baseValue: 60
-    totalValue: 0
-    iconColor: {r: 1, g: 1, b: 1, a: 1}
+    totalValue: 28.500002
+    iconColor: {r: 0.4, g: 0.3, b: 0.1, a: 1}
     adictivness: 0
     energizing: 0
     focused: 0
     athletics: 0
-    calming: 0
+    calming: 25
     brightEyed: 0
     disorienting: 0
     foggy: 0
@@ -83,4 +87,4 @@ MonoBehaviour:
     seizure: 0
     slippery: 0
     sneaky: 0
-    extraMultiplierEffect: 0
+    extraMultiplierEffect: 0.2

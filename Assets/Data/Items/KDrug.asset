@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e822fc13524ea44195b5c65a5bbceb9, type: 3}
   m_Name: KDrug
   m_EditorClassIdentifier: 
-  name: 
-  icon: {fileID: 21300000, guid: 0f626d4ebdfe76848bd4a5bdff009ede, type: 3}
+  icon: {fileID: 21300000, guid: 610c253c66306db4aae6ca8c168f19b5, type: 3}
   amount: 0
   price: 60
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

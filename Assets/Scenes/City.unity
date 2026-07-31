@@ -136753,7 +136753,13 @@ MonoBehaviour:
   - {fileID: 1689705569}
   - {fileID: 2111860704}
   - {fileID: 1069560203}
-  drugMap: []
+  drugMap:
+  - leaf: {fileID: 11400000, guid: cb405f06bdd9b1845bd389cb957d461a, type: 2}
+    drug: {fileID: 11400000, guid: f63f489ccfa0e2b41a2c96781fde17a1, type: 2}
+  - leaf: {fileID: 11400000, guid: 8fce0323331954a45b6386c7866c0301, type: 2}
+    drug: {fileID: 11400000, guid: 0dfea0cbc5099f34487912e6c8891427, type: 2}
+  - leaf: {fileID: 11400000, guid: 5058375cde53ad54da2ffef4e4fc8b55, type: 2}
+    drug: {fileID: 11400000, guid: e3dae39eab2c66a419bbb8f31e04bf3f, type: 2}
   storage: {fileID: 11400000, guid: 1167c462336367145a9e8facfa2d9d62, type: 2}
   resultIcon: {fileID: 0}
   resultValueText: {fileID: 0}
