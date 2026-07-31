@@ -14,9 +14,9 @@ public class EvaluatorData : ScriptableObject
     public Storage storage;
     public void Evaluate()
     {
-        var drug = new CanDrug(reagents.ToArray());
+        var drug = new Drug(reagents.ToArray());
         finalColor = drug.iconColor;
-        storage.AddCanDrug(drug);
+        storage.AddDrug(drug);
     }
     private void Mixreagents(params ReagentData[] reagent)
     {

@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -23,6 +22,7 @@ public class Inventory : MonoBehaviour, IBeginDragHandler
         {
             item.OnChange += UpdateUI;
         }
+        storage.OnChange += UpdateUI;
     }
     private void OnDisable()
     {
@@ -30,6 +30,7 @@ public class Inventory : MonoBehaviour, IBeginDragHandler
         {
             item.OnChange -= UpdateUI;
         }
+        storage.OnChange -= UpdateUI;
     }
 
 
@@ -46,6 +47,13 @@ public class Inventory : MonoBehaviour, IBeginDragHandler
             if (item.amount <= 0) continue;
             var slot = Instantiate(itemPrefab, contentParent);
             slot.SetItem(item);
+            itemSlots.Add(slot);
+        }
+        foreach (Drug drug in storage.Drugs)
+        {
+            if (drug.amount <= 0) continue;
+            var slot = Instantiate(itemPrefab, contentParent);
+            slot.SetDrug(drug);
             itemSlots.Add(slot);
         }
     }

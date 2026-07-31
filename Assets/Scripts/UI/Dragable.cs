@@ -8,6 +8,7 @@ public class Dragable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 {
     private GameObject ghost;
     public ItemData item;
+    public Drug drug;
     [SerializeField] private TMP_Text textAmount;
     [SerializeField] private TMP_Text textName;
     [SerializeField] private Image icon;
@@ -47,9 +48,26 @@ public class Dragable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void SetItem(ItemData itemData)
     {
         this.item = itemData;
+        this.drug = null;
         textAmount.text = itemData.amount.ToString();
         textName.text = itemData.name;
         icon.sprite = itemData.icon;
+        icon.color = Color.white;
         bg.color = itemData.bgColor;
+    }
+
+    /// <summary>
+    /// Показать намиксованный наркотик. Иконка белая — её красит уникальный
+    /// цвет состава, посчитанный в <see cref="Drug"/>.
+    /// </summary>
+    public void SetDrug(Drug drug)
+    {
+        this.item = null;
+        this.drug = drug;
+        textAmount.text = drug.amount.ToString();
+        textName.text = drug.name;
+        icon.sprite = drug.icon;
+        icon.color = drug.iconColor;
+        bg.color = drug.iconColor;
     }
 }

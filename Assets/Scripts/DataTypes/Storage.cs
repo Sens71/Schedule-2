@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,9 +6,15 @@ using UnityEngine;
 public class Storage : ScriptableObject
 {
     public ItemData[] items;
-    [SerializeField]private List<CanDrug> canDrugs = new();
+    [SerializeField]private List<Drug> drugs = new();
 
-    public void AddCanDrug(CanDrug drug)
+    /// <summary>Уникальные наркотики на складе. Один элемент = один стек.</summary>
+    public IReadOnlyList<Drug> Drugs => drugs;
+
+    /// <summary>Список наркотиков изменился — UI перерисовывается.</summary>
+    public event Action OnChange;
+
+    public void AddDrug(Drug drug)
     {
         if (TryGetCopy(drug, out var copy))
         {
@@ -15,28 +22,31 @@ public class Storage : ScriptableObject
         }
         else
         {
-            canDrugs.Add(drug);
+            drugs.Add(drug);
             drug.amount++;
         }
+        OnChange?.Invoke();
     }
 
-    public void RemoveCanDrug(CanDrug drug)
+    public void RemoveDrug(Drug drug)
     {
         if (TryGetCopy(drug, out var copy))
         {
-            drug.amount--;
-            if (drug.amount <= 0)
+            copy.amount--;
+            if (copy.amount <= 0)
             {
-                canDrugs.Remove(copy);
+                drugs.Remove(copy);
             }
+            OnChange?.Invoke();
         }
     }
 
-    private bool TryGetCopy(CanDrug drug, out CanDrug copy)
+    private bool TryGetCopy(Drug drug, out Drug copy)
     {
-        foreach (var existing in canDrugs)
+        foreach (var existing in drugs)
         {
-            if (Mathf.Approximately(existing.adictivness, drug.adictivness) &&
+            if (existing.icon == drug.icon &&
+                Mathf.Approximately(existing.adictivness, drug.adictivness) &&
                 Mathf.Approximately(existing.energizing, drug.energizing) &&
                 Mathf.Approximately(existing.focused, drug.focused) &&
                 Mathf.Approximately(existing.athletics, drug.athletics) &&

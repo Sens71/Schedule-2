@@ -7,7 +7,7 @@ using UnityEditor;
 /// Draws a Sprite field as a colored square swatch in the inspector.
 /// Usage: [SpritePreview(nameof(bgColor))] public Sprite icon;
 /// The named color field is read live from the same SerializedObject each repaint,
-/// so if another script changes it (e.g. CanDrug.DefineColor), the swatch updates automatically.
+/// so if another script changes it (e.g. Drug.DefineColor), the swatch updates automatically.
 /// </summary>
 public class SpritePreviewAttribute : PropertyAttribute
 {

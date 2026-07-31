@@ -4,5 +4,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CanHolder", menuName = "MyData/CanHolder")]
 public class CanHolder : ScriptableObject
 {
-    public List<CanDrug> canDrugs = new List<CanDrug>();
+    public List<Drug> drugs = new List<Drug>();
 }

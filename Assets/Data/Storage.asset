@@ -45,7 +45,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5058375cde53ad54da2ffef4e4fc8b55, type: 2}
   - {fileID: 11400000, guid: 8fce0323331954a45b6386c7866c0301, type: 2}
   - {fileID: 11400000, guid: cb405f06bdd9b1845bd389cb957d461a, type: 2}
-  canDrugs:
+  drugs:
   - amount: 3
     baseValue: 60
     totalValue: 60.24001

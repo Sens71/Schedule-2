@@ -2,8 +2,10 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class CanDrug
+public class Drug
 {
+    public string name;
+    public Sprite icon;
     public int amount;
     public float baseValue = 60;
     public float totalValue;
@@ -26,7 +28,7 @@ public class CanDrug
 
     private float totalMultiplier;
 
-    public CanDrug(params ReagentData[] reagents)
+    public Drug(params ReagentData[] reagents)
     {
         foreach (var reagent in reagents)
         {
