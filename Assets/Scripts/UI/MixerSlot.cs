@@ -66,7 +66,7 @@ public class MixerSlot : MonoBehaviour, IDropHandler
 
     public void OnDragStarted(ItemData dragged)
     {
-        border.color = Accepts((ReagentData)dragged) ? borderHighlighted : borderNormal;
+        border.color = Accepts(dragged as ReagentData) ? borderHighlighted : borderNormal;
     }
 
     public void OnDragEnded()
@@ -83,7 +83,7 @@ public class MixerSlot : MonoBehaviour, IDropHandler
         if (dragable == null)
             return;
 
-        TryPlace((ReagentData)dragable.item);
+        TryPlace(dragable.item as ReagentData);
     }
 
     /// <summary>Проверка, разрешён ли предмет в этом слоте.</summary>

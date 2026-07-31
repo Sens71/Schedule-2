@@ -19,9 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c906ebaf7f929846a9b62df7a884cd4, type: 2}
   - {fileID: 11400000, guid: df3a8c256beb4bf40b66aeed6c791def, type: 2}
   Items:
-  - {fileID: 11400000, guid: eacdd36f2a3778048b85c3f01776f917, type: 2}
-  - {fileID: 11400000, guid: 47204e249b0bb094d9f28f1b42377571, type: 2}
-  - {fileID: 11400000, guid: cd6eebb8f12bd4441b39a0f11de3e659, type: 2}
+  - {fileID: 11400000, guid: e3dae39eab2c66a419bbb8f31e04bf3f, type: 2}
   - {fileID: 11400000, guid: 86482678a11b67844bf6a86618b6c5bb, type: 2}
   ClientNames:
   - John

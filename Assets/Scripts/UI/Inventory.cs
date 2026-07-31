@@ -14,15 +14,7 @@ public class Inventory : MonoBehaviour, IBeginDragHandler
 
     void Start()
     {
-        foreach (var item in storage.items)
-        {
-            var slot = Instantiate(itemPrefab, itemPrefab.transform.parent);
-            itemSlots.Add(slot);
-        }
-        itemSlots.Remove(itemPrefab);
-        Destroy(itemPrefab);
         UpdateUI();
-        
     }
     
     private void OnEnable()

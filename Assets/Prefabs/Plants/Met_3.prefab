@@ -113,7 +113,7 @@ MonoBehaviour:
     minutes: 0
   particle: {fileID: 838323947703753269}
   seedType: {fileID: 11400000, guid: 71a3a8aa64dbee641bb4ab07ea361d22, type: 2}
-  productType: {fileID: 11400000, guid: cd6eebb8f12bd4441b39a0f11de3e659, type: 2}
+  productType: {fileID: 11400000, guid: 8fce0323331954a45b6386c7866c0301, type: 2}
 --- !u!4 &1893506588328213969 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ecfc4a80d04ed7a44b2735be05e98425, type: 3}

@@ -15,5 +15,5 @@ MonoBehaviour:
   name: 
   icon: {fileID: 0}
   amount: 0
-  price: 0
+  price: 60
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

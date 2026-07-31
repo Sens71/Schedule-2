@@ -246591,15 +246591,15 @@ MonoBehaviour:
   sellTokens:
   - itemRecieved: {fileID: 11400000, guid: 412a623856a44074e87075eb65dad86c, type: 2}
     amountRecieved: 20
-    itemGiven: {fileID: 11400000, guid: eacdd36f2a3778048b85c3f01776f917, type: 2}
+    itemGiven: {fileID: 11400000, guid: 5058375cde53ad54da2ffef4e4fc8b55, type: 2}
     amountGiven: 1
   - itemRecieved: {fileID: 11400000, guid: 412a623856a44074e87075eb65dad86c, type: 2}
     amountRecieved: 20
-    itemGiven: {fileID: 11400000, guid: 47204e249b0bb094d9f28f1b42377571, type: 2}
+    itemGiven: {fileID: 11400000, guid: cb405f06bdd9b1845bd389cb957d461a, type: 2}
     amountGiven: 1
   - itemRecieved: {fileID: 11400000, guid: 412a623856a44074e87075eb65dad86c, type: 2}
     amountRecieved: 20
-    itemGiven: {fileID: 11400000, guid: cd6eebb8f12bd4441b39a0f11de3e659, type: 2}
+    itemGiven: {fileID: 11400000, guid: 8fce0323331954a45b6386c7866c0301, type: 2}
     amountGiven: 1
   - itemRecieved: {fileID: 11400000, guid: 412a623856a44074e87075eb65dad86c, type: 2}
     amountRecieved: 20

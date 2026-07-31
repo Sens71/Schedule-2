@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipes:
   - ingredients:
-    - item: {fileID: 11400000, guid: eacdd36f2a3778048b85c3f01776f917, type: 2}
+    - item: {fileID: 11400000, guid: 5058375cde53ad54da2ffef4e4fc8b55, type: 2}
       amount: 2
     - item: {fileID: 11400000, guid: 485ba56bbc62a8943bc2c7ffe1196fe7, type: 2}
       amount: 1
