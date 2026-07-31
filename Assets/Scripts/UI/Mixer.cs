@@ -61,11 +61,19 @@ public class Mixer : MonoBehaviour
         reagents.AddRange(GetReagents(mainSlots));
         reagents.AddRange(GetReagents(sideSlots));
 
-        var basis = mainSlots[0].PlacedItem;
-        var product = drugMap.Find(entry => entry.leaf == basis)?.drug;
+        ItemData product = null;
+        foreach (var slot in mainSlots)
+        {
+            var entry = drugMap.Find(pair => pair.leaf == slot.PlacedItem);
+            if (entry == null)
+                continue;
+            product = entry.drug;
+            break;
+        }
+
         if (product == null)
         {
-            Debug.LogError($"Mixer: в drugMap нет продукта для основы {basis.name}", this);
+            Debug.LogError("Mixer: ни в одном основном слоте нет листа из drugMap", this);
             return;
         }
 
