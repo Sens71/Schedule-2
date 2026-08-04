@@ -44,9 +44,7 @@ public class Mixer : MonoBehaviour
         List<ReagentData> reagents = new();
         foreach (var slot in slots)
         {
-            if (slot.PlacedItem == null)
-                continue;
-            for (int i = 0; i < slot.Count; i++)
+            if (slot.PlacedItem != null)
                 reagents.Add(slot.PlacedItem);
         }
 

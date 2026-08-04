@@ -147,14 +147,19 @@ public class MixerSlot : MonoBehaviour, IDropHandler
         OnChanged?.Invoke(this);
     }
 
-    /// <summary>Опустошить слот без возврата в инвентарь — реагенты израсходованы в миксе.</summary>
+    /// <summary>Израсходовать одну единицу — ушла в микс, в инвентарь не возвращается.</summary>
     public void Consume()
     {
         if (PlacedItem == null)
             return;
 
-        PlacedItem = null;
-        Count = 0;
+        Count--;
+        if (Count <= 0)
+        {
+            PlacedItem = null;
+            Count = 0;
+        }
+
         RefreshVisual();
         OnChanged?.Invoke(this);
     }

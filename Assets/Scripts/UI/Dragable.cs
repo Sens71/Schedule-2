@@ -38,11 +38,19 @@ public class Dragable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
 
     public void OnEndDrag(PointerEventData eventData)
-    {   
+    {
         DragEnded?.Invoke();
         if(ghost == null)
             return;
         Destroy(ghost);
+    }
+
+    private void OnDestroy()
+    {
+        if (ghost == null)
+            return;
+        Destroy(ghost);
+        DragEnded?.Invoke();
     }
 
     public void SetItem(ItemData itemData)
@@ -68,6 +76,5 @@ public class Dragable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         textName.text = drug.name;
         icon.sprite = drug.icon;
         icon.color = drug.iconColor;
-        bg.color = drug.iconColor;
     }
 }

@@ -46,43 +46,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8fce0323331954a45b6386c7866c0301, type: 2}
   - {fileID: 11400000, guid: cb405f06bdd9b1845bd389cb957d461a, type: 2}
   drugs:
-  - name: 
-    icon: {fileID: 0}
+  - name: CanDrug
+    icon: {fileID: 21300000, guid: 2f585984a7d3bc94fb3da15d63348bfa, type: 3}
     amount: 1
     baseValue: 60
-    totalValue: 84.18
-    iconColor: {r: 0.51666665, g: 0.43125, b: 0.37083334, a: 1}
-    adictivness: 35
-    energizing: 10
-    focused: 15
-    athletics: 0
-    calming: 0
-    brightEyed: 0
-    disorienting: 0
-    foggy: 30
-    glowing: 0
-    longFaced: 0
-    sedating: 0
-    seizure: 0
-    slippery: 30
-    sneaky: 0
-    extraMultiplierEffect: -0.2
-  - name: 
-    icon: {fileID: 0}
-    amount: 1
-    baseValue: 60
-    totalValue: 28.500002
-    iconColor: {r: 0.4, g: 0.3, b: 0.1, a: 1}
+    totalValue: 63.06
+    iconColor: {r: 0.615625, g: 0.59062505, b: 0.18281251, a: 1}
     adictivness: 0
-    energizing: 0
+    energizing: 2
     focused: 0
-    athletics: 0
+    athletics: 5
     calming: 25
     brightEyed: 0
     disorienting: 0
     foggy: 0
-    glowing: 0
-    longFaced: 0
+    glowing: 2
+    longFaced: 30
     sedating: 0
     seizure: 0
     slippery: 0
