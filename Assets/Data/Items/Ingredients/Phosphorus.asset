@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Phosphorus
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 283e00a390f69ee458b21ef7a54e0619, type: 3}
-  amount: 5
+  amount: 498
   price: 40
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   adictivness: 0

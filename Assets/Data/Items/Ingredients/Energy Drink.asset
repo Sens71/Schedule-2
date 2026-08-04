@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Energy Drink
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 578a7f73b9bdc524daab0263216cb004, type: 3}
-  amount: 5
+  amount: 498
   price: 6
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   adictivness: 5

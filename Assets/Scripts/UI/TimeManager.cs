@@ -99,6 +99,17 @@ public struct ClockTime
         return clockTime;
         
     }
+    public static ClockTime operator -(ClockTime a, ClockTime b)
+    {
+        ClockTime clockTime = new ClockTime();
+        int totalMinutesA = a.days * 24 * 60 + a.hours * 60 + a.minutes;
+        int totalMinutesB = b.days * 24 * 60 + b.hours * 60 + b.minutes;
+        int diff = totalMinutesA - totalMinutesB;
+        clockTime.days = diff / (24 * 60);
+        clockTime.hours = (diff / 60) % 24;
+        clockTime.minutes = diff % 60;
+        return clockTime;
+    }
     public static bool operator >(ClockTime a, ClockTime b)
     {
         if (a.days != b.days)

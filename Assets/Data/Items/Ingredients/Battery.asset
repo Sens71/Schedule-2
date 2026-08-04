@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Battery
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 6c131bc79b503c5479a1081866c30055, type: 3}
-  amount: 5
+  amount: 500
   price: 8
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   adictivness: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iodine
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 437cb62fcb786d04fa77a95bb72c717a, type: 3}
-  amount: 5
+  amount: 500
   price: 8
   bgColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   adictivness: 0

@@ -13,14 +13,24 @@ public class LeafDrug
 
 public class Mixer : MonoBehaviour
 {
+    public TimeManager timeManager;
     public List<MixerSlot> mainSlots = new();
     public List<MixerSlot> sideSlots = new();
     public List<LeafDrug> drugMap = new();
     public Storage storage;
     public Image resultIcon;
     public TMP_Text resultValueText;
+    public TMP_Text cookingTimerText;
 
     public event Action<Drug> OnMixed;
+    
+    public ClockTime cookDuration;
+    
+    private bool isCooking = false;
+    private bool ready;
+    private ClockTime nextReady;
+    private Drug currentDrug;
+    private List<ReagentData> currentReagents = new();
     
     void Start()
     {
@@ -50,11 +60,11 @@ public class Mixer : MonoBehaviour
 
         return reagents;
     }
-    public void Mix()
+    public async void Mix()
     {
-        if (!CanMix())
+        if (!CanMix() && isCooking)
             return;
-
+        isCooking = true;
         List<ReagentData> reagents = new();
         reagents.AddRange(GetReagents(mainSlots));
         reagents.AddRange(GetReagents(sideSlots));
@@ -68,25 +78,24 @@ public class Mixer : MonoBehaviour
             product = entry.drug;
             break;
         }
-
-        if (product == null)
-        {
-            Debug.LogError("Mixer: ни в одном основном слоте нет листа из drugMap", this);
-            return;
-        }
-
         var drug = new Drug(reagents.ToArray());
         drug.name = product.name;
         drug.icon = product.icon;
-        storage.AddDrug(drug);
-
         foreach (var slot in mainSlots)
             slot.Consume();
         foreach (var slot in sideSlots)
             slot.Consume();
-
+        nextReady = timeManager.GetCurrentTime() + cookDuration;
+        while (nextReady > timeManager.GetCurrentTime())
+        {
+            await Awaitable.NextFrameAsync();
+            cookingTimerText.text = (nextReady - timeManager.GetCurrentTime()).ToString();
+        }
+        
+        storage.AddDrug(drug);
         ShowResult(drug);
         OnMixed?.Invoke(drug);
+        isCooking = false;
     }
 
     private void ShowResult(Drug drug)
