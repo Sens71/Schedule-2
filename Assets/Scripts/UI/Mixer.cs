@@ -26,9 +26,7 @@ public class Mixer : MonoBehaviour
     
     public ClockTime cookDuration;
     
-    private bool isCooking = false;
     private bool ready;
-    private ClockTime nextReady;
     private Drug currentDrug;
     private List<ReagentData> currentReagents = new();
     
@@ -62,9 +60,9 @@ public class Mixer : MonoBehaviour
     }
     public async void Mix()
     {
-        if (!CanMix() && isCooking)
+        if (!CanMix())
             return;
-        isCooking = true;
+        
         List<ReagentData> reagents = new();
         reagents.AddRange(GetReagents(mainSlots));
         reagents.AddRange(GetReagents(sideSlots));
@@ -81,11 +79,14 @@ public class Mixer : MonoBehaviour
         var drug = new Drug(reagents.ToArray());
         drug.name = product.name;
         drug.icon = product.icon;
+        if (currentDrug != null && !StaticsCalculations.CompareDrugs(drug,currentDrug))
+            return;
+        currentDrug = drug;
         foreach (var slot in mainSlots)
             slot.Consume();
         foreach (var slot in sideSlots)
             slot.Consume();
-        nextReady = timeManager.GetCurrentTime() + cookDuration;
+        ClockTime nextReady = timeManager.GetCurrentTime() + cookDuration;
         while (nextReady > timeManager.GetCurrentTime())
         {
             await Awaitable.NextFrameAsync();
@@ -95,7 +96,6 @@ public class Mixer : MonoBehaviour
         storage.AddDrug(drug);
         ShowResult(drug);
         OnMixed?.Invoke(drug);
-        isCooking = false;
     }
 
     private void ShowResult(Drug drug)

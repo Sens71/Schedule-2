@@ -45,21 +45,7 @@ public class Storage : ScriptableObject
     {
         foreach (var existing in drugs)
         {
-            if (existing.icon == drug.icon &&
-                Mathf.Approximately(existing.adictivness, drug.adictivness) &&
-                Mathf.Approximately(existing.energizing, drug.energizing) &&
-                Mathf.Approximately(existing.focused, drug.focused) &&
-                Mathf.Approximately(existing.athletics, drug.athletics) &&
-                Mathf.Approximately(existing.calming, drug.calming) &&
-                Mathf.Approximately(existing.brightEyed, drug.brightEyed) &&
-                Mathf.Approximately(existing.disorienting, drug.disorienting) &&
-                Mathf.Approximately(existing.foggy, drug.foggy) &&
-                Mathf.Approximately(existing.glowing, drug.glowing) &&
-                Mathf.Approximately(existing.longFaced, drug.longFaced) &&
-                Mathf.Approximately(existing.sedating, drug.sedating) &&
-                Mathf.Approximately(existing.seizure, drug.seizure) &&
-                Mathf.Approximately(existing.slippery, drug.slippery) &&
-                Mathf.Approximately(existing.sneaky, drug.sneaky))
+            if (StaticsCalculations.CompareDrugs(existing, drug))
             {
                 copy = existing;
                 return true;
@@ -68,4 +54,6 @@ public class Storage : ScriptableObject
         copy = null;
         return false;
     }
+
+    
 }
