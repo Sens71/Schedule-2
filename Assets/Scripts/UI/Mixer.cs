@@ -96,9 +96,9 @@ public class Mixer : MonoBehaviour
         while (true)
         {
             await Awaitable.NextFrameAsync();
+            if(queuq.Count == 0)
+                continue;
             var drug = queuq[0];
-            if(drug == null)
-                return;
             ClockTime nextReady = timeManager.GetCurrentTime() + cookDuration;
             ClockTime totalReady = timeManager.GetCurrentTime() + cookDuration * queuq.Count;
             while (nextReady > timeManager.GetCurrentTime())
