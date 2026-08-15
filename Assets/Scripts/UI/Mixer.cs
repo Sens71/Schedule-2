@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,13 +28,14 @@ public class Mixer : MonoBehaviour
     public ClockTime cookDuration;
     
     private bool ready;
-    private Drug currentDrug;
     private List<ReagentData> currentReagents = new();
-    
-    void Start()
+    public List<Drug> queuq = new();
+
+    private void Awake()
     {
-        
+        HandleMixing();
     }
+
     public bool CanMix()
     {
         foreach(var slot in mainSlots)
@@ -79,23 +81,35 @@ public class Mixer : MonoBehaviour
         var drug = new Drug(reagents.ToArray());
         drug.name = product.name;
         drug.icon = product.icon;
-        if (currentDrug != null && !StaticsCalculations.CompareDrugs(drug,currentDrug))
+        if (queuq.Count > 0 && !StaticsCalculations.CompareDrugs(drug,queuq[0]))
             return;
-        currentDrug = drug;
+        
         foreach (var slot in mainSlots)
             slot.Consume();
         foreach (var slot in sideSlots)
             slot.Consume();
-        ClockTime nextReady = timeManager.GetCurrentTime() + cookDuration;
-        while (nextReady > timeManager.GetCurrentTime())
+        queuq.Add(drug);
+    }
+
+    private async void HandleMixing()
+    {
+        while (true)
         {
             await Awaitable.NextFrameAsync();
-            cookingTimerText.text = (nextReady - timeManager.GetCurrentTime()).ToString();
+            var drug = queuq[0];
+            if(drug == null)
+                return;
+            ClockTime nextReady = timeManager.GetCurrentTime() + cookDuration;
+            ClockTime totalReady = timeManager.GetCurrentTime() + cookDuration * queuq.Count;
+            while (nextReady > timeManager.GetCurrentTime())
+            {
+                await Awaitable.NextFrameAsync();
+                cookingTimerText.text = (totalReady - timeManager.GetCurrentTime()).ToString();
+            }
+            storage.AddDrug(drug);
+            ShowResult(drug);
+            OnMixed?.Invoke(drug);
         }
-        
-        storage.AddDrug(drug);
-        ShowResult(drug);
-        OnMixed?.Invoke(drug);
     }
 
     private void ShowResult(Drug drug)

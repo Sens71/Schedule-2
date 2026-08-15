@@ -120,6 +120,16 @@ public struct ClockTime
          
         
     }
+    public static ClockTime operator *(ClockTime a, int k)
+    {
+        ClockTime clockTime = new ClockTime();
+        int x = a.minutes * k;
+        clockTime.minutes = x % 60;
+        int y = a.hours * k + x / 60;
+        clockTime.hours = y % 24;
+        clockTime.days = a.days * k + y / 24;
+        return clockTime;
+    }
     public static bool operator <(ClockTime a, ClockTime b)
     {
         if (a.days != b.days)
