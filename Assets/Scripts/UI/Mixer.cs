@@ -19,17 +19,14 @@ public class Mixer : MonoBehaviour
     public List<MixerSlot> sideSlots = new();
     public List<LeafDrug> drugMap = new();
     public Storage storage;
-    public Image resultIcon;
-    public TMP_Text resultValueText;
     public TMP_Text cookingTimerText;
-
-    public event Action<Drug> OnMixed;
-    
+    public ResultSlot result;
     public ClockTime cookDuration;
+    public event Action<Drug> OnMixed;
     
     private bool ready;
     private List<ReagentData> currentReagents = new();
-    public List<Drug> queuq = new();
+    private List<Drug> queue = new();
 
     private void Awake()
     {
@@ -81,14 +78,14 @@ public class Mixer : MonoBehaviour
         var drug = new Drug(reagents.ToArray());
         drug.name = product.name;
         drug.icon = product.icon;
-        if (queuq.Count > 0 && !StaticsCalculations.CompareDrugs(drug,queuq[0]))
+        if (queue.Count > 0 && !StaticsCalculations.CompareDrugs(drug,queue[0]))
             return;
         
         foreach (var slot in mainSlots)
             slot.Consume();
         foreach (var slot in sideSlots)
             slot.Consume();
-        queuq.Add(drug);
+        queue.Add(drug);
     }
 
     private async void HandleMixing()
@@ -96,31 +93,19 @@ public class Mixer : MonoBehaviour
         while (true)
         {
             await Awaitable.NextFrameAsync();
-            if(queuq.Count == 0)
+            if(queue.Count == 0)
                 continue;
-            var drug = queuq[0];
+            var drug = queue[0];
             ClockTime nextReady = timeManager.GetCurrentTime() + cookDuration;
-            ClockTime totalReady = timeManager.GetCurrentTime() + cookDuration * queuq.Count;
+            ClockTime totalReady = timeManager.GetCurrentTime() + cookDuration * queue.Count;
             while (nextReady > timeManager.GetCurrentTime())
             {
                 await Awaitable.NextFrameAsync();
                 cookingTimerText.text = (totalReady - timeManager.GetCurrentTime()).ToString();
             }
-            storage.AddDrug(drug);
-            ShowResult(drug);
-            OnMixed?.Invoke(drug);
+            queue.RemoveAt(0);
+            result.AddResult(drug);
         }
     }
-
-    private void ShowResult(Drug drug)
-    {
-        if (resultIcon != null)
-        {
-            resultIcon.sprite = drug.icon;
-            resultIcon.color = drug.iconColor;
-        }
-
-        if (resultValueText != null)
-            resultValueText.text = Mathf.RoundToInt(drug.totalValue).ToString();
-    }
+    
 }
