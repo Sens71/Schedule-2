@@ -235,6 +235,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Close"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f43dd93-c930-4259-8460-143809da4623"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -501,6 +510,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Hotkey5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf27d517-d3fc-4466-90bd-ef5d336d4366"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Close"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -584,6 +604,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_PlayerControl_Hotkey3 = m_PlayerControl.FindAction("Hotkey3", throwIfNotFound: true);
         m_PlayerControl_Hotkey4 = m_PlayerControl.FindAction("Hotkey4", throwIfNotFound: true);
         m_PlayerControl_Hotkey5 = m_PlayerControl.FindAction("Hotkey5", throwIfNotFound: true);
+        m_PlayerControl_Close = m_PlayerControl.FindAction("Close", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Jump = m_UI.FindAction("Jump", throwIfNotFound: true);
@@ -685,6 +706,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControl_Hotkey3;
     private readonly InputAction m_PlayerControl_Hotkey4;
     private readonly InputAction m_PlayerControl_Hotkey5;
+    private readonly InputAction m_PlayerControl_Close;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlayerControl".
     /// </summary>
@@ -761,6 +783,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Hotkey5 => m_Wrapper.m_PlayerControl_Hotkey5;
         /// <summary>
+        /// Provides access to the underlying input action "PlayerControl/Close".
+        /// </summary>
+        public InputAction @Close => m_Wrapper.m_PlayerControl_Close;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_PlayerControl; }
@@ -834,6 +860,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Hotkey5.started += instance.OnHotkey5;
             @Hotkey5.performed += instance.OnHotkey5;
             @Hotkey5.canceled += instance.OnHotkey5;
+            @Close.started += instance.OnClose;
+            @Close.performed += instance.OnClose;
+            @Close.canceled += instance.OnClose;
         }
 
         /// <summary>
@@ -893,6 +922,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Hotkey5.started -= instance.OnHotkey5;
             @Hotkey5.performed -= instance.OnHotkey5;
             @Hotkey5.canceled -= instance.OnHotkey5;
+            @Close.started -= instance.OnClose;
+            @Close.performed -= instance.OnClose;
+            @Close.canceled -= instance.OnClose;
         }
 
         /// <summary>
@@ -1152,6 +1184,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHotkey5(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Close" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnClose(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MixerPresenter : MonoBehaviour
@@ -13,7 +14,12 @@ public class MixerPresenter : MonoBehaviour
     {
         currentModel = model;
         mixerPanel.SetActive(true);
-        print("mixer found");
+        for (int i = 0; i < mainSlots.Count; i++)
+        {
+            mainSlots[i].icon.sprite = currentModel.mainItems[i] != null ? currentModel.mainItems[i].icon : null;
+            mainSlots[i].icon.color = currentModel.mainItems[i] != null ? Color.white : new Color(0, 0, 0, 0);
+        }
+
     }
     
     void Start()
@@ -36,6 +42,12 @@ public class MixerPresenter : MonoBehaviour
                     OpenMixer(slot);
                 }
             }
+        }
+
+        if (playerInputActions.PlayerControl.Close.WasPressedThisFrame())
+        {
+            currentModel = null;
+            mixerPanel.SetActive(false);
         }
     }
 }

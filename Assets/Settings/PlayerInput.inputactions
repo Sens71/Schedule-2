@@ -149,6 +149,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Close",
+                    "type": "Button",
+                    "id": "6f43dd93-c930-4259-8460-143809da4623",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -413,6 +422,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Hotkey5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf27d517-d3fc-4466-90bd-ef5d336d4366",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

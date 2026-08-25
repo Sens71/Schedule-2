@@ -33,7 +33,7 @@ public class Mixer : MonoBehaviour
         HandleMixing();
     }
 
-    public bool CanMix()
+    /*public bool CanMix()
     {
         foreach(var slot in mainSlots)
         {
@@ -44,9 +44,9 @@ public class Mixer : MonoBehaviour
                 
         }
         return true;
-    }
+    }*/
 
-    public List<ReagentData> GetReagents(List<MixerSlot> slots)
+    /*public List<ReagentData> GetReagents(List<MixerSlot> slots)
     {
         List<ReagentData> reagents = new();
         foreach (var slot in slots)
@@ -86,7 +86,7 @@ public class Mixer : MonoBehaviour
         foreach (var slot in sideSlots)
             slot.Consume();
         queue.Add(drug);
-    }
+    }*/
 
     private async void HandleMixing()
     {
