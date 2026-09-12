@@ -151345,11 +151345,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 921736777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9493b2ccba8f3b4da164da6d8937b61, type: 3}
+  m_Script: {fileID: 11500000, guid: c8373bdbf8a873c42b3db91f893b74eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowedMainItems: []
-  allowedSideItems: []
+  mainFilters:
+  - allowedItems: []
+  - allowedItems: []
+  - allowedItems: []
+  - allowedItems: []
+  sideBlackList: []
   mainItems:
   - item: {fileID: 11400000, guid: 434733e84759f1a4eaa00fcb8c65b690, type: 2}
     count: 1
@@ -151360,6 +151364,19 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 567c57561fb74c24d99bf78fb36a8c9c, type: 2}
     count: 1
   sideItems: []
+  drugMap:
+  - leaf: {fileID: 11400000, guid: cb405f06bdd9b1845bd389cb957d461a, type: 2}
+    drug: {fileID: 11400000, guid: f63f489ccfa0e2b41a2c96781fde17a1, type: 2}
+  - leaf: {fileID: 11400000, guid: 8fce0323331954a45b6386c7866c0301, type: 2}
+    drug: {fileID: 11400000, guid: 0dfea0cbc5099f34487912e6c8891427, type: 2}
+  - leaf: {fileID: 11400000, guid: 5058375cde53ad54da2ffef4e4fc8b55, type: 2}
+    drug: {fileID: 11400000, guid: e3dae39eab2c66a419bbb8f31e04bf3f, type: 2}
+  timeManager: {fileID: 1503245788}
+  storage: {fileID: 11400000, guid: 1167c462336367145a9e8facfa2d9d62, type: 2}
+  cookDuration:
+    days: 0
+    hours: 1
+    minutes: 0
 --- !u!64 &921736785
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -176333,11 +176350,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1086730544}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9493b2ccba8f3b4da164da6d8937b61, type: 3}
+  m_Script: {fileID: 11500000, guid: c8373bdbf8a873c42b3db91f893b74eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowedMainItems: []
-  allowedSideItems: []
+  mainFilters:
+  - allowedItems: []
+  - allowedItems: []
+  - allowedItems: []
+  - allowedItems: []
+  sideBlackList: []
   mainItems:
   - item: {fileID: 11400000, guid: aa835878b16b4144d9b233e3c5a7d5b2, type: 2}
     count: 1
@@ -176346,6 +176367,19 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: ffb3a33d99dfe6d42b483b5cbbb3af4f, type: 2}
     count: 1
   sideItems: []
+  drugMap:
+  - leaf: {fileID: 11400000, guid: cb405f06bdd9b1845bd389cb957d461a, type: 2}
+    drug: {fileID: 11400000, guid: f63f489ccfa0e2b41a2c96781fde17a1, type: 2}
+  - leaf: {fileID: 11400000, guid: 8fce0323331954a45b6386c7866c0301, type: 2}
+    drug: {fileID: 11400000, guid: 0dfea0cbc5099f34487912e6c8891427, type: 2}
+  - leaf: {fileID: 11400000, guid: 5058375cde53ad54da2ffef4e4fc8b55, type: 2}
+    drug: {fileID: 11400000, guid: e3dae39eab2c66a419bbb8f31e04bf3f, type: 2}
+  timeManager: {fileID: 1503245788}
+  storage: {fileID: 11400000, guid: 1167c462336367145a9e8facfa2d9d62, type: 2}
+  cookDuration:
+    days: 0
+    hours: 1
+    minutes: 0
 --- !u!64 &1086730546
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -221370,7 +221404,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 716888635}
   amountText: {fileID: 1358104962}
-  storage: {fileID: 11400000, guid: 1167c462336367145a9e8facfa2d9d62, type: 2}
 --- !u!222 &1361715461
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -221423,8 +221456,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1361715460}
-        m_TargetAssemblyTypeName: ResultSlot, Assembly-CSharp
+      - m_Target: {fileID: 2042293376}
+        m_TargetAssemblyTypeName: MixerPresenter, Assembly-CSharp
         m_MethodName: CashResult
         m_Mode: 1
         m_Arguments:
@@ -332561,7 +332594,9 @@ MonoBehaviour:
   - {fileID: 1069560203}
   mixerPanel: {fileID: 837064706}
   inventoryPanel: {fileID: 1645090974}
-  currentModel: {fileID: 0}
+  cookingTimerText: {fileID: 1927431343}
+  resultSlot: {fileID: 1361715460}
+  currentMixer: {fileID: 0}
 --- !u!1001 &2042858702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -333110,8 +333145,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Mixer, Assembly-CSharp
+      - m_Target: {fileID: 2042293376}
+        m_TargetAssemblyTypeName: MixerPresenter, Assembly-CSharp
         m_MethodName: Mix
         m_Mode: 1
         m_Arguments:

@@ -5,38 +5,21 @@ using UnityEngine.UI;
 
 public class ResultSlot : MonoBehaviour
 {
-   [SerializeField] private Image icon;
-   [SerializeField] private TMP_Text amountText;
-   private List<Drug> currentDrugs = new();
-   [SerializeField] private Storage storage;
-    void Start()
-    {
-        
-    }
+    public Image icon;
+    public TMP_Text amountText;
 
-    
-    void Update()
+    public void Show(List<Drug> drugs)
     {
-        
-    }
-
-    public void AddResult(Drug drug)
-    {
-        currentDrugs.Add(drug);
-        icon.sprite = drug.icon;
-        icon.color = drug.iconColor;
-        amountText.text = currentDrugs.Count.ToString();
-    }
-
-    public void CashResult()
-    {
-        foreach (var drug in currentDrugs)
+        if (drugs.Count == 0)
         {
-            storage.AddDrug(drug);
+            icon.sprite = null;
+            icon.color = Color.clear;
+            amountText.text = "";
+            return;
         }
-        currentDrugs.Clear();
-        icon.sprite = null;
-        icon.color = new Color(0, 0, 0, 0);
-        amountText.text = "";
+
+        icon.sprite = drugs[0].icon;
+        icon.color = drugs[0].iconColor;
+        amountText.text = drugs.Count.ToString();
     }
 }

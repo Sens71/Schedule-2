@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MixerPresenter : MonoBehaviour, IUIPanel
@@ -7,8 +8,10 @@ public class MixerPresenter : MonoBehaviour, IUIPanel
     public List<MixerSlot> sideSlots = new();
     public GameObject mixerPanel;
     public UIPanel inventoryPanel;
+    public TMP_Text cookingTimerText;
+    public ResultSlot resultSlot;
 
-    public MixerModel currentModel;
+    public Mixer currentMixer;
     private bool isOpen;
     private PlayerInputActions playerInputActions;
 
@@ -34,19 +37,41 @@ public class MixerPresenter : MonoBehaviour, IUIPanel
     private void Update()
     {
         if (isOpen)
+        {
+            if (currentMixer.QueueCount > 0)
+            {
+                cookingTimerText.text = currentMixer.TimeLeft().ToString();
+            }
+            else
+            {
+                cookingTimerText.text = "";
+            }
+
+            resultSlot.Show(currentMixer.Ready);
             return;
+        }
 
         if (!playerInputActions.PlayerControl.Interact.WasPressedThisFrame())
             return;
 
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         if (Physics.Raycast(ray, out RaycastHit hit, 1.5f) 
-            && hit.collider.TryGetComponent(out MixerModel model))
+            && hit.collider.TryGetComponent(out Mixer mixer))
         {
-            currentModel = model;
-            currentModel.OnChanged += RefreshSlots;
+            currentMixer = mixer;
+            currentMixer.OnChanged += RefreshSlots;
             Open();
         }
+    }
+
+    public void Mix()
+    {
+        currentMixer.Mix();
+    }
+
+    public void CashResult()
+    {
+        currentMixer.CashResult();
     }
 
     public void Open()
@@ -73,8 +98,8 @@ public class MixerPresenter : MonoBehaviour, IUIPanel
         Dragable.DragEnded -= HandleDragEnded;
         HandleDragEnded();
 
-        currentModel.OnChanged -= RefreshSlots;
-        currentModel = null;
+        currentMixer.OnChanged -= RefreshSlots;
+        currentMixer = null;
 
         mixerPanel.SetActive(false);
         IUIPanel.Notify(this, false, false);
@@ -86,12 +111,12 @@ public class MixerPresenter : MonoBehaviour, IUIPanel
         int index = mainSlots.IndexOf(slot);
         if (index >= 0)
         {
-            currentModel.TryPlace(true, index, reagent);
+            currentMixer.TryPlace(true, index, reagent);
             return;
         }
 
         index = sideSlots.IndexOf(slot);
-        currentModel.TryPlace(false, index, reagent);
+        currentMixer.TryPlace(false, index, reagent);
     }
 
     private void HandleTake(MixerSlot slot)
@@ -99,12 +124,12 @@ public class MixerPresenter : MonoBehaviour, IUIPanel
         int index = mainSlots.IndexOf(slot);
         if (index >= 0)
         {
-            currentModel.TryTake(true, index);
+            currentMixer.TryTake(true, index);
             return;
         }
 
         index = sideSlots.IndexOf(slot);
-        currentModel.TryTake(false, index);
+        currentMixer.TryTake(false, index);
     }
 
     private void HandleDragStarted(ItemData dragged)
@@ -116,11 +141,10 @@ public class MixerPresenter : MonoBehaviour, IUIPanel
             return;
         }
 
-        var mainOn = currentModel.Accepts(true, reagent);
-        foreach (var slot in mainSlots)
-            slot.SetHighlight(mainOn);
+        for (int i = 0; i < mainSlots.Count; i++)
+            mainSlots[i].SetHighlight(currentMixer.AcceptsMain(i, reagent));
 
-        var sideOn = currentModel.Accepts(false, reagent);
+        bool sideOn = currentMixer.AcceptsSide(reagent);
         foreach (var slot in sideSlots)
             slot.SetHighlight(sideOn);
     }
@@ -137,9 +161,9 @@ public class MixerPresenter : MonoBehaviour, IUIPanel
     private void RefreshSlots()
     {
         for (int i = 0; i < mainSlots.Count; i++)
-            mainSlots[i].Show(currentModel.mainItems[i]);
+            mainSlots[i].Show(currentMixer.mainItems[i]);
 
         for (int i = 0; i < sideSlots.Count; i++)
-            sideSlots[i].Show(currentModel.sideItems[i]);
+            sideSlots[i].Show(currentMixer.sideItems[i]);
     }
 }
