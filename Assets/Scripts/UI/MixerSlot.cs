@@ -1,69 +1,52 @@
 using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-/// <summary>
-/// Ячейка миксера — приёмник предметов, которые тащат из инвентаря
-/// (см. <see cref="Dragable"/>). Принимает только предметы из белого списка
-/// <see cref="allowedItems"/>. Если список пуст — принимает любой предмет
-/// (для слотов Side Ingredients).
-///
-/// Поведение при дропе:
-///  - пустой валидный слот      -> кладём предмет, count = 1, инвентарь -1;
-///  - тот же предмет            -> count += 1, инвентарь -1;
-///  - другой предмет из списка  -> замена: старый стек возвращается в инвентарь,
-///                                 новый предмет кладётся, инвентарь -1;
-///  - предмет не из списка      -> отказ, ничего не меняется.
-/// </summary>
-public class MixerSlot : MonoBehaviour, IDropHandler
+public class MixerSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
 {
     public Image icon;
+    private Image border;
     public Color borderNormal = Color.white;
     public Color borderHighlighted = Color.yellow;
     public TMP_Text amountText;
-    
-    public event Action<MixerSlot> OnChanged;
 
+    public event Action<MixerSlot, ReagentData> OnDropped;
+    public event Action<MixerSlot> OnTakeRequested;
     private void Awake()
     {
-        
+        border = transform.Find("Border")?.GetComponent<Image>();
     }
 
-    private void OnEnable()
-    {
-        Dragable.DragStarted += OnDragStarted;
-        Dragable.DragEnded += OnDragEnded;
-    }
-
-    private void OnDisable()
-    {
-        Dragable.DragStarted -= OnDragStarted;
-        Dragable.DragEnded -= OnDragEnded;
-    }
-
-    public void OnDragStarted(ItemData dragged)
-    {
-
-    }
-
-    public void OnDragEnded()
-    {
-        
-    }
-    
     public void OnDrop(PointerEventData eventData)
     {
-        
+        Dragable dragable = eventData.pointerDrag.GetComponent<Dragable>();
+        if (dragable == null)
+            return;
+
+        ReagentData reagent = dragable.item as ReagentData;
+        if (reagent == null)
+            return;
+
+        OnDropped?.Invoke(this, reagent);
     }
 
-    /// <summary>Проверка, разрешён ли предмет в этом слоте.</summary>
-    public bool Accepts(ReagentData candidate)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        return false;
+        if (eventData.button == PointerEventData.InputButton.Right)
+            OnTakeRequested?.Invoke(this);
     }
 
-    
+    public void SetHighlight(bool on)
+    {
+        border.color = on ? borderHighlighted : borderNormal;
+    }
+
+    public void Show(SlotContent content)
+    {
+        icon.sprite = !content.IsEmpty ? content.item.icon : null;
+        icon.color = !content.IsEmpty ? Color.white : Color.clear;
+        amountText.text = !content.IsEmpty ? content.count.ToString() : "";
+    }
 }

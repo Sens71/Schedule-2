@@ -1,41 +1,52 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour, IBeginDragHandler
+public class Inventory : MonoBehaviour
 {
     public Storage storage;
     public Dragable itemPrefab;
     public Transform contentParent;
     private List<Dragable> itemSlots = new List<Dragable>();
+    private bool needsRebuild;
 
     void Start()
     {
-        UpdateUI();
+        Rebuild();
     }
-    
+
     private void OnEnable()
     {
-        foreach(ItemData item in storage.items)
+        foreach (ItemData item in storage.items)
         {
-            item.OnChange += UpdateUI;
+            item.OnChange += MarkDirty;
         }
-        storage.OnChange += UpdateUI;
+        storage.OnChange += MarkDirty;
     }
+
     private void OnDisable()
     {
         foreach (ItemData item in storage.items)
         {
-            item.OnChange -= UpdateUI;
+            item.OnChange -= MarkDirty;
         }
-        storage.OnChange -= UpdateUI;
+        storage.OnChange -= MarkDirty;
     }
 
+    private void MarkDirty()
+    {
+        needsRebuild = true;
+    }
 
+    private void LateUpdate()
+    {
+        if (!needsRebuild)
+            return;
 
-    private void UpdateUI()
+        needsRebuild = false;
+        Rebuild();
+    }
+
+    private void Rebuild()
     {
         for (int i = itemSlots.Count - 1; i >= 0; i--)
         {
@@ -56,11 +67,5 @@ public class Inventory : MonoBehaviour, IBeginDragHandler
             slot.SetDrug(drug);
             itemSlots.Add(slot);
         }
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        print("OnBeginDrag");
-        print(eventData.position);
     }
 }
