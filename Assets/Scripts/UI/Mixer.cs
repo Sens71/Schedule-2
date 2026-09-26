@@ -58,6 +58,7 @@ public class Mixer : MonoBehaviour
 
     private void Awake()
     {
+        timeManager = FindAnyObjectByType<TimeManager>();
         mainItems = Resize(mainItems, 4);
         sideItems = Resize(sideItems, 15);
 

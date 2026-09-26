@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Stats" src="project://database/Assets/UI%20Toolkit/Stats.uxml?fileID=9197481963319205126&amp;guid=eb8df1f7f28fe01419a9684b934b1c19&amp;type=3#Stats" />
+    <ui:Template name="ControlMenu" src="project://database/Assets/UI%20Toolkit/ControlMenu.uxml?fileID=9197481963319205126&amp;guid=4a6c9d1ea4231d249918b0ea28987fff&amp;type=3#ControlMenu" />
+    <ui:VisualElement name="Root" style="flex-grow: 1; flex-direction: column; flex-wrap: nowrap;">
+        <ui:Instance template="Stats" picking-mode="Ignore" name="Stats" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; display: flex;" />
+        <ui:Instance template="ControlMenu" picking-mode="Ignore" style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;" />
+    </ui:VisualElement>
+</ui:UXML>
