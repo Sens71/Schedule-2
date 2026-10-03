@@ -1,0 +1,33 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="MixerWindow.uss" />
+    <ui:VisualElement name="Screen" picking-mode="Ignore" class="screen">
+        <ui:VisualElement name="Window" class="window">
+            <ui:VisualElement class="titlebar">
+                <ui:Label text="Mixing Station" class="titlebar__title" />
+                <ui:Button name="CloseButton" text="✕" class="titlebar__close" />
+            </ui:VisualElement>
+            <ui:VisualElement class="body">
+                <ui:VisualElement class="bench">
+                    <ui:Label text="Main reagents" class="caption" />
+                    <ui:VisualElement name="MainSlots" class="slot-row" />
+                    <ui:Label text="Additives" class="caption" />
+                    <ui:VisualElement name="SideSlots" class="slot-grid" />
+                </ui:VisualElement>
+                <ui:VisualElement class="output">
+                    <ui:Label text="Result" class="caption" />
+                    <ui:VisualElement name="ResultSlot" class="slot slot--result">
+                        <ui:Image name="ResultIcon" picking-mode="Ignore" class="slot__icon" />
+                        <ui:Label name="ResultAmount" picking-mode="Ignore" class="slot__count" />
+                    </ui:VisualElement>
+                    <ui:Label name="Timer" text="" class="timer" />
+                    <ui:Button name="MixButton" text="Mix" class="button button--primary" />
+                    <ui:Button name="CashButton" text="Collect" class="button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Label text="Reagents" class="caption caption--shelf" />
+            <ui:ScrollView name="Shelf" class="shelf">
+                <ui:VisualElement name="Items" class="shelf__items" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
