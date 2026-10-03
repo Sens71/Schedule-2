@@ -1,6 +1,6 @@
 .caption {
     color: rgb(132, 137, 147);
-    font-size: 12px;
+    font-size: 19px;
     -unity-font-style: bold;
     margin-bottom: 6px;
 }
