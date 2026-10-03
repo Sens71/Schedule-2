@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MixerWindow.uss?fileID=7433441132597879392&amp;guid=2c0e2631ab82f304f97019221b78c4e1&amp;type=3#MixerWindow" />
+    <ui:VisualElement name="Card" class="card" style="width: 84px; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; padding-top: 6px; padding-right: 6px; padding-bottom: 6px; padding-left: 6px; background-color: rgb(34, 36, 41); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-color: rgb(52, 55, 61); border-right-color: rgb(52, 55, 61); border-bottom-color: rgb(52, 55, 61); border-left-color: rgb(52, 55, 61); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; align-items: center;">
+        <ui:VisualElement name="Icon" picking-mode="Ignore" style="width: 40px; height: 40px; background-image: url(&quot;project://database/Assets/Textures/Icons/Donut_Icon.png?fileID=2800000&amp;guid=87d5c75e45c124a4f9716a978714ad4c&amp;type=3#Donut_Icon&quot;);" />
+        <ui:Label name="Title" text="Donut" picking-mode="Ignore" style="color: rgb(206, 210, 217); font-size: 11px; -unity-text-align: middle-center; white-space: normal;" />
+        <ui:Label name="Amount" text="5" picking-mode="Ignore" style="position: absolute; top: 2px; right: 6px; color: rgb(214, 173, 70); font-size: 12px; -unity-font-style: bold;" />
+    </ui:VisualElement>
+</ui:UXML>

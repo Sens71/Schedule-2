@@ -350217,6 +350217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storage: {fileID: 11400000, guid: 1167c462336367145a9e8facfa2d9d62, type: 2}
+  slotTemplate: {fileID: 9197481963319205126, guid: ee26c328a3f6e9849ac7188b31c2a66c, type: 3}
+  cardTemplate: {fileID: 9197481963319205126, guid: 1d607a386c324e4a8c93746ff366048b, type: 3}
   interactDistance: 1.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

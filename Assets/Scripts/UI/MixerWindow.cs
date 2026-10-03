@@ -12,6 +12,8 @@ public class MixerWindow : MonoBehaviour, IUIPanel
     }
 
     public Storage storage;
+    public VisualTreeAsset slotTemplate;
+    public VisualTreeAsset cardTemplate;
     public float interactDistance = 1.5f;
 
     private VisualElement root;
@@ -19,21 +21,21 @@ public class MixerWindow : MonoBehaviour, IUIPanel
     private VisualElement mainSlotsBox;
     private VisualElement sideSlotsBox;
     private VisualElement itemsBox;
-    private Image resultIcon;
+    private VisualElement resultIcon;
     private Label resultAmount;
     private Label timerLabel;
     private Button mixButton;
     private Button cashButton;
     private Button closeButton;
 
+    private VisualElement ghost;
+    private VisualElement ghostIcon;
+    private ReagentData draggedReagent;
+
     private List<VisualElement> mainSlots = new();
     private List<VisualElement> sideSlots = new();
     private List<VisualElement> cards = new();
     private List<ReagentData> cardReagents = new();
-
-    private VisualElement ghost;
-    private Image ghostIcon;
-    private ReagentData draggedReagent;
 
     private Mixer currentMixer;
     private bool isOpen;
@@ -48,22 +50,24 @@ public class MixerWindow : MonoBehaviour, IUIPanel
         mainSlotsBox = root.Q<VisualElement>("MainSlots");
         sideSlotsBox = root.Q<VisualElement>("SideSlots");
         itemsBox = root.Q<VisualElement>("Items");
-        resultIcon = root.Q<Image>("ResultIcon");
+        resultIcon = root.Q<VisualElement>("ResultIcon");
         resultAmount = root.Q<Label>("ResultAmount");
         timerLabel = root.Q<Label>("Timer");
         mixButton = root.Q<Button>("MixButton");
         cashButton = root.Q<Button>("CashButton");
         closeButton = root.Q<Button>("CloseButton");
+        ghost = root.Q<VisualElement>("Ghost");
+        ghostIcon = root.Q<VisualElement>("GhostIcon");
 
         BuildSlots(mainSlotsBox, mainSlots, 4, true);
         BuildSlots(sideSlotsBox, sideSlots, 15, false);
         BuildCards();
-        BuildGhost();
 
         mixButton.clicked += OnMix;
         cashButton.clicked += OnCash;
         closeButton.clicked += Close;
 
+        ghost.style.display = DisplayStyle.None;
         window.style.display = DisplayStyle.None;
     }
 
@@ -142,29 +146,15 @@ public class MixerWindow : MonoBehaviour, IUIPanel
 
         for (int i = 0; i < count; i++)
         {
-            VisualElement slot = new VisualElement();
-            slot.AddToClassList("slot");
-            if (isMain)
-                slot.AddToClassList("slot--main");
+            slotTemplate.CloneTree(box);
+            VisualElement slot = box[i];
 
             SlotRef reference = new SlotRef();
             reference.isMain = isMain;
             reference.index = i;
             slot.userData = reference;
 
-            Image icon = new Image();
-            icon.AddToClassList("slot__icon");
-            icon.pickingMode = PickingMode.Ignore;
-
-            Label amount = new Label();
-            amount.AddToClassList("slot__count");
-            amount.pickingMode = PickingMode.Ignore;
-
-            slot.Add(icon);
-            slot.Add(amount);
             slot.RegisterCallback<PointerDownEvent>(OnSlotPointerDown);
-
-            box.Add(slot);
             slots.Add(slot);
         }
     }
@@ -181,50 +171,20 @@ public class MixerWindow : MonoBehaviour, IUIPanel
             if (reagent == null)
                 continue;
 
-            VisualElement card = new VisualElement();
-            card.AddToClassList("card");
+            cardTemplate.CloneTree(itemsBox);
+            VisualElement card = itemsBox[cards.Count];
+
             card.userData = reagent;
-
-            Image icon = new Image();
-            icon.AddToClassList("card__icon");
-            icon.sprite = reagent.icon;
-            icon.pickingMode = PickingMode.Ignore;
-
-            Label title = new Label(reagent.name);
-            title.AddToClassList("card__name");
-            title.pickingMode = PickingMode.Ignore;
-
-            Label amount = new Label();
-            amount.AddToClassList("card__amount");
-            amount.pickingMode = PickingMode.Ignore;
-
-            card.Add(icon);
-            card.Add(title);
-            card.Add(amount);
+            card.Q<Label>("Title").text = reagent.name;
+            SetIcon(card.Q<VisualElement>("Icon"), reagent.icon);
 
             card.RegisterCallback<PointerDownEvent>(OnCardPointerDown);
             card.RegisterCallback<PointerMoveEvent>(OnCardPointerMove);
             card.RegisterCallback<PointerUpEvent>(OnCardPointerUp);
 
-            itemsBox.Add(card);
             cards.Add(card);
             cardReagents.Add(reagent);
         }
-    }
-
-    private void BuildGhost()
-    {
-        ghost = new VisualElement();
-        ghost.AddToClassList("ghost");
-        ghost.pickingMode = PickingMode.Ignore;
-
-        ghostIcon = new Image();
-        ghostIcon.AddToClassList("slot__icon");
-        ghostIcon.pickingMode = PickingMode.Ignore;
-
-        ghost.Add(ghostIcon);
-        ghost.style.display = DisplayStyle.None;
-        root.Add(ghost);
     }
 
     private void OnCardPointerDown(PointerDownEvent evt)
@@ -236,9 +196,9 @@ public class MixerWindow : MonoBehaviour, IUIPanel
         draggedReagent = (ReagentData)card.userData;
 
         card.CapturePointer(evt.pointerId);
-        MoveGhost(evt.position);
-        ghostIcon.sprite = draggedReagent.icon;
+        SetIcon(ghostIcon, draggedReagent.icon);
         ghost.style.display = DisplayStyle.Flex;
+        MoveGhost(evt.position);
 
         HighlightSlots();
     }
@@ -288,32 +248,38 @@ public class MixerWindow : MonoBehaviour, IUIPanel
         ghost.style.display = DisplayStyle.None;
 
         foreach (VisualElement slot in mainSlots)
-            ClearHighlight(slot);
+            SetHighlight(slot, true, true);
 
         foreach (VisualElement slot in sideSlots)
-            ClearHighlight(slot);
+            SetHighlight(slot, true, true);
     }
 
     private void HighlightSlots()
     {
         for (int i = 0; i < mainSlots.Count; i++)
-            SetHighlight(mainSlots[i], currentMixer.AcceptsMain(i, draggedReagent));
+            SetHighlight(mainSlots[i], currentMixer.AcceptsMain(i, draggedReagent), false);
 
         bool sideOk = currentMixer.AcceptsSide(draggedReagent);
         foreach (VisualElement slot in sideSlots)
-            SetHighlight(slot, sideOk);
+            SetHighlight(slot, sideOk, false);
     }
 
-    private static void SetHighlight(VisualElement slot, bool accepted)
+    private static void SetHighlight(VisualElement slot, bool accepted, bool idle)
     {
-        slot.EnableInClassList("slot--accept", accepted);
-        slot.EnableInClassList("slot--reject", !accepted);
+        slot.EnableInClassList("slot--accept", !idle && accepted);
+        slot.EnableInClassList("slot--reject", !idle && !accepted);
     }
 
-    private static void ClearHighlight(VisualElement slot)
+    private static void SetIcon(VisualElement icon, Sprite sprite)
     {
-        slot.EnableInClassList("slot--accept", false);
-        slot.EnableInClassList("slot--reject", false);
+        if (sprite == null)
+        {
+            icon.style.display = DisplayStyle.None;
+            return;
+        }
+
+        icon.style.display = DisplayStyle.Flex;
+        icon.style.backgroundImage = new StyleBackground(sprite);
     }
 
     private void Refresh()
@@ -327,7 +293,7 @@ public class MixerWindow : MonoBehaviour, IUIPanel
         for (int i = 0; i < cards.Count; i++)
         {
             ReagentData reagent = cardReagents[i];
-            cards[i].Q<Label>(className: "card__amount").text = reagent.amount.ToString();
+            cards[i].Q<Label>("Amount").text = reagent.amount.ToString();
 
             if (reagent.amount > 0)
             {
@@ -344,18 +310,18 @@ public class MixerWindow : MonoBehaviour, IUIPanel
 
     private static void ShowSlot(VisualElement slot, SlotContent content)
     {
-        Image icon = slot.Q<Image>(className: "slot__icon");
-        Label amount = slot.Q<Label>(className: "slot__count");
+        VisualElement icon = slot.Q<VisualElement>("Icon");
+        Label count = slot.Q<Label>("Count");
 
         if (content.IsEmpty)
         {
-            icon.sprite = null;
-            amount.text = "";
+            SetIcon(icon, null);
+            count.text = "";
             return;
         }
 
-        icon.sprite = content.item.icon;
-        amount.text = content.count.ToString();
+        SetIcon(icon, content.item.icon);
+        count.text = content.count.ToString();
     }
 
     private void ShowResult()
@@ -364,14 +330,14 @@ public class MixerWindow : MonoBehaviour, IUIPanel
 
         if (ready.Count == 0)
         {
-            resultIcon.sprite = null;
+            SetIcon(resultIcon, null);
             resultAmount.text = "";
             cashButton.SetEnabled(false);
             return;
         }
 
-        resultIcon.sprite = ready[0].icon;
-        resultIcon.tintColor = ready[0].iconColor;
+        SetIcon(resultIcon, ready[0].icon);
+        resultIcon.style.unityBackgroundImageTintColor = ready[0].iconColor;
         resultAmount.text = ready.Count.ToString();
         cashButton.SetEnabled(true);
     }
