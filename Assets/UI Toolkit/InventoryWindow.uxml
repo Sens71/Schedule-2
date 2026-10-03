@@ -1,0 +1,16 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Common.uss?fileID=7433441132597879392&amp;guid=2c0e2631ab82f304f97019221b78c4e1&amp;type=3#Common" />
+    <ui:VisualElement name="Screen" picking-mode="Ignore" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center;">
+        <ui:VisualElement name="Window" style="width: 620px; background-color: rgb(16, 16, 26); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-color: rgb(58, 60, 66); border-right-color: rgb(58, 60, 66); border-bottom-color: rgb(58, 60, 66); border-left-color: rgb(58, 60, 66); border-top-left-radius: 14px; border-top-right-radius: 14px; border-bottom-right-radius: 14px; border-bottom-left-radius: 14px; padding-bottom: 14px;">
+            <ui:VisualElement style="flex-direction: row; align-items: center; justify-content: space-between; padding-top: 12px; padding-right: 16px; padding-bottom: 12px; padding-left: 16px; background-color: rgb(33, 35, 39); border-top-left-radius: 14px; border-top-right-radius: 14px; border-bottom-width: 1px; border-bottom-color: rgb(58, 60, 66);">
+                <ui:Label text="Inventory" style="color: rgb(236, 238, 242); font-size: 20px; -unity-font-style: bold;" />
+                <ui:Button name="CloseButton" text="X" class="button" style="width: 28px; height: 28px; background-color: rgba(0, 0, 0, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; color: rgb(150, 154, 162); font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+            </ui:VisualElement>
+            <ui:Label text="Carried" class="caption" style="margin-top: 14px; margin-left: 16px;" />
+            <ui:ScrollView name="Shelf" style="height: 360px; margin-right: 16px; margin-left: 16px; background-color: rgb(20, 21, 24); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-color: rgb(46, 48, 54); border-right-color: rgb(46, 48, 54); border-bottom-color: rgb(46, 48, 54); border-left-color: rgb(46, 48, 54); border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;">
+                <ui:VisualElement name="Items" style="flex-direction: row; flex-wrap: wrap; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;" />
+                <ui:Label name="Empty" text="Nothing here yet" style="color: rgb(110, 114, 122); font-size: 13px; -unity-text-align: middle-center; margin-top: 16px;" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
