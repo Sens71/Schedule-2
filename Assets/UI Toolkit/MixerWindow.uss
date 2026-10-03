@@ -10,11 +10,12 @@
 
 .window {
     width: 780px;
-    background-color: rgb(26, 27, 30);
+    background-color: rgb(16, 16, 26);
     border-width: 1px;
     border-color: rgb(58, 60, 66);
     border-radius: 14px;
     padding-bottom: 14px;
+    color: rgb(0, 0, 0);
 }
 
 .titlebar {
@@ -70,7 +71,7 @@
 
 .caption {
     color: rgb(132, 137, 147);
-    font-size: 12px;
+    font-size: 19px;
     -unity-font-style: bold;
     margin-bottom: 6px;
 }

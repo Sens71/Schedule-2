@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
-    <Style src="MixerWindow.uss" />
-    <ui:VisualElement name="Screen" picking-mode="Ignore" class="screen">
-        <ui:VisualElement name="Window" class="window">
+    <Style src="project://database/Assets/UI%20Toolkit/MixerWindow.uss?fileID=7433441132597879392&amp;guid=2c0e2631ab82f304f97019221b78c4e1&amp;type=3#MixerWindow" />
+    <ui:VisualElement name="Screen" picking-mode="Ignore" class="screen" style="top: -26px; bottom: 27px; right: 11px; left: -9px;">
+        <ui:VisualElement name="Window" class="window" style="width: 1000px;">
             <ui:VisualElement class="titlebar">
                 <ui:Label text="Mixing Station" class="titlebar__title" />
                 <ui:Button name="CloseButton" text="✕" class="titlebar__close" />
@@ -13,19 +13,19 @@
                     <ui:Label text="Additives" class="caption" />
                     <ui:VisualElement name="SideSlots" class="slot-grid" />
                 </ui:VisualElement>
-                <ui:VisualElement class="output">
+                <ui:VisualElement class="output" style="align-items: center; justify-content: flex-start; align-content: flex-start; flex-grow: 0; align-self: auto; flex-direction: column;">
                     <ui:Label text="Result" class="caption" />
                     <ui:VisualElement name="ResultSlot" class="slot slot--result">
                         <ui:Image name="ResultIcon" picking-mode="Ignore" class="slot__icon" />
                         <ui:Label name="ResultAmount" picking-mode="Ignore" class="slot__count" />
                     </ui:VisualElement>
-                    <ui:Label name="Timer" text="" class="timer" />
+                    <ui:Label name="Timer" class="timer" />
                     <ui:Button name="MixButton" text="Mix" class="button button--primary" />
                     <ui:Button name="CashButton" text="Collect" class="button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:Label text="Reagents" class="caption caption--shelf" />
-            <ui:ScrollView name="Shelf" class="shelf">
+            <ui:ScrollView name="Shelf" class="shelf" style="height: 324px;">
                 <ui:VisualElement name="Items" class="shelf__items" />
             </ui:ScrollView>
         </ui:VisualElement>
