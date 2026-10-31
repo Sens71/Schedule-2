@@ -1,21 +1,22 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[RequireComponent(typeof(UIDocument))]
+[Serializable]
+public class SlotFilter
+{
+    public List<ReagentData> items = new();
+}
 public class MixerWindow : MonoBehaviour, IUIPanel
 {
-    private class SlotRef
-    {
-        public bool isMain;
-        public int index;
-    }
-
     public Storage storage;
     public VisualTreeAsset slotTemplate;
     public VisualTreeAsset cardTemplate;
     public float interactDistance = 1.5f;
 
+    public List<SlotFilter> whiteList = new();
+    
     private VisualElement root;
     private VisualElement window;
     private VisualElement mainSlotsBox;
@@ -31,9 +32,8 @@ public class MixerWindow : MonoBehaviour, IUIPanel
     private VisualElement ghost;
     private VisualElement ghostIcon;
     private ReagentData draggedReagent;
-
-    private List<VisualElement> mainSlots = new();
-    private List<VisualElement> sideSlots = new();
+    
+    private List<VisualElement> slotElements = new();
     private List<VisualElement> cards = new();
     private List<ReagentData> cardReagents = new();
 
@@ -58,9 +58,10 @@ public class MixerWindow : MonoBehaviour, IUIPanel
         closeButton = root.Q<Button>("CloseButton");
         ghost = root.Q<VisualElement>("Ghost");
         ghostIcon = root.Q<VisualElement>("GhostIcon");
-
-        BuildSlots(mainSlotsBox, mainSlots, 4, true);
-        BuildSlots(sideSlotsBox, sideSlots, 15, false);
+        
+        slotElements.Clear();
+        BuildSlots(mainSlotsBox, 0,Mixer.MainCount);
+        BuildSlots(sideSlotsBox, Mixer.MainCount, Mixer.SlotCount);
         BuildCards();
 
         mixButton.clicked += OnMix;
@@ -139,23 +140,26 @@ public class MixerWindow : MonoBehaviour, IUIPanel
         IUIPanel.Notify(this, false, false);
     }
 
-    private void BuildSlots(VisualElement box, List<VisualElement> slots, int count, bool isMain)
+    public bool Accepts(int index, ReagentData item)
+    {
+        if (index >= whiteList.Count || whiteList[index].items.Count == 0)
+            return true;
+        
+        return  whiteList[index].items.Contains(item);
+    }
+    
+    private void BuildSlots(VisualElement box, int from, int to)
     {
         box.Clear();
-        slots.Clear();
 
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < to; i++)
         {
             slotTemplate.CloneTree(box);
-            VisualElement slot = box[i];
+            VisualElement slot = box[box.childCount - 1];
 
-            SlotRef reference = new SlotRef();
-            reference.isMain = isMain;
-            reference.index = i;
-            slot.userData = reference;
-
+            slot.userData = i;
             slot.RegisterCallback<PointerDownEvent>(OnSlotPointerDown);
-            slots.Add(slot);
+            slotElements.Add(slot);
         }
     }
 
@@ -220,9 +224,9 @@ public class MixerWindow : MonoBehaviour, IUIPanel
         card.ReleasePointer(evt.pointerId);
 
         VisualElement target = root.panel.Pick(evt.position);
-        if (target != null && target.userData is SlotRef reference)
-            currentMixer.TryPlace(reference.isMain, reference.index, draggedReagent);
-
+        if(target != null && target.userData is int index && Accepts(index,draggedReagent))
+            currentMixer.Place(index, draggedReagent);
+        
         EndDrag();
     }
 
@@ -232,8 +236,7 @@ public class MixerWindow : MonoBehaviour, IUIPanel
             return;
 
         VisualElement slot = (VisualElement)evt.currentTarget;
-        SlotRef reference = (SlotRef)slot.userData;
-        currentMixer.TryTake(reference.isMain, reference.index);
+        currentMixer.Take((int)slot.userData);
     }
 
     private void MoveGhost(Vector3 position)
@@ -246,22 +249,15 @@ public class MixerWindow : MonoBehaviour, IUIPanel
     {
         draggedReagent = null;
         ghost.style.display = DisplayStyle.None;
-
-        foreach (VisualElement slot in mainSlots)
-            SetHighlight(slot, true, true);
-
-        foreach (VisualElement slot in sideSlots)
+        
+        foreach (VisualElement slot in slotElements)
             SetHighlight(slot, true, true);
     }
 
     private void HighlightSlots()
     {
-        for (int i = 0; i < mainSlots.Count; i++)
-            SetHighlight(mainSlots[i], currentMixer.AcceptsMain(i, draggedReagent), false);
-
-        bool sideOk = currentMixer.AcceptsSide(draggedReagent);
-        foreach (VisualElement slot in sideSlots)
-            SetHighlight(slot, sideOk, false);
+        for (int i = 0; i < slotElements.Count; i++)
+            SetHighlight(slotElements[i], Accepts(i, draggedReagent), false);
     }
 
     private static void SetHighlight(VisualElement slot, bool accepted, bool idle)
@@ -284,11 +280,8 @@ public class MixerWindow : MonoBehaviour, IUIPanel
 
     private void Refresh()
     {
-        for (int i = 0; i < mainSlots.Count; i++)
-            ShowSlot(mainSlots[i], currentMixer.mainItems[i]);
-
-        for (int i = 0; i < sideSlots.Count; i++)
-            ShowSlot(sideSlots[i], currentMixer.sideItems[i]);
+        for (int i = 0; i < slotElements.Count; i++)
+            ShowSlot(slotElements[i], currentMixer.slots[i]);
 
         for (int i = 0; i < cards.Count; i++)
         {
@@ -326,7 +319,7 @@ public class MixerWindow : MonoBehaviour, IUIPanel
 
     private void ShowResult()
     {
-        List<Drug> ready = currentMixer.Ready;
+        List<Drug> ready = currentMixer.ready;
 
         if (ready.Count == 0)
         {

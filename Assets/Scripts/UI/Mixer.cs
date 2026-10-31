@@ -9,11 +9,7 @@ public class LeafDrug
     public ItemData drug;
 }
 
-[Serializable]
-public class SlotFilter
-{
-    public List<ReagentData> allowedItems = new();
-}
+
 
 [Serializable]
 public class SlotContent
@@ -29,11 +25,11 @@ public class SlotContent
 
 public class Mixer : MonoBehaviour
 {
-    public List<SlotFilter> mainFilters = new();
-    public List<ReagentData> sideBlackList = new();
+    public const int MainCount = 4;
+    public const int SlotCount = 19;
+    public const int LeafSlot = 3;
 
-    public SlotContent[] mainItems = new SlotContent[4];
-    public SlotContent[] sideItems = new SlotContent[15];
+    public SlotContent[] slots = new SlotContent[SlotCount];
 
     public List<LeafDrug> drugMap = new();
     public TimeManager timeManager;
@@ -43,7 +39,7 @@ public class Mixer : MonoBehaviour
     public event Action OnChanged;
 
     private List<Drug> queue = new();
-    private List<Drug> ready = new();
+    public List<Drug> ready = new();
     private ClockTime portionReadyAt;
 
     public int QueueCount
@@ -51,53 +47,18 @@ public class Mixer : MonoBehaviour
         get { return queue.Count; }
     }
 
-    public List<Drug> Ready
-    {
-        get { return ready; }
-    }
-
     private void Awake()
     {
         timeManager = FindAnyObjectByType<TimeManager>();
-        mainItems = Resize(mainItems, 4);
-        sideItems = Resize(sideItems, 15);
-
-        while (mainFilters.Count < 4)
-            mainFilters.Add(new SlotFilter());
+        slots = Resize(slots, SlotCount);
 
         HandleMixing();
     }
 
-    public bool AcceptsMain(int index, ReagentData item)
+
+    public void Place(int index, ReagentData item)
     {
-        List<ReagentData> allowed = mainFilters[index].allowedItems;
-        return allowed.Count == 0 || allowed.Contains(item);
-    }
-
-    public bool AcceptsSide(ReagentData item)
-    {
-        return !sideBlackList.Contains(item);
-    }
-
-    public bool TryPlace(bool isMain, int index, ReagentData item)
-    {
-        SlotContent[] slots;
-        if (isMain)
-        {
-            if (!AcceptsMain(index, item))
-                return false;
-
-            slots = mainItems;
-        }
-        else
-        {
-            if (!AcceptsSide(item))
-                return false;
-
-            slots = sideItems;
-        }
-
-        var content = slots[index];
+        SlotContent content = slots[index];
 
         if (content.IsEmpty)
         {
@@ -117,28 +78,18 @@ public class Mixer : MonoBehaviour
 
         item.ChangeAmount(-1);
         OnChanged?.Invoke();
-        return true;
     }
 
-    public bool TryTake(bool isMain, int index)
+
+public void Take(int index)
     {
-        SlotContent[] slots;
-        if (isMain)
-        {
-            slots = mainItems;
-        }
-        else
-        {
-            slots = sideItems;
-        }
         var content = slots[index];
         if (content.IsEmpty)
-            return false;
+            return;
 
         content.item.ChangeAmount(1);
         RemoveOne(content);
         OnChanged?.Invoke();
-        return true;
     }
 
     public void Mix()
@@ -199,9 +150,9 @@ public class Mixer : MonoBehaviour
 
     private bool CanMix()
     {
-        foreach (var content in mainItems)
+        for (int i = 0; i < MainCount; i++)
         {
-            if (content.IsEmpty)
+            if(slots[i].IsEmpty)
                 return false;
         }
         return true;
@@ -209,15 +160,12 @@ public class Mixer : MonoBehaviour
 
     private ItemData FindProduct()
     {
-        foreach (var content in mainItems)
+        ReagentData leaf = slots[LeafSlot].item;
+        foreach (LeafDrug pair in drugMap)
         {
-            if (content.IsEmpty)
-                continue;
-
-            foreach (var pair in drugMap)
+            if (pair.leaf = leaf)
             {
-                if (pair.leaf == content.item)
-                    return pair.drug;
+                return pair.drug;
             }
         }
         return null;
@@ -227,13 +175,7 @@ public class Mixer : MonoBehaviour
     {
         List<ReagentData> reagents = new();
 
-        foreach (var content in mainItems)
-        {
-            if (!content.IsEmpty)
-                reagents.Add(content.item);
-        }
-
-        foreach (var content in sideItems)
+        foreach (var content in slots)
         {
             if (!content.IsEmpty)
                 reagents.Add(content.item);
@@ -244,13 +186,8 @@ public class Mixer : MonoBehaviour
 
     private void ConsumePortion()
     {
-        foreach (var content in mainItems)
-        {
-            if (!content.IsEmpty)
-                RemoveOne(content);
-        }
 
-        foreach (var content in sideItems)
+        foreach (var content in slots)
         {
             if (!content.IsEmpty)
                 RemoveOne(content);
@@ -269,14 +206,14 @@ public class Mixer : MonoBehaviour
         }
     }
 
-    private static SlotContent[] Resize(SlotContent[] slots, int size)
+    private static SlotContent[] Resize(SlotContent[] source,int size)
     {
         SlotContent[] result = new SlotContent[size];
         for (int i = 0; i < size; i++)
         {
-            if (i < slots.Length)
+            if (i < source.Length && source[i] != null)
             {
-                result[i] = slots[i];
+                result[i] = source[i];
             }
             else
             {

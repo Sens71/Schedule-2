@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="root" style="flex-grow: 0; position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: rgb(197, 154, 65);">
+        <ui:VisualElement name="Ghost" style="flex-grow: 0; position: absolute; background-color: rgb(0, 0, 0); width: 100px; height: 100px; border-top-left-radius: 231px; border-top-right-radius: 231px; border-bottom-right-radius: 231px; border-bottom-left-radius: 231px; translate: -50% -50%;" />
+        <ui:VisualElement name="Box" style="flex-grow: 1; position: absolute; width: 300px; height: 300px; background-color: rgb(0, 255, 32); top: 370px; left: 812px;" />
+    </ui:VisualElement>
+</ui:UXML>

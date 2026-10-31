@@ -1,0 +1,25 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="root" style="flex-grow: 1; background-color: rgb(53, 60, 104); justify-content: center; align-self: auto; align-items: center;">
+        <ui:VisualElement style="flex-grow: 1;">
+            <ui:VisualElement name="Box" style="flex-grow: 0; width: 400px; height: 400px; background-color: rgb(180, 171, 94); align-items: center; justify-content: center;">
+                <ui:Label text="0" name="Result" style="font-size: 50px;" />
+            </ui:VisualElement>
+            <ui:Label text="Label" name="Log" style="font-size: 44px; color: rgb(192, 83, 83);" />
+            <ui:VisualElement name="Box2" style="flex-grow: 0; width: 400px; height: 400px; background-color: rgb(180, 171, 94); align-items: center; justify-content: center;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; align-self: center; flex-direction: row; justify-content: flex-start; align-items: center; margin-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; padding-top: 0; padding-right: 31px; padding-bottom: 0; padding-left: 0; align-content: flex-start;">
+            <ui:VisualElement name="TargetA" style="flex-grow: 0; background-color: rgb(255, 0, 45); width: 200px; height: 200px; margin-top: 50px; margin-right: 50px; margin-bottom: 50px; margin-left: 50px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; justify-content: center; align-items: center;">
+                <ui:Label text="1" style="font-size: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="TargetB" style="flex-grow: 0; background-color: rgb(255, 0, 45); width: 200px; height: 200px; margin-top: 50px; margin-right: 50px; margin-bottom: 50px; margin-left: 50px; justify-content: center; align-items: center;">
+                <ui:Label text="2" name="Label" style="font-size: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="TargetC" style="flex-grow: 0; background-color: rgb(255, 0, 45); width: 200px; height: 200px; margin-top: 50px; margin-right: 50px; margin-bottom: 50px; margin-left: 50px; justify-content: center; align-items: center;">
+                <ui:Label text="3" style="font-size: 50px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="TimeBox" style="flex-grow: 1; position: absolute; width: 300px; height: 300px; top: 337px; left: 1436px; background-color: rgb(95, 255, 94);" />
+        <ui:VisualElement name="Icon1" style="flex-grow: 1; background-color: rgb(133, 0, 0); position: absolute; width: 200px; height: 200px; top: 79px; left: 1345px; background-image: url(&quot;project://database/Assets/Textures/UI/Icon/Navigation/Arrow%20Right.png?fileID=21300000&amp;guid=395800a7c7a30f448b61fb690556100f&amp;type=3#Arrow Right&quot;);" />
+        <ui:VisualElement name="Icon2" style="flex-grow: 1; background-color: rgb(213, 115, 9); position: absolute; width: 200px; height: 200px; top: 99px; left: 1659px; background-image: url(&quot;project://database/Assets/Textures/UI/Icon/Navigation/Arrow%20Left.png?fileID=2800000&amp;guid=8a9605cca7152fc4bbef9451d4171c96&amp;type=3#Arrow Left&quot;);" />
+    </ui:VisualElement>
+</ui:UXML>

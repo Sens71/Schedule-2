@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Ghost" style="flex-grow: 1; position: absolute; width: 50px; height: 50px; background-color: rgb(146, 62, 62); align-items: stretch; justify-content: center; translate: -50% -50%;">
+        <ui:VisualElement name="Icon" style="flex-grow: 0.8; background-color: rgba(94, 255, 103, 0.51); width: auto; height: auto; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); top: auto; right: auto; bottom: auto; left: auto;" />
+    </ui:VisualElement>
+</ui:UXML>

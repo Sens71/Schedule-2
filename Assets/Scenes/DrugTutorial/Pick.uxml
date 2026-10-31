@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="root" style="flex-grow: 1; background-color: rgb(70, 68, 85);">
+        <ui:VisualElement name="SlotA" style="flex-grow: 1; position: absolute; width: 300px; height: 300px; background-color: rgb(0, 70, 255); margin-top: 17px; margin-right: 17px; margin-bottom: 17px; margin-left: 17px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-size: 300px 300px; top: 362px; left: 843px;">
+            <ui:VisualElement name="IconA" style="flex-grow: 1; background-color: rgb(232, 255, 0); background-size: 100px 50px; position: relative; height: auto; width: auto; left: 0; top: 0; right: 0; bottom: 0; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; margin-top: 50px; margin-right: 50px; margin-bottom: 50px; margin-left: 50px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="SlotB" style="flex-grow: 1; position: absolute; width: 300px; height: 300px; background-color: rgb(0, 70, 255); margin-top: 17px; margin-right: 17px; margin-bottom: 17px; margin-left: 17px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-size: 300px 300px; top: 364px; left: 1198px;">
+            <ui:VisualElement name="IconB" picking-mode="Ignore" style="flex-grow: 1; background-color: rgb(232, 255, 0); background-size: 100px 50px; position: relative; height: auto; width: auto; left: 0; top: 0; right: 0; bottom: 0; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; margin-top: 50px; margin-right: 50px; margin-bottom: 50px; margin-left: 50px;" />
+        </ui:VisualElement>
+        <ui:Label text="Label" name="Log" style="position: absolute; height: 102px; width: 240px; top: 744px; left: 1055px; font-size: 66px; color: rgb(255, 255, 255);" />
+    </ui:VisualElement>
+</ui:UXML>
