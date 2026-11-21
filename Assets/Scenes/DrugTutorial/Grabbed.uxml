@@ -1,0 +1,28 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 0; background-color: rgb(79, 75, 117); top: 0; right: 0; bottom: 0; left: 0; position: absolute;">
+        <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+            <ui:VisualElement name="Num1" style="flex-grow: 0; align-items: center; justify-content: center; background-color: rgb(255, 222, 173); width: 120px; height: 120px; margin-top: 12px; margin-right: 12px; margin-bottom: 12px; margin-left: 12px;">
+                <ui:Label text="1" style="font-size: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Num2" style="flex-grow: 0; align-items: center; justify-content: center; background-color: rgb(255, 255, 224); width: 120px; height: 120px; margin-top: 12px; margin-right: 12px; margin-bottom: 12px; margin-left: 12px;">
+                <ui:Label text="2" style="font-size: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Str1" style="flex-grow: 0; align-items: center; justify-content: center; background-color: rgb(175, 238, 238); width: 120px; height: 120px; margin-top: 12px; margin-right: 12px; margin-bottom: 12px; margin-left: 12px;">
+                <ui:Label text="Apple" style="font-size: 30px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Str2" style="flex-grow: 0; align-items: center; justify-content: center; background-color: rgb(175, 238, 238); width: 120px; height: 120px; margin-top: 12px; margin-right: 12px; margin-bottom: 12px; margin-left: 12px;">
+                <ui:Label text="Pear" style="font-size: 30px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="NumberBox" style="flex-grow: 0; align-items: center; justify-content: center; background-color: rgb(255, 222, 173); width: 250px; height: 160px; margin-top: 12px; margin-right: 12px; margin-bottom: 12px; margin-left: 12px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px;">
+                <ui:Label text="Numbers" picking-mode="Ignore" style="font-size: 50px;" />
+                <ui:Label text="-" name="Value" picking-mode="Ignore" style="font-size: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="StringBox" style="flex-grow: 0; align-items: center; justify-content: center; background-color: rgb(255, 222, 173); width: 250px; height: 160px; margin-top: 12px; margin-right: 12px; margin-bottom: 12px; margin-left: 12px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);">
+                <ui:Label text="Strings" picking-mode="Ignore" style="font-size: 50px;" />
+                <ui:Label text="-" name="Value" picking-mode="Ignore" style="font-size: 50px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

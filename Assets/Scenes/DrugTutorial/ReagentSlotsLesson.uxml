@@ -1,0 +1,33 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; padding: 24px; background-color: rgb(24, 25, 30);">
+        <ui:Label text="10. ReagentData between slots" style="color: rgb(255, 255, 255); font-size: 24px; -unity-font-style: bold; margin: 12px;" />
+        <ui:VisualElement name="Supplier" style="flex-direction: row;">
+            <ui:VisualElement name="Slot1" style="width: 140px; height: 160px; margin: 12px; background-color: rgb(30, 31, 36); border-width: 2px; border-color: rgb(70, 72, 80); border-radius: 8px; align-items: center; justify-content: center;">
+                <ui:VisualElement name="Icon" picking-mode="Ignore" style="width: 80px; height: 80px;" />
+                <ui:Label name="Name" text="-" picking-mode="Ignore" style="color: rgb(255, 255, 255); font-size: 16px; margin-top: 8px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Slot2" style="width: 140px; height: 160px; margin: 12px; background-color: rgb(30, 31, 36); border-width: 2px; border-color: rgb(70, 72, 80); border-radius: 8px; align-items: center; justify-content: center;">
+                <ui:VisualElement name="Icon" picking-mode="Ignore" style="width: 80px; height: 80px;" />
+                <ui:Label name="Name" text="-" picking-mode="Ignore" style="color: rgb(255, 255, 255); font-size: 16px; margin-top: 8px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Slot3" style="width: 140px; height: 160px; margin: 12px; background-color: rgb(30, 31, 36); border-width: 2px; border-color: rgb(70, 72, 80); border-radius: 8px; align-items: center; justify-content: center;">
+                <ui:VisualElement name="Icon" picking-mode="Ignore" style="width: 80px; height: 80px;" />
+                <ui:Label name="Name" text="-" picking-mode="Ignore" style="color: rgb(255, 255, 255); font-size: 16px; margin-top: 8px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Receiver" picking-mode="Ignore" style="flex-direction: row;">
+            <ui:VisualElement name="Slot1" style="width: 140px; height: 160px; margin: 12px; background-color: rgb(30, 31, 36); border-width: 2px; border-color: rgb(70, 72, 80); border-radius: 8px; align-items: center; justify-content: center;">
+                <ui:VisualElement name="Icon" picking-mode="Ignore" style="width: 80px; height: 80px;" />
+                <ui:Label name="Name" text="-" picking-mode="Ignore" style="color: rgb(255, 255, 255); font-size: 16px; margin-top: 8px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Slot2" style="width: 140px; height: 160px; margin: 12px; background-color: rgb(30, 31, 36); border-width: 2px; border-color: rgb(70, 72, 80); border-radius: 8px; align-items: center; justify-content: center;">
+                <ui:VisualElement name="Icon" picking-mode="Ignore" style="width: 80px; height: 80px;" />
+                <ui:Label name="Name" text="-" picking-mode="Ignore" style="color: rgb(255, 255, 255); font-size: 16px; margin-top: 8px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Slot3" style="width: 140px; height: 160px; margin: 12px; background-color: rgb(30, 31, 36); border-width: 2px; border-color: rgb(70, 72, 80); border-radius: 8px; align-items: center; justify-content: center;">
+                <ui:VisualElement name="Icon" picking-mode="Ignore" style="width: 80px; height: 80px;" />
+                <ui:Label name="Name" text="-" picking-mode="Ignore" style="color: rgb(255, 255, 255); font-size: 16px; margin-top: 8px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

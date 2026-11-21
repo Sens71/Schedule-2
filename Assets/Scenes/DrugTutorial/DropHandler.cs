@@ -7,6 +7,7 @@ public class DropHandler : MonoBehaviour
     private VisualElement doc;
     private Label result;
     private VisualElement box;
+    private VisualElement box2;
     private int counter;
     
     private void OnEnable()
@@ -14,22 +15,31 @@ public class DropHandler : MonoBehaviour
         doc = GetComponent<UIDocument>().rootVisualElement;
         result = doc.Q<Label>("Result");
         box = doc.Q<VisualElement>("Box");
+        box2 = doc.Q<VisualElement>("Box2");
         
         Drag.Released += OnUp;
     }
 
     private void OnUp(VisualElement ve, Vector2 position)
     {
-        if(doc.panel.Pick(position) != box)
-            return;
-        if (ve.userData is float || ve.userData is int)
+        if (doc.panel.Pick(position) == box)
         {
-            result.text = ve.userData.ToString();
+            if (ve.userData is float || ve.userData is int)
+            {
+                result.text = ve.userData.ToString();
+            }
+            else if (ve.userData is Background)
+            {
+                Background bg = (Background)ve.userData;
+                box.style.backgroundImage = new StyleBackground(bg);
+            }
         }
-        else if (ve.userData is StyleBackground)
+        else if (doc.panel.Pick(position) == box2)
         {
-            box.style.backgroundImage = (StyleBackground)ve.userData;
+           box2.style.backgroundColor = ve.resolvedStyle.backgroundColor;
         }
+            
+        
 
     }
     

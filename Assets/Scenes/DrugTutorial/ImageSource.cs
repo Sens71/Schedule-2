@@ -24,7 +24,7 @@ public class ImageSource : MonoBehaviour
     {
         VisualElement target = (VisualElement)evt.currentTarget;
         
-        target.userData = target.style.backgroundImage;
+        target.userData = target.resolvedStyle.backgroundImage;
         target.CapturePointer(evt.pointerId);
     }
 
