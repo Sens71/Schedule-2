@@ -7,20 +7,16 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(fileName = "EvaluatorData", menuName = "Data/EvaluatorData")]
 public class EvaluatorData : ScriptableObject
 {
-    [SpritePreview(nameof(finalColor))]
-    public Sprite icon;
-    public Color finalColor;
-    public List<ReagentData> reagents;
-    public Storage storage;
+
     public void Evaluate()
     {
-        var drug = new Drug(reagents.ToArray());
-        finalColor = drug.iconColor;
-        storage.AddDrug(drug);
+        for (int i = 0; i < 10; i++)
+        {
+            if(i == 5)
+                continue;
+            Debug.Log(i);
+        }
     }
-    private void Mixreagents(params ReagentData[] reagent)
-    {
-            
-    }
+
 
 }

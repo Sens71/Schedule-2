@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
 public class InventoryWindow : MonoBehaviour, IUIPanel
 {
+    private VisualElement ghost;
     public Storage storage;
     public VisualTreeAsset cardTemplate;
 
@@ -18,7 +20,6 @@ public class InventoryWindow : MonoBehaviour, IUIPanel
     private void OnEnable()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
-        root.pickingMode = PickingMode.Ignore;
 
         window = root.Q<VisualElement>("Window");
         itemsBox = root.Q<VisualElement>("Items");
@@ -74,7 +75,7 @@ public class InventoryWindow : MonoBehaviour, IUIPanel
             if (item.amount <= 0)
                 continue;
 
-            AddCard(item.icon, item.name, item.amount, Color.white);
+            AddCard(item.icon, item.name, item.amount, Color.white, item);
         }
 
         foreach (Drug drug in storage.Drugs)
@@ -82,7 +83,7 @@ public class InventoryWindow : MonoBehaviour, IUIPanel
             if (drug.amount <= 0)
                 continue;
 
-            AddCard(drug.icon, drug.name, drug.amount, drug.iconColor);
+            AddCard(drug.icon, drug.name, drug.amount, drug.iconColor, drug);
         }
 
         if (itemsBox.childCount == 0)
@@ -95,7 +96,7 @@ public class InventoryWindow : MonoBehaviour, IUIPanel
         }
     }
 
-    private void AddCard(Sprite icon, string title, int amount, Color tint)
+    private void AddCard(Sprite icon, string title, int amount, Color tint, object data)
     {
         cardTemplate.CloneTree(itemsBox);
         VisualElement card = itemsBox[itemsBox.childCount - 1];
@@ -106,5 +107,48 @@ public class InventoryWindow : MonoBehaviour, IUIPanel
 
         card.Q<Label>("Title").text = title;
         card.Q<Label>("Amount").text = amount.ToString();
+        card.userData = data;
+        card.RegisterCallback<PointerDownEvent>(OnDown);
+        card.RegisterCallback<PointerMoveEvent>(OnMove);
+        card.RegisterCallback<PointerUpEvent>(OnUp);
     }
+
+    private void OnUp(PointerUpEvent eventData)
+    {
+        VisualElement source = (VisualElement)eventData.currentTarget;
+        if(!source.HasPointerCapture(eventData.pointerId))
+            return;
+        
+        source.ReleasePointer(eventData.pointerId);
+        ghost.RemoveFromHierarchy();
+        ghost = null;
+        Drag.Release(source,eventData.position);
+    }
+    private void OnDown(PointerDownEvent eventData)
+    {
+        VisualElement source = (VisualElement)eventData.currentTarget;
+        source.CapturePointer(eventData.pointerId);
+        ghost = cardTemplate.Instantiate().Q<VisualElement>("Card");
+        ghost.pickingMode = PickingMode.Ignore;
+        ghost.style.position = Position.Absolute;
+        ghost.style.opacity = 0.5f;
+        ghost.style.translate = new Translate(Length.Percent(-50), Length.Percent(-50));
+        VisualElement sourceIcon = ghost.Q<VisualElement>("Icon");
+        VisualElement ghostIcon = ghost.Q<VisualElement>("Icon");
+        ghostIcon.style.backgroundImage = sourceIcon.style.backgroundImage;
+        ghostIcon.style.left = eventData.position.x;
+        ghostIcon.style.top = eventData.position.y;
+        root.Add(ghost);
+        Drag.Grab(ghost);
+    }
+    private void OnMove(PointerMoveEvent eventData)
+    {
+        if (ghost == null)
+            return;
+        
+        ghost.style.left = eventData.position.x;
+        ghost.style.top = eventData.position.y;
+    }
+
+    
 }

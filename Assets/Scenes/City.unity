@@ -332352,33 +332352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabd8ce55b38a574d98a0fa88e5c71b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainSlots:
-  - {fileID: 1443914568}
-  - {fileID: 77750210}
-  - {fileID: 1205843488}
-  - {fileID: 233268892}
-  sideSlots:
-  - {fileID: 1715912267}
-  - {fileID: 1407222620}
-  - {fileID: 1979672865}
-  - {fileID: 2129354859}
-  - {fileID: 730770081}
-  - {fileID: 961460949}
-  - {fileID: 1958811729}
-  - {fileID: 65330574}
-  - {fileID: 483014435}
-  - {fileID: 2053791972}
-  - {fileID: 218510181}
-  - {fileID: 1410886948}
-  - {fileID: 1689705569}
-  - {fileID: 2111860704}
-  - {fileID: 1069560203}
-  mixerPanel: {fileID: 837064706}
-  inventoryPanel: {fileID: 1645090974}
-  cookingTimerText: {fileID: 1927431343}
-  resultSlot: {fileID: 1361715460}
-  currentMixer: {fileID: 0}
-  isOpen: 0
 --- !u!1001 &2042858702
 PrefabInstance:
   m_ObjectHideFlags: 0
